@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+<div>
+    <form th:method="post" th:action="@{/}" th:object="${users}" enctype="multipart/form-data">
+        <input type="text" field="*{name}" name="name" id = "name" placeholder="имя" />
+        <input type="text" field="*{surname}" name="secondName" id="surname" placeholder="фамилия"/>
+        <input type="file" name="file">
+        <input type="submit" value="Create!"/>
+    </form>
+</div>
+<div>Список сообщений</div>
+<!--<form th:method="post" action="filter">-->
+<!--    <input type="text" name="filter">-->
+<!--    <button type="submit">Найти</button>-->
+<!--</form>-->
+<div th:each="user : ${users}">
+    <p th:text="${user.id}">VALUE</p>
+    <p th:text="${user.name}">VALUE</p>
+    <p th:text="${user.secondName}">VALUE</p>
+    <!--    <p th:text="${user}">VALUE</p>-->
+
+<!--        <img th:src="@{/img/{filename}(filename = ${user.filename})}">-->
+
+</div>
+</body>
+</html>

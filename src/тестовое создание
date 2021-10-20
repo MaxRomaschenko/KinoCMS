@@ -1,0 +1,204 @@
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Banner`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Banner;
+
+CREATE TABLE IF NOT EXISTS Banner (
+                                               `id` INT AUTO_INCREMENT primary key ,
+                                               `photo` varchar(200) NULL,
+                                               `url` VARCHAR(100) NULL,
+                                               `text_message` LONGTEXT NULL);
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`SEO`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS SEO ;
+
+CREATE TABLE IF NOT EXISTS SEO (
+                                            `id` INT AUTO_INCREMENT PRIMARY KEY,
+                                            `URL` VARCHAR(100) NULL,
+                                            `title` VARCHAR(150) NULL,
+                                            `keywords` LONGTEXT NULL,
+                                            `description` LONGTEXT NULL
+                                            );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Film`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Film ;
+
+CREATE TABLE IF NOT EXISTS Film (
+                                             `id` INT AUTO_INCREMENT PRIMARY KEY,
+                                             `name` VARCHAR(150) NULL,
+                                             `description` LONGTEXT NULL,
+                                             `main_picture` varchar(200) NULL,
+                                             `trailer_url` VARCHAR(100) NULL,
+                                             `SEO_id` INT  REFERENCES SEO(id) ON DELETE CASCADE
+                                             );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`FilmType`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS FilmType ;
+
+CREATE TABLE IF NOT EXISTS FilmType (
+                                                 `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                                 `name_type` VARCHAR(10) NULL
+                                                 );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Cinema`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Cinema ;
+
+CREATE TABLE IF NOT EXISTS Cinema (
+                                               `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                               `cinema_name` VARCHAR(160) NULL,
+                                               `description` LONGTEXT NULL,
+                                               `conditions` LONGTEXT NULL,
+                                               `logo_picture` varchar(200) NULL,
+                                               `banner_picture` varchar(200) NULL,
+                                               `SEO_id` INT NOT NULL references SEO(id) on delete cascade
+                                               );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`hall`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Hall ;
+
+CREATE TABLE IF NOT EXISTS Hall (
+                                             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                             `hall_number` INT NULL,
+                                             `description` LONGTEXT NULL,
+                                             `hall_layout_picture` varchar(200) NULL,
+                                             `banner_picture` varchar(200) NULL,
+                                             `created_at` TIMESTAMP NULL,
+                                             `cinema_id` INT NOT NULL references Cinema(id) on delete cascade ,
+                                             `SEO_id` INT NOT NULL references SEO(id) on delete cascade
+                                );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`News`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS News ;
+
+CREATE TABLE IF NOT EXISTS News (
+                                             `id` INT NOT NULL AUTO_INCREMENT primary key ,
+                                             `title` TEXT NULL,
+                                             `publication_date` TIMESTAMP NULL,
+                                             `description` TEXT NULL,
+                                             `main_picture` varchar(200) NULL,
+                                             `trailer_url` VARCHAR(45) NULL,
+                                             `isactive` BOOLEAN NULL,
+                                             `Created_at` TIMESTAMP NULL,
+                                             `SEO_id` INT NOT NULL references SEO(id) on delete cascade );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`stock`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS stock ;
+
+CREATE TABLE IF NOT EXISTS stock (
+                                              `id` INT NOT NULL AUTO_INCREMENT primary key ,
+                                              `title` TEXT NULL,
+                                              `publication_date` TIMESTAMP NULL,
+                                              `description` TEXT NULL,
+                                              `main_picture` varchar(200) NULL,
+                                              `trailer_url` VARCHAR(45) NULL,
+                                              `is_active` BOOLEAN NULL,
+                                              `SEO_id` INT NOT NULL references SEO(id) on delete cascade
+                                 );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Page`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Page ;
+
+CREATE TABLE IF NOT EXISTS Page (
+                                             `id` INT NOT NULL AUTO_INCREMENT primary key ,
+                                             `title` VARCHAR(45) NULL,
+                                             `description` VARCHAR(45) NULL,
+                                             `banner_url` varchar(200) NULL,
+                                             `is_active` boolean NULL,
+                                             `created_at` TIMESTAMP NULL,
+                                             `SEO_id` INT NOT NULL references SEO(id) on delete cascade
+                                );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS users ;
+
+CREATE TABLE IF NOT EXISTS users (
+                                              `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                              `regDate` TIMESTAMP NULL,
+                                              `name` VARCHAR(45) NULL,
+                                              `secondname` VARCHAR(45) NULL,
+                                              `nickname` VARCHAR(45) NULL,
+                                              `birthday_date` TIMESTAMP NULL,
+                                              `email` VARCHAR(45) NULL,
+                                              `telephone` VARCHAR(45) NULL,
+                                              `address` VARCHAR(45) NULL,
+                                              `password` VARCHAR(45) NULL,
+                                              `card_number` VARCHAR(12) NULL,
+                                              `language` VARCHAR(45) NULL,
+                                              `gender` VARCHAR(45) NULL
+                                              );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`film_filmType`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS film_filmType ;
+
+CREATE TABLE IF NOT EXISTS film_filmType (
+                                                      `Film_id` INT NOT NULL REFERENCES Film(id) on delete cascade ,
+                                                      `Filmtype_id` INT NOT NULL references FilmType(id) on delete cascade
+                                                      );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`pictureGalary`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS pictureGalary ;
+
+CREATE TABLE IF NOT EXISTS pictureGalary (
+                                                      `id` INT NOT NULL AUTO_INCREMENT primary key ,
+                                                      `picture` varchar(200) NULL,
+                                                      `Cinema_id` INT  references Cinema(id) on delete cascade ,
+                                                      `Film_id` INT references Film(id) on delete cascade,
+                                                      `hall_id` INT references Hall(id) on delete cascade,
+                                                      `News_id` INT references News(id) on delete cascade,
+                                                      `stock_id` INT references stock(id) on delete cascade,
+                                                      `Page_id` INT references Page(id) on delete cascade
+                                                      );
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`timetable`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS timetable ;
+
+CREATE TABLE IF NOT EXISTS timetable (
+                                                  `id` INT NOT NULL AUTO_INCREMENT primary key ,
+                                                  `time_session` TIME NULL,
+                                                  `price` DECIMAL(3,2) NULL,
+                                                  `isbooked` TINYINT NULL,
+                                                  `date_session` DATE NULL,
+                                                  `film_name` INT NOT NULL REFERENCES Film(id) on delete cascade ,
+                                                  `hall_name` INT NOT NULL references Hall(id) on delete cascade
+                                                 );
+
+
+
