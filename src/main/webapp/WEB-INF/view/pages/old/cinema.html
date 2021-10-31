@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+<div>
+    <form th:method="post" th:action="@{/сinemas/add/admin}"  enctype="multipart/form-data">
+        Название кинотеатра
+        <input type="text" th:field="*{cinema.cinema_name}">
+        Описание
+        <input type="text" th:field="*{cinema.description}">
+        Условия
+        <input type="text" th:field="*{cinema.conditions}">
+        Логотип
+        <input type="file" name="logo" id="logo">
+        Фото верхнего баннера
+        <input type="file" name="banner" id="banner">
+
+
+        <input type="file" name="gallery" >
+        <input type="file" name="gallery" >
+        <input type="file" name="gallery" >
+        <input type="file" name="gallery" >
+
+
+        <table>
+            <tr>
+                <th>Название</th>
+                <th>Дата создания</th>
+            </tr>
+            <tr th:each="hall : ${halls}">
+                <td><span th:text="${hall.hall_number}"> </span></td>
+                <td><span th:text="${hall.created_at}"> </span></td>
+            </tr>
+        </table>
+
+        <p>Seo блок</p>
+        <p>URL: <input type="text" th:field="*{cinema.seo.url}" id="url" alt="URL"> </p>
+        <p>Title: <input type="text" th:field="*{cinema.seo.title}" id="title" alt="title"> </p>
+        <p>Keywords: <input type="text" th:field="*{cinema.seo.keywords}" id="keywords" alt="keywords"> </p>
+        <p>Description: <input type="text" th:field="*{cinema.seo.description}" id="seoDescription" alt="description"> </p>
+        <input type="submit" value="Сохранить"/>
+
+    </form>
+
+</div>
+
+</body>
+</html>

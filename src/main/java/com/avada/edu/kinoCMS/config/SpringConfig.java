@@ -38,7 +38,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/view/");
+        templateResolver.setPrefix("/WEB-INF/view/pages/");
         templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
@@ -80,7 +80,14 @@ public class SpringConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/img/**")
+        registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/view/dist/js/");
+        registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/view/dist/css/");
+        registry.addResourceHandler("/img/**").addResourceLocations("/WEB-INF/view/dist/img/");
+        registry.addResourceHandler("/plugins/**").addResourceLocations("/WEB-INF/view/plugins/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/view/images/");
+        registry.addResourceHandler("/WEB-INF/view/images/**")
                 .addResourceLocations("file:/" + uploadPath + "/");
+//        registry.addResourceHandler("/view/**").addResourceLocations("/WEB-INF/view/");
+
     }
 }

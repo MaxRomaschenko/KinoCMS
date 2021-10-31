@@ -9,12 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
-import java.util.UUID;
 
 @Log4j2
 @Controller
@@ -33,7 +29,7 @@ public class UserController {
             Map<String,Object> model
     ) {
         model.put("name",name);
-        return "main";
+        return "UI/main";
     }
 
     @GetMapping("/")
@@ -46,15 +42,13 @@ public class UserController {
     @PostMapping("/")
     public String add(@RequestParam String name,
                       @RequestParam String secondName,
-                      Map<String,Object> model,
-                      @RequestParam("file")MultipartFile file
-    ) throws IOException {
+                      Map<String,Object> model) {
         User user = new User(name,secondName);
 
         userRepo.save(user);
 
         Iterable<User> users = userRepo.findAll();
         model.put("users",users);
-        return "main";
+        return "UI/main";
     }
 }

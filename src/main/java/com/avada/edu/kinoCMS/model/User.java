@@ -37,7 +37,7 @@ public class User {
     @Column(name = "card_number")
     private String cardNumber; //TODO:: поменять тип данных для номера,языка,гендера
     @Column(name = "language")
-    private String language;
+    private String language; //TODO: поменять на enum
     @Column(name = "gender")
     private String gender;
 

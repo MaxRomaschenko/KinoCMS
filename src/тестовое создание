@@ -76,11 +76,11 @@ DROP TABLE IF EXISTS Hall ;
 CREATE TABLE IF NOT EXISTS Hall (
                                              `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                              `hall_number` INT NULL,
-                                             `description` LONGTEXT NULL,
+                                             `hall_description` LONGTEXT NULL,
                                              `hall_layout_picture` varchar(200) NULL,
                                              `banner_picture` varchar(200) NULL,
                                              `created_at` TIMESTAMP NULL,
-                                             `cinema_id` INT NOT NULL references Cinema(id) on delete cascade ,
+                                             `cinema_id` INT  references Cinema(id) on delete cascade ,
                                              `SEO_id` INT NOT NULL references SEO(id) on delete cascade
                                 );
 
@@ -171,9 +171,9 @@ CREATE TABLE IF NOT EXISTS film_filmType (
 -- -----------------------------------------------------
 -- Table `mydb`.`pictureGalary`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS pictureGalary ;
+DROP TABLE IF EXISTS picture_gallery ;
 
-CREATE TABLE IF NOT EXISTS pictureGalary (
+CREATE TABLE IF NOT EXISTS picture_gallery (
                                                       `id` INT NOT NULL AUTO_INCREMENT primary key ,
                                                       `picture` varchar(200) NULL,
                                                       `Cinema_id` INT  references Cinema(id) on delete cascade ,

@@ -21,4 +21,6 @@ public class Banner {
     private String url;
     @Column(name = "text_message")
     private String textMessage;
+    //TODO: мб сделать переменную которая будет отличать это сквозной , на главной или в акциях?
+
 }
