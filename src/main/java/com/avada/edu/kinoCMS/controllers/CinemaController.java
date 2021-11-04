@@ -118,9 +118,18 @@ public class CinemaController {
         cinema.setId(cinema1.getId());
         cinema.getSeo().setId(cinema1.getSeo().getId());
 
-        cinema.setLogo_picture(file(logo));
+        if(!logo.isEmpty()){
+            cinema.setLogo_picture(file(logo));
+        }else{
+            cinema.setLogo_picture(cinema1.getLogo_picture());
+        }
 
-        cinema.setBanner_picture(file(banner));
+        if(!logo.isEmpty()){
+            cinema.setBanner_picture(file(banner));
+        }else{
+            cinema.setBanner_picture(cinema1.getBanner_picture());
+        }
+
 
         if (cinema.getSeo() != null) {
             seoRepo.save(cinema.getSeo());

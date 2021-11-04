@@ -116,7 +116,11 @@ public class FilmController {
         film.setId(film1.getId());
         film.getSeo().setId(film1.getSeo().getId());
 
-        film.setMainPicture(file(multipartFile));
+        if(!multipartFile.isEmpty()){
+            film.setMainPicture(file(multipartFile));
+        }else {
+            film.setMainPicture(film1.getMainPicture());
+        }
 
         if (film.getSeo() != null) {
             seoRepo.save(film.getSeo());

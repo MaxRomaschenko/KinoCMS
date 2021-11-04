@@ -4,6 +4,7 @@ import com.avada.edu.kinoCMS.model.Film;
 import com.avada.edu.kinoCMS.model.FilmType;
 import com.avada.edu.kinoCMS.repo.FilmRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
