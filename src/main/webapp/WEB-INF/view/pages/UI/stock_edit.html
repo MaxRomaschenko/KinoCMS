@@ -138,7 +138,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            Фильмы
+                            Новости
                         </h1>
                     </div>
                 </div>
@@ -152,26 +152,25 @@
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-body">
-                                <form th:method="post" th:action="@{/films/{id}/edit/admin(id=${film.getId()})}"
-                                      enctype="multipart/form-data">
+                                <form th:method="post" th:action="@{/stock/{id}/edit/admin(id=${stock.getId()})}" enctype="multipart/form-data">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Название фильма</label>
-                                            <input type="text" class="form-control" placeholder="Название фильма"
-                                                   th:field="*{film.name}" id="name">
+                                            <label>Название новости</label>
+                                            <input type="text" class="form-control" placeholder="Название новости"
+                                                   th:field="*{stock.title}" id="name">
                                         </div>
                                         <div class="form-group">
                                             <label>Описание</label>
                                             <textarea class="form-control" rows="3" placeholder="Описание"
-                                                      th:field="*{film.description}" id="description"></textarea>
+                                                      th:field="*{stock.description}" id="description"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Главная картинка</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <input type="file" id="imgInp" name="file"/>
+                                                    <input type="file" id="imgInp" name="logo"/>
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
-                                                         id="blah" src="/img/defaultImage.png"/>
+                                                         id="blah" src="../../img/defaultImage.png"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -222,37 +221,31 @@
                                         </div>
                                         <br><br>
                                         <div class="form-group">
-                                            <label>ссылка на трейлер</label>
-                                            <input type="text" th:field="*{film.trailerURL}" class="form-control"
+                                            <label>ссылка на видео</label>
+                                            <input type="text" th:field="*{stock.trailer_url}" class="form-control"
                                                    placeholder="ссылка на трейлер">
                                         </div>
                                         <br>
-                                        <p>Тип кино:
-                                            <input th:each="filmT : ${filmTypeList1}" type="checkbox"
-                                                   th:text="${filmT.nameType}" th:field="*{film.filmTypeList}"
-                                                   th:value="${filmT.id}">
-                                        </p>
-                                        <br><br>
                                         <center><h3>SEO блок</h3></center>
                                         <div class="form-group">
                                             <label>URL</label>
-                                            <input type="text" class="form-control" th:field="*{film.seo.url}"
+                                            <input type="text" class="form-control" th:field="*{stock.seo.url}"
                                                    placeholder="URL">
                                         </div>
                                         <div class="form-group">
                                             <label>Title</label>
-                                            <input type="text" class="form-control" th:field="*{film.seo.title}"
+                                            <input type="text" class="form-control" th:field="*{stock.seo.title}"
                                                    placeholder="Title">
                                         </div>
                                         <div class="form-group">
                                             <label>Keywords</label>
-                                            <input type="text" class="form-control" th:field="*{film.seo.keywords}"
+                                            <input type="text" class="form-control" th:field="*{stock.seo.keywords}"
                                                    placeholder="Keywords">
                                         </div>
                                         <div class="form-group">
                                             <label>Discription</label>
                                             <textarea class="form-control" rows="3" placeholder="Discription"
-                                                      th:field="*{film.seo.description}"></textarea>
+                                                      th:field="*{stock.seo.description}"></textarea>
                                         </div>
                                     </div>
                                     <!-- /.card-body -->

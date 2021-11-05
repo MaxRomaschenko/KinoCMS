@@ -23,4 +23,12 @@ public class PageService {
     public List<Page> findAll(){
         return pageRepo.findAll();
     }
+
+    public Page save(Page page){
+        return pageRepo.save(page);
+    }
+
+    public void deleteById(Long id){
+        pageRepo.deleteById(id);
+    }
 }

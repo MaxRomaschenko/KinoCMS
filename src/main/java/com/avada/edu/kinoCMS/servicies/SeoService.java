@@ -22,4 +22,11 @@ public class SeoService {
         return seoRepo.findAll();
     }
 
+    public Seo save(Seo seo) {
+        return seoRepo.save(seo);
+    }
+    public void deleteById(Long id){
+        seoRepo.deleteById(id);
+    }
+
 }

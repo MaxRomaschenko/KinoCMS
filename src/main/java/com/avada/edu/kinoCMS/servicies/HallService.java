@@ -27,4 +27,8 @@ public class HallService {
     public List<Hall> findAll(){
         return hallRepo.findAll();
     }
+
+    public List<Hall> findAllByCinemaId(Long id){
+        return hallRepo.findAllByCinemaId(id);
+    }
 }

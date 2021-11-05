@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface PageRepo extends JpaRepository<Page,Long> {
     List<Page> findAll();
+    void deleteById(Long id);
 }

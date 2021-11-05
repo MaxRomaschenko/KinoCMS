@@ -100,15 +100,18 @@ public class CinemaController {
     }
 
     @GetMapping("/{id}/edit/admin")
-    public String edit(Model model, @PathVariable("id") Long id) {
-        List<Hall> halls = hallService.findAll();
+    public String edit(Model model,
+                       @PathVariable("id") Long id,
+                       @ModelAttribute("hall") Hall hall) {
+        List<Hall> halls = hallService.findAllByCinemaId(id);
         model.addAttribute("halls",halls);
         model.addAttribute("cinema",cinemaService.findById(id));
         return "UI/cinema_edit";
     }
 
     @PostMapping("/{id}/edit/admin")
-    public String update(@PathVariable("id") Long id,@ModelAttribute("cinema") Cinema cinema,
+    public String update(@PathVariable("id") Long id,
+                         @ModelAttribute("cinema") Cinema cinema,
                          @RequestParam("gallery") List<MultipartFile> pictureGalleries,
                          @RequestParam("logo") MultipartFile logo,
                          @RequestParam("banner") MultipartFile banner
@@ -157,6 +160,8 @@ public class CinemaController {
     public String delete(@PathVariable("id") Long id) {
         Cinema cinema = cinemaService.findById(id);
         seoRepo.deleteById(cinema.getSeo().getId());
+        List<PictureGallery> pictureGalleries = pictureGalleryService.findAllByCinemaId(id);
+        pictureGalleryService.deleteAll(pictureGalleries);
         cinemaRepo.deleteById(id);//todo: доделать удаление залов
         return "redirect:/cinemas/admin";
     }

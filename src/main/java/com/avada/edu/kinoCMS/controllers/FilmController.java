@@ -106,7 +106,8 @@ public class FilmController {
 
 
     @PostMapping("/{id}/edit/admin")
-    public String update(@PathVariable("id") Long id,@ModelAttribute("film") Film film,
+    public String update(@PathVariable("id") Long id,
+                         @ModelAttribute("film") Film film,
                          @RequestParam("gallery") List<MultipartFile> pictureGalleries,
                          @RequestParam("file") MultipartFile multipartFile
     ) throws IOException {
@@ -146,6 +147,8 @@ public class FilmController {
     @PostMapping("/delete/{id}/admin")
     public String delete(@PathVariable("id") Long id) {
         Film film =  filmService.findById(id);
+        List<PictureGallery> pictureGalleries = pictureGalleryService.findAllByFilmId(id);
+        pictureGalleryService.deleteAll(pictureGalleries);
         seoRepo.deleteById(film.getSeo().getId());
         filmRepo.deleteById(id);
         return "redirect:/films/admin";

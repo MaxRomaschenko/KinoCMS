@@ -23,4 +23,12 @@ public class NewsService {
     public List<News> findAll(){
         return newsRepo.findAll();
     }
+
+    public News save(News news){
+        return newsRepo.save(news);
+    }
+
+    public void deleteById(Long id){
+        newsRepo.deleteById(id);
+    }
 }

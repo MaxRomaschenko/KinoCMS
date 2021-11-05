@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface NewsRepo extends JpaRepository<News,Long> {
     List<News> findAll();
+    void deleteById(Long id);
 }

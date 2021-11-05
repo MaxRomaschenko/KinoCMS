@@ -27,7 +27,7 @@ public class Page {
     private String banner_url;
 
     @Column(name = "is_active")
-    private String is_active;
+    private Boolean is_active;
 
     @Column(name = "created_at")
     private Timestamp created_at;

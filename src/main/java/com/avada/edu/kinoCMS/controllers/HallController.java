@@ -55,16 +55,19 @@ public class HallController {
         return resultFileName;
     }
 
-    @PostMapping("/hall/admin")
-    private String addHall(@ModelAttribute("hall") Hall hall,
+    @PostMapping("/{id}/hall/admin")
+    private String addHall(@PathVariable("id") Long id,
+                           @ModelAttribute("hall") Hall hall,
                            @RequestParam("gallery") List<MultipartFile> pictureGalleries,
                            @RequestParam("logo") MultipartFile logo,
                            @RequestParam("banner") MultipartFile banner
     ) throws IOException{
+
         hall.setBanner_picture(file(banner));
         hall.setHall_layout_picture(file(logo));
         Date date = new Date();
         hall.setCreated_at(new Timestamp(date.getTime()));
+        hall.setCinema(cinemaService.findById(id));
 
         if (hall.getSeo() != null) {
             seoRepo.save(hall.getSeo());

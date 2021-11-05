@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface HallRepo extends JpaRepository<Hall,Long>{
     List<Hall> findAll();
+    List<Hall> findAllByCinemaId(Long id);
 }
 
 

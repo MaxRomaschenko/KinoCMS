@@ -23,4 +23,11 @@ public class StockService {
     public List<Stock> findAll(){
         return stockRepo.findAll();
     }
+
+    public Stock save(Stock stock){
+        return stockRepo.save(stock);
+    }
+    public void deleteById(Long id){
+        stockRepo.deleteById(id);
+    }
 }
