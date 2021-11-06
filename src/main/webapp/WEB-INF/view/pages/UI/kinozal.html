@@ -66,7 +66,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../examples/profile.html" class="nav-link">
+                        <a href="/banners" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Баннеры/Слайдеры</p>
                         </a>
@@ -277,33 +277,6 @@
                                     </div>
                                 </div>
                                 <br><br>
-                                <center><h3>Список залов</h3></center>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example2" class="table table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Название</th>
-                                            <th>Дата создания</th>
-                                            <th>Действие</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="hall : ${halls}">
-                                            <td><span th:text="${hall.hall_number}"> </span></td>
-                                            <td><span th:text="${hall.created_at}"> </span></td>
-                                            <td><a href=""><i class="fas fa-edit"></i></a>
-                                                <a href=""><i class="fas fa-inbox"></i></a></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <center>
-                                    <button data-toggle="modal" data-target="#modal-lg" type="button"
-                                            class="btn-now btn bg-gradient-primary btn-lg">Добавить зал
-                                    </button>
-                                </center>
-                                <br><br>
                                 <center><h3>SEO блок</h3></center>
                                 <div class="form-group">
                                     <label>URL</label>
@@ -337,127 +310,7 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="modal-lg">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Добавление зала</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form th:method="post" th:action="@{/hall/admin}" enctype="multipart/form-data">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label>Название зала</label>
-                                    <input type="text" class="form-control" th:field="*{hall.hall_number}"
-                                           placeholder="Название">
-                                </div>
-                                <div class="form-group">
-                                    <label>Описание зала</label>
-                                    <textarea class="form-control" rows="3" th:field="*{hall.hall_description}"
-                                              placeholder="Описание"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Схема зала</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" id="imgInp8" name="logo"/>
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
-                                                 id="blah8" src="../../img/defaultImage.png"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label>Верхний банер</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" id="imgInp9" name="banner"/>
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah9" src="../../img/defaultImage.png"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br><br>
-                                <label>Галерея Картинок</label>
-                                <br><br>
-                                <div style="padding: 3px;display: flex;position: relative;">
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah10" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp10" name="gallery"/>
-                                    </div>
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah11" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp11" name="gallery"/>
-                                    </div>
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah12" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp12" name="gallery"/>
-                                    </div>
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah13" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp13" name="gallery"/>
-                                    </div>
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah14" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp14" name="gallery"/>
-                                    </div>
-                                </div>
-                                <br><br>
-                                <center><h3>SEO блок</h3></center>
-                                <div class="form-group">
-                                    <label>URL</label>
-                                    <input type="text" class="form-control" th:field="*{hall.seo.url}"
-                                           placeholder="URL">
-                                </div>
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" class="form-control" th:field="*{hall.seo.title}"
-                                           placeholder="Title">
-                                </div>
-                                <div class="form-group">
-                                    <label>Keywords</label>
-                                    <input type="text" class="form-control" th:field="*{hall.seo.keywords}"
-                                           placeholder="Keywords">
-                                </div>
-                                <div class="form-group">
-                                    <label>Discription</label>
-                                    <textarea class="form-control" rows="3" th:field="*{hall.seo.description}"
-                                              placeholder="Description"></textarea>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" value="Сохранить">Save changes</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
+
             <!-- /.modal -->
 
         </section>

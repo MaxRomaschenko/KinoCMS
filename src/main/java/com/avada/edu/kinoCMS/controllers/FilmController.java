@@ -66,8 +66,10 @@ public class FilmController {
                           Model model){
         List<FilmType> filmTypeArrayList =  filmTypeService.findAll();
         model.addAttribute("filmTypeList1",filmTypeArrayList);
-        List<Film> films = filmService.findAll();
-        model.addAttribute("films",films);
+        List<Film> filmsActual = filmService.findAllByActual(false);
+        model.addAttribute("filmsActual",filmsActual);
+        List<Film> filmsSoon = filmService.findAllByActual(true);
+        model.addAttribute("filmSoon",filmsSoon);
 
         return "UI/films";
     }

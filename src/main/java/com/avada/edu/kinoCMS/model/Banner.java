@@ -19,6 +19,8 @@ public class Banner {
     private String photo;
     @Column(name = "url")
     private String url;
+    @Column(name = "true_false")
+    private Boolean trueFalse;
     @Column(name = "text_message")
     private String textMessage;
     //TODO: мб сделать переменную которая будет отличать это сквозной , на главной или в акциях?

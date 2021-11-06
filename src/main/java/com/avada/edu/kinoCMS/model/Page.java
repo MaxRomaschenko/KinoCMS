@@ -29,6 +29,15 @@ public class Page {
     @Column(name = "is_active")
     private Boolean is_active;
 
+    @Column(name = "redacted")
+    private Boolean redacted;
+
+    @Column(name = "telephone_first")
+    private String telephone_first;
+
+    @Column(name = "telephone_second")
+    private String telephone_second;
+
     @Column(name = "created_at")
     private Timestamp created_at;
 

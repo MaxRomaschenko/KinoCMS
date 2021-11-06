@@ -1,6 +1,5 @@
 package com.avada.edu.kinoCMS.servicies;
 
-import com.avada.edu.kinoCMS.model.Banner;
 import com.avada.edu.kinoCMS.model.Page;
 import com.avada.edu.kinoCMS.repo.PageRepo;
 import org.springframework.stereotype.Service;
@@ -22,6 +21,9 @@ public class PageService {
 
     public List<Page> findAll(){
         return pageRepo.findAll();
+    }
+    public List<Page> findAllByIs_redacted(Boolean b){
+        return pageRepo.findAllByRedacted(b);
     }
 
     public Page save(Page page){

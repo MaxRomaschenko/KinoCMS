@@ -21,6 +21,8 @@ public class Film implements Serializable {
     private Long id;
     @Column(name = "name")
     private String name;
+    @Column(name = "actual")
+    private Boolean actual;
     @Column(name = "description")
     private String description;
     @Column(name = "main_picture")

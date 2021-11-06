@@ -51,8 +51,9 @@ public class PageController {
 
     @GetMapping("/admin")
     public String getPages(@ModelAttribute("page") Page page, Model model){
-        List<Page> pagesList = pageService.findAll();
+        List<Page> pagesList = pageService.findAllByIs_redacted(true);
         model.addAttribute("pages",pagesList);
+        model.addAttribute("mainPage",pageService.findById(1L));//TODO::переделать
         return "UI/page";
     }
 
@@ -62,9 +63,9 @@ public class PageController {
                       @RequestParam("file") MultipartFile mainPicture
     ) throws IOException{
         page.setBanner_url(file(mainPicture));
-        page.setIs_active(true);
         Date date = new Date();
         page.setCreated_at(new Timestamp(date.getTime()));
+        page.setRedacted(true);
 
         if(page.getSeo() != null){
             seoRepo.save(page.getSeo());
@@ -99,7 +100,8 @@ public class PageController {
         page.setId(page1.getId());
         page.getSeo().setId(page1.getSeo().getId());
 
-        page.setIs_active(true);
+        page.setRedacted(true);
+
         Date date = new Date();
         page.setCreated_at(new Timestamp(date.getTime()));
 
@@ -121,6 +123,36 @@ public class PageController {
             pictureGallery.setPage(page2);
             pictureGalleryService.save(pictureGallery);
         }
+        return "redirect:/page/admin";
+    }
+
+    @GetMapping("/{id}/mainPage/edit/admin")
+    public String editMainPage(Model model, @PathVariable("id") Long id){
+        model.addAttribute("page",pageService.findById(id));
+        return "UI/mainPage_edit";
+    }
+
+    @PostMapping("/{id}/mainPage/edit/admin")
+    public String updateMainPage(@PathVariable("id") Long id,
+                         @ModelAttribute("page") Page page
+    ) throws IOException{
+        Page page1 = pageService.findById(id);
+        page.setId(page1.getId());
+        page.getSeo().setId(page1.getSeo().getId());
+        page.setTitle(page1.getTitle());
+        page.setRedacted(false);
+
+
+        Date date = new Date();
+        page.setCreated_at(new Timestamp(date.getTime()));
+
+        if(page.getSeo() != null){
+            seoRepo.save(page.getSeo());
+        }
+
+        pageService.save(page);
+
+
         return "redirect:/page/admin";
     }
 

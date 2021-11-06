@@ -3,21 +3,22 @@
 -- -----------------------------------------------------
 -- Table `mydb`.`Banner`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Banner;
+DROP TABLE IF EXISTS banner;
 
-CREATE TABLE IF NOT EXISTS Banner (
+CREATE TABLE IF NOT EXISTS banner (
                                                `id` INT AUTO_INCREMENT primary key ,
                                                `photo` varchar(200) NULL,
                                                `url` VARCHAR(100) NULL,
+                                               true_false boolean NULL,
                                                `text_message` LONGTEXT NULL);
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`SEO`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS SEO ;
+DROP TABLE IF EXISTS seo ;
 
-CREATE TABLE IF NOT EXISTS SEO (
+CREATE TABLE IF NOT EXISTS seo (
                                             `id` INT AUTO_INCREMENT PRIMARY KEY,
                                             `URL` VARCHAR(100) NULL,
                                             `title` VARCHAR(150) NULL,
@@ -29,11 +30,12 @@ CREATE TABLE IF NOT EXISTS SEO (
 -- -----------------------------------------------------
 -- Table `mydb`.`Film`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Film ;
+DROP TABLE IF EXISTS film ;
 
-CREATE TABLE IF NOT EXISTS Film (
+CREATE TABLE IF NOT EXISTS film (
                                              `id` INT AUTO_INCREMENT PRIMARY KEY,
                                              `name` VARCHAR(150) NULL,
+                                             actual boolean null,
                                              `description` LONGTEXT NULL,
                                              `main_picture` varchar(200) NULL,
                                              `trailer_url` VARCHAR(100) NULL,
@@ -44,9 +46,9 @@ CREATE TABLE IF NOT EXISTS Film (
 -- -----------------------------------------------------
 -- Table `mydb`.`FilmType`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS FilmType ;
+DROP TABLE IF EXISTS filmtype ;
 
-CREATE TABLE IF NOT EXISTS FilmType (
+CREATE TABLE IF NOT EXISTS filmtype (
                                                  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                                  `name_type` VARCHAR(10) NULL
                                                  );
@@ -55,9 +57,9 @@ CREATE TABLE IF NOT EXISTS FilmType (
 -- -----------------------------------------------------
 -- Table `mydb`.`Cinema`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Cinema ;
+DROP TABLE IF EXISTS cinema ;
 
-CREATE TABLE IF NOT EXISTS Cinema (
+CREATE TABLE IF NOT EXISTS cinema (
                                                `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                                `cinema_name` VARCHAR(160) NULL,
                                                `description` LONGTEXT NULL,
@@ -71,9 +73,9 @@ CREATE TABLE IF NOT EXISTS Cinema (
 -- -----------------------------------------------------
 -- Table `mydb`.`hall`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Hall ;
+DROP TABLE IF EXISTS hall ;
 
-CREATE TABLE IF NOT EXISTS Hall (
+CREATE TABLE IF NOT EXISTS hall (
                                              `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                              `hall_number` INT NULL,
                                              `hall_description` LONGTEXT NULL,
@@ -88,9 +90,9 @@ CREATE TABLE IF NOT EXISTS Hall (
 -- -----------------------------------------------------
 -- Table `mydb`.`News`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS News ;
+DROP TABLE IF EXISTS news ;
 
-CREATE TABLE IF NOT EXISTS News (
+CREATE TABLE IF NOT EXISTS news (
                                              `id` INT NOT NULL AUTO_INCREMENT primary key ,
                                              `title` TEXT NULL,
                                              `publication_date` TIMESTAMP NULL,
@@ -122,14 +124,17 @@ CREATE TABLE IF NOT EXISTS stock (
 -- -----------------------------------------------------
 -- Table `mydb`.`Page`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Page ;
+DROP TABLE IF EXISTS page ;
 
-CREATE TABLE IF NOT EXISTS Page (
+CREATE TABLE IF NOT EXISTS page (
                                              `id` INT NOT NULL AUTO_INCREMENT primary key ,
                                              `title` VARCHAR(45) NULL,
-                                             `description` VARCHAR(45) NULL,
+                                             `description` VARCHAR(250) NULL,
                                              `banner_url` varchar(200) NULL,
                                              `is_active` boolean NULL,
+                                              redacted boolean null,
+                                              telephone_first varchar(45) null,
+                                              telephone_second varchar(45) null,
                                              `created_at` TIMESTAMP NULL,
                                              `SEO_id` INT NOT NULL references SEO(id) on delete cascade
                                 );
@@ -160,9 +165,9 @@ CREATE TABLE IF NOT EXISTS users (
 -- -----------------------------------------------------
 -- Table `mydb`.`film_filmType`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS film_filmType ;
+DROP TABLE IF EXISTS film_filmtype ;
 
-CREATE TABLE IF NOT EXISTS film_filmType (
+CREATE TABLE IF NOT EXISTS film_filmtype (
                                                       `Film_id` INT NOT NULL REFERENCES Film(id) on delete cascade ,
                                                       `Filmtype_id` INT NOT NULL references FilmType(id) on delete cascade
                                                       );

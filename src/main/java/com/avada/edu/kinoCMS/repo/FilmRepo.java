@@ -12,6 +12,6 @@ import java.util.List;
 public interface FilmRepo extends JpaRepository<Film,Long> {
     List<Film> findAll();
     Film getById(Long id);
-
+    List<Film> findAllByActual(Boolean b);
 
  }
