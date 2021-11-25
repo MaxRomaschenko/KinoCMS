@@ -159,6 +159,7 @@ public class PageController {
     @GetMapping("/{id}")
     public String index(@PathVariable("id") Long id, Model model) {
         model.addAttribute("page", pageService.findById(id));
+        model.addAttribute("gallery", pictureGalleryService.findAllByPageId(id));
         return "UI/page_index";
     }
 

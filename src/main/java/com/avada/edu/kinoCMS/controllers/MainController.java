@@ -2,14 +2,17 @@ package com.avada.edu.kinoCMS.controllers;
 
 import com.avada.edu.kinoCMS.model.Banner;
 import com.avada.edu.kinoCMS.model.Film;
+import com.avada.edu.kinoCMS.model.PictureGallery;
 import com.avada.edu.kinoCMS.servicies.BannerService;
 import com.avada.edu.kinoCMS.servicies.FilmService;
 import com.avada.edu.kinoCMS.servicies.PageService;
+import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -19,23 +22,24 @@ import java.util.List;
 @RequestMapping
 public class MainController {
 
-    @Value("${upload.path}")
-    private String uploadPath;
+
     private final FilmService filmService;
     private final BannerService bannerService;
     private final PageService pageService;
+    private final PictureGalleryService pictureGalleryService;
 
-    public MainController(FilmService filmService, BannerService bannerService, PageService pageService) {
+    public MainController(FilmService filmService, BannerService bannerService, PageService pageService, PictureGalleryService pictureGalleryService) {
         this.filmService = filmService;
         this.bannerService = bannerService;
         this.pageService = pageService;
+        this.pictureGalleryService = pictureGalleryService;
     }
 
     @GetMapping("/kino")
     public String getStarterPage(@ModelAttribute("film") Film film,
-                                 Model model){
+                                 Model model) {
 
-        model.addAttribute("SeoText",pageService.findById(1L));
+        model.addAttribute("SeoText", pageService.findById(1L));
 
         Banner banner1 = bannerService.findById(1L);
         Banner banner2 = bannerService.findById(2L);
@@ -49,10 +53,10 @@ public class MainController {
         bannerMainOwl.add(banner3);
         bannerMainOwl.add(banner4);
         bannerMainOwl.add(banner5);
-        model.addAttribute("bannerMainOwl",bannerMainOwl);
+        model.addAttribute("bannerMainOwl", bannerMainOwl);
 
         Banner background = bannerService.findById(6L);
-        model.addAttribute("bannerBackground",background);
+        model.addAttribute("bannerBackground", background);
 
         Banner banner7 = bannerService.findById(7L);
         Banner banner8 = bannerService.findById(8L);
@@ -68,9 +72,34 @@ public class MainController {
         model.addAttribute("bannerNews", bannerNews);
 
         List<Film> filmList = filmService.findAllByActual(false);
-        model.addAttribute("filmsActual",filmList);
+        model.addAttribute("filmsActual", filmList);
         List<Film> filmSoon = filmService.findAllByActual(true);
-        model.addAttribute("filmSoon",filmSoon);
+        model.addAttribute("filmSoon", filmSoon);
         return "UI/main";
     }
+
+    @GetMapping("/afisha")
+    public String getAfishaPage(@ModelAttribute("film") Film film,
+                                Model model) {
+        Banner background = bannerService.findById(6L);
+        model.addAttribute("bannerBackground", background);
+
+        List<Film> filmList = filmService.findAllByActual(false);
+        model.addAttribute("films", filmList);
+        return "UI/afisha";
+    }
+
+    @GetMapping("/soon")
+    public String getSoonPage(@ModelAttribute("film") Film film,
+                              Model model) {
+        Banner background = bannerService.findById(6L);
+        model.addAttribute("bannerBackground", background);
+
+        List<Film> filmList = filmService.findAllByActual(true);
+        model.addAttribute("films", filmList);
+        return "UI/skoro";
+    }
+
+
+
 }

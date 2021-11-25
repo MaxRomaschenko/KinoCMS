@@ -1,16 +1,10 @@
 package com.avada.edu.kinoCMS.controllers;
 
-import com.avada.edu.kinoCMS.model.Film;
-import com.avada.edu.kinoCMS.model.FilmType;
-import com.avada.edu.kinoCMS.model.PictureGallery;
-import com.avada.edu.kinoCMS.model.Seo;
+import com.avada.edu.kinoCMS.model.*;
 import com.avada.edu.kinoCMS.repo.FilmRepo;
 import com.avada.edu.kinoCMS.repo.FilmTypeRepo;
 import com.avada.edu.kinoCMS.repo.SeoRepo;
-import com.avada.edu.kinoCMS.servicies.FilmService;
-import com.avada.edu.kinoCMS.servicies.FilmTypeService;
-import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
-import com.avada.edu.kinoCMS.servicies.SeoService;
+import com.avada.edu.kinoCMS.servicies.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,20 +24,20 @@ public class FilmController {
     private String uploadPath;
     private final SeoRepo seoRepo;
     private final FilmRepo filmRepo;
-    private final SeoService seoService;
-    private final FilmTypeRepo filmTypeRepo;
     private final FilmTypeService filmTypeService;
     private final FilmService filmService;
     private final PictureGalleryService pictureGalleryService;
+    private final BannerService bannerService;
+    private final CinemaService cinemaService;
 
-    public FilmController(SeoRepo seoRepo, FilmRepo filmRepo, SeoService seoService, FilmTypeRepo filmTypeRepo, FilmTypeService filmTypeService, FilmService filmService, PictureGalleryService pictureGalleryService) {
+    public FilmController(SeoRepo seoRepo, FilmRepo filmRepo, FilmTypeService filmTypeService, FilmService filmService, PictureGalleryService pictureGalleryService, BannerService bannerService, CinemaService cinemaService) {
         this.seoRepo = seoRepo;
         this.filmRepo = filmRepo;
-        this.seoService = seoService;
-        this.filmTypeRepo = filmTypeRepo;
         this.filmTypeService = filmTypeService;
         this.filmService = filmService;
         this.pictureGalleryService = pictureGalleryService;
+        this.bannerService = bannerService;
+        this.cinemaService = cinemaService;
     }
 
     private String file(MultipartFile multipartFile) throws IOException {
@@ -140,12 +134,6 @@ public class FilmController {
         return "redirect:/films/admin";
     }
 
-    @GetMapping("/{id}")
-    public String index(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("film", filmService.findById(id));
-        return "UI/film_index";
-    }
-
     @PostMapping("/delete/{id}/admin")
     public String delete(@PathVariable("id") Long id) {
         Film film =  filmService.findById(id);
@@ -154,6 +142,26 @@ public class FilmController {
         seoRepo.deleteById(film.getSeo().getId());
         filmRepo.deleteById(id);
         return "redirect:/films/admin";
+    }
+
+    @GetMapping("/{id}")
+    public String getFilmIndexPage(@ModelAttribute("film") Film film,
+                                   @PathVariable("id") Long id,
+                                   Model model) {
+        Banner background = bannerService.findById(6L);
+        model.addAttribute("bannerBackground", background);
+
+        model.addAttribute("cinemas",cinemaService.findAll());
+
+        Film film1 = filmService.findById(id);
+        model.addAttribute("testFilm", film1);
+
+        List<PictureGallery> pictureGalleries = pictureGalleryService.findAllByFilmId(id);
+        model.addAttribute("pictureGalleries", pictureGalleries);
+
+        List<Film> filmList = filmService.findAll();
+        model.addAttribute("films", filmList);
+        return "UI/film_index";
     }
 
 

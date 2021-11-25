@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS banner;
 
 CREATE TABLE IF NOT EXISTS banner (
                                                `id` INT AUTO_INCREMENT primary key ,
-                                               `photo` varchar(200) NULL,
+                                               `photo` varchar(10000) NULL,
                                                `url` VARCHAR(100) NULL,
                                                true_false boolean NULL,
                                                `text_message` LONGTEXT NULL);
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS film (
                                              `name` VARCHAR(150) NULL,
                                              actual boolean null,
                                              `description` LONGTEXT NULL,
-                                             `main_picture` varchar(200) NULL,
+                                             `main_picture` varchar(10000) NULL,
                                              `trailer_url` VARCHAR(100) NULL,
                                              `SEO_id` INT  REFERENCES SEO(id) ON DELETE CASCADE
                                              );
@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS cinema (
                                                `cinema_name` VARCHAR(160) NULL,
                                                `description` LONGTEXT NULL,
                                                `conditions` LONGTEXT NULL,
-                                               `logo_picture` varchar(200) NULL,
-                                               `banner_picture` varchar(200) NULL,
+                                               `logo_picture` varchar(10000) NULL,
+                                               `banner_picture` varchar(10000) NULL,
                                                `SEO_id` INT NOT NULL references SEO(id) on delete cascade
                                                );
 
@@ -79,8 +79,8 @@ CREATE TABLE IF NOT EXISTS hall (
                                              `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                              `hall_number` INT NULL,
                                              `hall_description` LONGTEXT NULL,
-                                             `hall_layout_picture` varchar(200) NULL,
-                                             `banner_picture` varchar(200) NULL,
+                                             `hall_layout_picture` varchar(10000) NULL,
+                                             `banner_picture` varchar(10000) NULL,
                                              `created_at` TIMESTAMP NULL,
                                              `cinema_id` INT  references Cinema(id) on delete cascade ,
                                              `SEO_id` INT NOT NULL references SEO(id) on delete cascade
@@ -96,9 +96,9 @@ CREATE TABLE IF NOT EXISTS news (
                                              `id` INT NOT NULL AUTO_INCREMENT primary key ,
                                              `title` TEXT NULL,
                                              `publication_date` TIMESTAMP NULL,
-                                             `description` TEXT NULL,
-                                             `main_picture` varchar(200) NULL,
-                                             `trailer_url` VARCHAR(45) NULL,
+                                             `description` LONGTEXT NULL,
+                                             `main_picture` varchar(10000) NULL,
+                                             `trailer_url` VARCHAR(100) NULL,
                                              `isactive` BOOLEAN NULL,
                                              `Created_at` TIMESTAMP NULL,
                                              `SEO_id` INT NOT NULL references SEO(id) on delete cascade );
@@ -114,8 +114,8 @@ CREATE TABLE IF NOT EXISTS stock (
                                               `title` TEXT NULL,
                                               `publication_date` TIMESTAMP NULL,
                                               `description` TEXT NULL,
-                                              `main_picture` varchar(200) NULL,
-                                              `trailer_url` VARCHAR(45) NULL,
+                                              `main_picture` varchar(10000) NULL,
+                                              `trailer_url` VARCHAR(100) NULL,
                                               `is_active` BOOLEAN NULL,
                                               `SEO_id` INT NOT NULL references SEO(id) on delete cascade
                                  );
@@ -129,8 +129,8 @@ DROP TABLE IF EXISTS page ;
 CREATE TABLE IF NOT EXISTS page (
                                              `id` INT NOT NULL AUTO_INCREMENT primary key ,
                                              `title` VARCHAR(45) NULL,
-                                             `description` VARCHAR(250) NULL,
-                                             `banner_url` varchar(200) NULL,
+                                             `description` LONGTEXT NULL,
+                                             `banner_url` varchar(10000) NULL,
                                              `is_active` boolean NULL,
                                               redacted boolean null,
                                               telephone_first varchar(45) null,
@@ -147,18 +147,20 @@ DROP TABLE IF EXISTS users ;
 
 CREATE TABLE IF NOT EXISTS users (
                                               `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                                              `regDate` TIMESTAMP NULL,
+                                              `reg_date` TIMESTAMP NULL,
                                               `name` VARCHAR(45) NULL,
                                               `secondname` VARCHAR(45) NULL,
                                               `nickname` VARCHAR(45) NULL,
                                               `birthday_date` TIMESTAMP NULL,
                                               `email` VARCHAR(45) NULL,
                                               `telephone` VARCHAR(45) NULL,
-                                              `address` VARCHAR(45) NULL,
+                                              `address` VARCHAR(150) NULL,
+                                              town varchar(45) Null,
                                               `password` VARCHAR(45) NULL,
+                                              test_password VARCHAR(45) NULL,
                                               `card_number` VARCHAR(12) NULL,
-                                              `language` VARCHAR(45) NULL,
-                                              `gender` VARCHAR(45) NULL
+                                              `language` BOOLEAN NULL,
+                                              `gender` BOOLEAN NULL NULL
                                               );
 
 
@@ -180,7 +182,7 @@ DROP TABLE IF EXISTS picture_gallery ;
 
 CREATE TABLE IF NOT EXISTS picture_gallery (
                                                       `id` INT NOT NULL AUTO_INCREMENT primary key ,
-                                                      `picture` varchar(200) NULL,
+                                                      `picture` varchar(10000) NULL,
                                                       `Cinema_id` INT  references Cinema(id) on delete cascade ,
                                                       `Film_id` INT references Film(id) on delete cascade,
                                                       `hall_id` INT references Hall(id) on delete cascade,

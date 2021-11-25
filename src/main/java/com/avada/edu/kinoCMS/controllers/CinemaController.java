@@ -3,6 +3,7 @@ package com.avada.edu.kinoCMS.controllers;
 import com.avada.edu.kinoCMS.model.*;
 import com.avada.edu.kinoCMS.repo.CinemaRepo;
 import com.avada.edu.kinoCMS.repo.SeoRepo;
+import com.avada.edu.kinoCMS.servicies.BannerService;
 import com.avada.edu.kinoCMS.servicies.CinemaService;
 import com.avada.edu.kinoCMS.servicies.HallService;
 import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,16 +33,20 @@ public class CinemaController {
     private final SeoRepo seoRepo;
     private final CinemaRepo cinemaRepo;
     private final PictureGalleryService pictureGalleryService;
+    private final BannerService bannerService;
 
     public CinemaController(CinemaService cinemaService,
                             HallService hallService,
                             SeoRepo seoRepo,
-                            CinemaRepo cinemaRepo, PictureGalleryService pictureGalleryService) {
+                            CinemaRepo cinemaRepo,
+                            PictureGalleryService pictureGalleryService,
+                            BannerService bannerService) {
         this.cinemaService = cinemaService;
         this.hallService = hallService;
         this.seoRepo = seoRepo;
         this.cinemaRepo = cinemaRepo;
         this.pictureGalleryService = pictureGalleryService;
+        this.bannerService = bannerService;
     }
 
     private String file(MultipartFile multipartFile) throws IOException {
@@ -150,12 +156,6 @@ public class CinemaController {
         return "redirect:/cinemas/admin";
     }
 
-    @GetMapping("/{id}")
-    public String index(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("cinema", cinemaService.findById(id));
-        return "UI/cinema_index";
-    }
-
     @PostMapping("/delete/{id}/admin")
     public String delete(@PathVariable("id") Long id) {
         Cinema cinema = cinemaService.findById(id);
@@ -166,5 +166,31 @@ public class CinemaController {
         return "redirect:/cinemas/admin";
     }
 
+    @GetMapping()
+    public String cinemas_page(Model model){
+        List<Cinema> cinemas = cinemaService.findAll();
+        model.addAttribute("cinemas",cinemas);
+
+        Banner banner1 = bannerService.findById(1L);
+        Banner banner2 = bannerService.findById(2L);
+        Banner banner3 = bannerService.findById(3L);
+        Banner banner4 = bannerService.findById(4L);
+        Banner banner5 = bannerService.findById(5L);
+        List<Banner> bannerMainOwl = new ArrayList<>();
+        bannerMainOwl.add(banner1);
+        bannerMainOwl.add(banner2);
+        bannerMainOwl.add(banner3);
+        bannerMainOwl.add(banner4);
+        bannerMainOwl.add(banner5);
+        model.addAttribute("bannerMainOwl", bannerMainOwl);
+        return "UI/cinemas_main";
+    }
+
+    @GetMapping("/card/{id}")
+    public String cinemaCard(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("cinema", cinemaService.findById(id));
+        model.addAttribute("gallery",pictureGalleryService.findAllByCinemaId(id));
+        return "UI/cinema_card";
+    }
 
 }

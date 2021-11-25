@@ -130,6 +130,12 @@ public class NewsController {
 
     }
 
+    @GetMapping()
+    public String newsMain(Model model){
+        model.addAttribute("news",newsService.findAll());
+        return "UI/news_main";
+    }
+
     @GetMapping("/{id}")
     public String index(@PathVariable("id") Long id, Model model) {
         model.addAttribute("news", newsService.findById(id));

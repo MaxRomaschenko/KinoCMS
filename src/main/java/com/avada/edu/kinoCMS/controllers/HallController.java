@@ -44,7 +44,7 @@ public class HallController {
 
         File uploadDir = new File(uploadPath);
 
-        if(!uploadDir.exists()){
+        if (!uploadDir.exists()) {
             uploadDir.mkdir();
         }
 
@@ -61,7 +61,7 @@ public class HallController {
                            @RequestParam("gallery") List<MultipartFile> pictureGalleries,
                            @RequestParam("logo") MultipartFile logo,
                            @RequestParam("banner") MultipartFile banner
-    ) throws IOException{
+    ) throws IOException {
 
         hall.setBanner_picture(file(banner));
         hall.setHall_layout_picture(file(logo));
@@ -75,7 +75,7 @@ public class HallController {
 
         Hall hall1 = hallService.save(hall);
 
-        for(MultipartFile multipartFile: pictureGalleries){
+        for (MultipartFile multipartFile : pictureGalleries) {
             PictureGallery pictureGallery = new PictureGallery();
             pictureGallery.setPicture(file(multipartFile));
             pictureGallery.setHall(hall1);
@@ -85,14 +85,23 @@ public class HallController {
         return "redirect:/cinemas/admin";
     }
 
-    @GetMapping("/admin")
-    public String getHall(@ModelAttribute("hall") Hall hall,
-                            Model model){
-//        List<Cinema> cinemas = cinemaService.findAll();
-        List<Hall> halls = hallService.findAll();
-        model.addAttribute("halls",halls);
-//        model.addAttribute("cinemas",cinemas);
-        return "cinema";
+//    @GetMapping("/admin")
+//    public String getHall(@ModelAttribute("hall") Hall hall,
+//                          Model model) {
+////        List<Cinema> cinemas = cinemaService.findAll();
+//        List<Hall> halls = hallService.findAll();
+//        model.addAttribute("halls", halls);
+////        model.addAttribute("cinemas",cinemas);
+//        return "cinema";
+//    }
 
+    @GetMapping("/hall/{id}")
+    public String getHallCard(@PathVariable("id") Long id,
+                              Model model) {
+        model.addAttribute("hall", hallService.findById(id));
+        model.addAttribute("gallery",pictureGalleryService.findAllByHallId(id));
+        return "UI/hall_card";
     }
+
+
 }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:custom="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Новости</title>
+    <title>AdminLTE 3 | Кинотеатры</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -32,14 +32,6 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="../img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
-                </div>
-            </div>
 
 
             <!-- Sidebar Menu -->
@@ -103,7 +95,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../examples/project-detail.html" class="nav-link">
+                        <a href="/users/admin" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Пользователи</p>
                         </a>
@@ -126,11 +118,6 @@
     </aside>
     <!-- /.sidebar -->
 
-
-    <!-- /.navbar -->
-
-
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -138,14 +125,13 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            Новости
+                            Пользователи
                         </h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
 
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -153,7 +139,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    Список новостей
+                                    Список Пользователей
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -167,22 +153,33 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Название</th>
-                                    <th>Дата создания</th>
-                                    <th>Статус</th>
+                                    <th>ID</th>
+                                    <th>Дата регистрации</th>
+                                    <th>День рождения</th>
+                                    <th>Email</th>
+                                    <th>Телефон</th>
+                                    <th>ФИО</th>
+                                    <th>Псевдоним</th>
+                                    <th>Город</th>
                                     <th>Действие</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="newLL : ${news}">
-                                    <td><span th:text="${newLL.title}"> </span></td>
-                                    <td><span th:text="${newLL.created_at}"> </span></td>
-                                    <td><span th:text="${newLL.is_active}"> </span></td>
+                                <tr th:each="userL : ${userList}">
+                                    <td><span th:text="${userL.id}"> </span></td>
+                                    <td><span th:text="${userL.reg_date}"> </span></td>
+                                    <td><span th:text="${userL.birthdayDate}"> </span></td>
+                                    <td><span th:text="${userL.email}"> </span></td>
+                                    <td><span th:text="${userL.telephone}"> </span></td>
+                                    <td><span th:text="${userL.secondName} + ${userL.name}"> </span></td>
+                                    <td><span th:text="${userL.nickname}"> </span></td>
+                                    <td><span th:text="${userL.town}"> </span></td>
                                     <td>
-                                        <a th:href="@{/news/{id}/edit/admin(id=${newLL.id})}"><i class="fas fa-edit"></i></a>
-                                        <form method="post" th:action="@{/news/delete/{id}/admin(id=${newLL.id})}" enctype="multipart/form-data">
+                                        <a th:href="@{/users/{id}/edit/admin(id=${userL.id})}"><i
+                                                class="fas fa-edit"></i></a>
+                                        <form method="post" th:action="@{/users/delete/{id}/admin(id=${userL.id})}"
+                                              enctype="multipart/form-data">
                                             <button type="submit" class="fas fa-inbox"></button>
-                                            <!--                                            <a th:href="@{/news/delete/{id}/admin(id=${newLL.id})}" custom:linkMethod="post"><i class="fas fa-inbox"></i></a>-->
                                         </form>
                                     </td>
                                 </tr>
@@ -201,112 +198,102 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Добавить новость</h4>
+                            <h4 class="modal-title">Добавить Пользователя</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form th:method="post" th:action="@{/news/add/admin}" enctype="multipart/form-data" >
+                        <form th:method="post" th:action="@{/users/add/admin}" enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Название новости</label>
-                                    <input type="text" class="form-control" placeholder="Название новости"
-                                           th:field="*{newsO.title}" id="name">
+                                    <label>Имя </label>
+                                    <input type="text" class="form-control" placeholder="Имя"
+                                           th:field="*{user.name}" id="name">
                                 </div>
-                                <div class="form-group">
-                                    <label>Описание</label>
-                                    <textarea class="form-control" rows="3" placeholder="Описание"
-                                              th:field="*{newsO.description}" id="description"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Главная картинка</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" id="imgInp" name="logo"/>
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
-                                                 id="blah" src="../../img/defaultImage.png"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br><br>
-                                <label>Галерея Картинок</label>
-                                <br><br>
-                                <div style="padding: 3px;display: flex;position: relative;">
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah10" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp10" name="gallery"/>
-                                    </div>
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah11" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp11" name="gallery"/>
-                                    </div>
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah12" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp12" name="gallery"/>
-                                    </div>
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah13" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp13" name="gallery"/>
-                                    </div>
-                                    <div class="input-group" style="width: 15%;">
-                                        <div class="custom-file">
-                                            <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah14" src="../../img/defaultImage.png"/>
-                                        </div>
-                                        <br><br><br>
-                                        <input type="file" id="imgInp14" name="gallery"/>
-                                    </div>
-                                </div>
-                                <br><br>
-                                <div class="form-group">
-                                    <label>ссылка на видео</label>
-                                    <input type="text" th:field="*{newsO.trailer_url}" class="form-control"
-                                           placeholder="ссылка на трейлер">
-                                </div>
-                                <br>
-                                <center><h3>SEO блок</h3></center>
-                                <div class="form-group">
-                                    <label>URL</label>
-                                    <input type="text" class="form-control" th:field="*{newsO.seo.url}"
-                                           placeholder="URL">
-                                </div>
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" class="form-control" th:field="*{newsO.seo.title}"
-                                           placeholder="Title">
-                                </div>
-                                <div class="form-group">
-                                    <label>Keywords</label>
-                                    <input type="text" class="form-control" th:field="*{newsO.seo.keywords}"
-                                           placeholder="Keywords">
-                                </div>
-                                <div class="form-group">
-                                    <label>Discription</label>
-                                    <textarea class="form-control" rows="3" placeholder="Discription"
-                                              th:field="*{newsO.seo.description}"></textarea>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
 
-                            <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить</button>
+                                <div class="form-group">
+                                    <label>Фамилия </label>
+                                    <input type="text" class="form-control"  placeholder="Фамилия"
+                                           th:field="*{user.secondName}" id="description">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Псевдоним </label>
+                                    <input type="text" class="form-control"  placeholder="Псевдоним"
+                                           th:field="*{user.nickname}" id="nickname">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>E-mail </label>
+                                    <input type="text" class="form-control"  placeholder="E-mail"
+                                           th:field="*{user.email}" id="E-mail">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Адресс </label>
+                                    <input type="text" class="form-control"  placeholder="Адресс"
+                                           th:field="*{user.address}" id="address">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Пароль </label>
+                                    <input type="text" class="form-control" placeholder="Пароль"
+                                           th:field="*{user.password}" id="password">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Повторите пароль </label>
+                                    <input type="text" class="form-control" placeholder="Повторите пароль "
+                                           th:field="*{user.test_password}" id="test_password">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Номер карты </label>
+                                    <input type="text" class="form-control" placeholder="Номер карты"
+                                           th:field="*{user.cardNumber}" id="cardNumber">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Язык</label>
+                                    <select >
+                                        <option type="radio" th:field="*{user.language}" value="1"/>
+                                        Русский<Br>
+                                        <option type="radio" th:field="*{user.language}" value="0"/>
+                                        Украинский<Br>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Пол</label>
+                                    <select >
+                                        <option type="radio" th:field="*{user.gender}" value="1"/>
+                                        Мужской<Br>
+                                        <option type="radio" th:field="*{user.gender}" value="0"/>
+                                        Женский<Br>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Телефон </label>
+                                    <input type="text" class="form-control"  placeholder="Телефон "
+                                           th:field="*{user.telephone}" id="telephone">
+                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label > День рождения </label>-->
+<!--                                    <input type="date" class="form-control"  placeholder="День рождения "-->
+<!--                                           th:field="${}" id="birthdayDate">-->
+<!--                                </div>-->
+
+                                <div class="form-group">
+                                    <label>Город </label>
+                                    <input type="text" class="form-control"  placeholder="Город "
+                                           th:field="*{user.town}" id="town">
+                                </div>
+
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                    <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -317,12 +304,7 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.1.0
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

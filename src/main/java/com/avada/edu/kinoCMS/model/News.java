@@ -42,4 +42,16 @@ public class News {
     @OneToOne
     @JoinColumn(name = "seo_id")
     private Seo seo;
+
+    public News(Long id, String title, Timestamp publication_date, String description, String main_picture, String trailer_url, Boolean is_active, Timestamp created_at, Seo seo) {
+        this.id = id;
+        this.title = title;
+        this.publication_date = publication_date;
+        this.description = description;
+        this.main_picture = main_picture;
+        this.trailer_url = trailer_url;
+        this.is_active = is_active;
+        this.created_at = created_at;
+        this.seo = seo;
+    }
 }

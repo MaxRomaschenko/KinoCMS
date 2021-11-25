@@ -188,9 +188,10 @@
                                     <td><span th:text="${p.is_active}"> </span></td>
                                     <td>
                                         <a th:href="@{/page/{id}/edit/admin(id=${p.id})}"><i class="fas fa-edit"></i></a>
-                                        <form method="post" th:action="@{/page/delete/{id}/admin(id=${p.id})}" enctype="multipart/form-data">
-                                            <button type="submit" class="fas fa-inbox"></button>
-                                            </form>
+                                        <form method="post" th:action="@{/page/delete/{id}/admin(id=${p.id})}" id="formId" enctype="multipart/form-data"></form>
+                                            <a href="#" onclick="document.getElementById('formId').submit();">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
                                     </td>
                                 </tr>
                                 </tbody>

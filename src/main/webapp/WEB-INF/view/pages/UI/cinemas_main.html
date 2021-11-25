@@ -5,11 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MAX KINO</title>
-    <link rel="stylesheet" href="../../css/style-starter.css">
+    <link rel="stylesheet" href="css/style-starter.css">
 
 </head>
 
-<body th:style="'background: url(../../images/' + ${bannerBackground.photo} + ') '">
+<!--<body th:style="'background: url(../../images/' + ${bannerBackground.photo} + ') '">-->
+<body>
 <img style="width: 100%" src="https://te.esport.in.ua/images/banners/favbet_new.png?v=2" href="#">
 <header id="site-header" class="w3l-header">
     <!-- <header id="site-header" class="w3l-header fixed-top"> -->
@@ -28,10 +29,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav ml-auto topmenu">
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link" href="/kino">Главная</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a class="nav-link" href="/afisha">Афиша</a>
                     </li>
                     <li class="nav-item">
@@ -40,13 +41,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/soon">Скоро</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/cinemas">Кинотеатры</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/stock">Акции</a>
                     </li>
-
                     <li class="nav-item"><a class="nav-link submenu-link" href="">О кинотеатре</a>
                         <ul class="submenu nav-item">
                             <li class="nav-item"><a href="/news" class="nav-link">Новости</a></li>
@@ -92,7 +92,6 @@
     </nav>
 
 </header>
-<!-- slider -->
 
 <section class="w3l-main-slider position-relative" id="home">
     <div class="companies20-content">
@@ -101,51 +100,12 @@
                 <li>
                     <div class="slider-info banner-view bg bg2"
                          th:style="'background: url(../../images/' + ${bannerOwl.photo} + ')' + '; background-size: cover  '">
-                        <div class="banner-info">
-                            <h3>Последние Онлайн Фильмы</h3>
-                            <p th:text="${bannerOwl.textMessage}" class="over-para"></p>
-                            <a href="#small-dialog1" class="popup-with-zoom-anim play-view1">
-									<span class="video-play-icon">
-										<span class="fa fa-play"></span>
-									</span>
-                                <h6>Смотреть трейлер</h6>
-                            </a>
-                        </div>
                     </div>
                 </li>
             </div>
         </div>
     </div>
 </section>
-<!-- slider -->
-<section class="w3l-grids">
-    <div class="grids-main py-5">
-        <div class="container py-lg-3">
-            <div class="headerhny-title">
-                <div class="w3l-title-grids">
-                    <div class="headerhny-left">
-                        <h3 class="hny-title">Смотрите сегодня</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="w3l-populohny-grids">
-                <div class="item vhny-grid" th:each="film: ${filmsActual}">
-                    <div class="box16">
-                        <a th:href="@{/films/{id}(id = ${film.getId()})}">
-                            <figure>
-                                <img class="img-fluid" th:src="@{'../../images/' + ${film.getMainPicture()}}" alt="">
-                            </figure>
-                            <div class="box-content">
-                                <h3 class="title" th:text="${film.name}"></h3>
-                            </div>
-                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="w3l-grids">
     <div class="grids-main py-5">
@@ -153,73 +113,32 @@
             <div class="headerhny-title">
                 <div class="w3l-title-grids">
                     <div class="headerhny-left">
-                        <h3 class="hny-title">Смотрите скоро</h3>
+                        <h3 class="hny-title">Раписание</h3>
                     </div>
                 </div>
             </div>
-            <div class="owl-three owl-carousel owl-theme">
-                <div class="item vhny-grid" th:each="film : ${filmSoon}">
-                    <div class="box16 mb-0">
-                        <a th:href="@{/films/{id}(id = ${film.getId()})}">
-                            <figure>
-                                <img class="img-fluid" th:src="@{'../../images/' + ${film.getMainPicture()}}" alt="">
-                            </figure>
-                            <div class="box-content">
-                            </div>
-                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
+            <div class="allblog">
+                <div class="centerblock">
+                    <div class="left-div" th:each="cinemaList : ${cinemas}">
+                        <a th:href="@{/cinemas/card/{id}(id = ${cinemaList.getId()})}">
+                            <img th:src="@{'../../images/' + ${cinemaList.logo_picture}}"
+                                 style="width: 100%; height: 260px;"><br><br>
+                            <p style="text-align: center; color: black; font-size: 30px;"
+                               th:text="${cinemaList.cinema_name}"></p>
                         </a>
+                        <br><br>
                     </div>
-                    <h3><a class="title-gd" th:href="@{/film/{id}(id = ${film.getId()})}" th:text="${film.name}"></a></h3>
-<!--                    <p th:text="${film.description}"></p>-->
-                    <div class="button-center text-center mt-4">
-                        <a href="#" class="btn watch-button">Watch now</a>
-                    </div>
+                </div>
+                <div class="rightblock">
+                    <img src="../img/contex-reclama-verical.jpg"
+                         style="width:100%; height:350px;"><br><br>
+                    <img src="../img/contex-reclama-verical.jpg"
+                         style="width:100%; height:180px;"><br><br>
+                    <img src="../img/contex-reclama-verical.jpg"
+                         style="width:100%; height:180px;">
                 </div>
             </div>
         </div>
-
-    </div>
-</section>
-
-<section class="w3l-albums py-5" id="projects">
-    <div class="container py-lg-4">
-        <div class="headerhny-title">
-            <div class="w3l-title-grids">
-                <div class="headerhny-left">
-                    <h3 class="hny-title">Новости и Акции</h3>
-                </div>
-            </div>
-        </div>
-        <center>
-            <section class="w3l-main-slider position-relative" id="home1">
-                <div class="companies20-content">
-                    <div class="owl-one owl-carousel owl-theme">
-                        <div class="item" th:each="banner : ${bannerNews}">
-                            <li>
-                                <div class="slider-info banner-view bg bg2"
-                                     th:style="'background: url(../../images/' + ${banner.photo} + ')' + '; background-size: cover  '">
-                                    <div class="banner-info">
-                                        <a href="#small-dialog1" class="popup-with-zoom-anim play-view1">
-									<span class="video-play-icon">
-										<span class="fa fa-play"></span>
-									</span>
-                                            <h6>Подробнее..</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <br><br>
-            <img style="width: 900px; height: 130px" src="../../img/context_reclama.jpg" href="">
-            <br><br>
-            <div style="width: 900px; height: 90px; ">
-                <p style="font-size: 19px" th:text="${SeoText.description}">
-            </div>
-        </center>
-    </div>
 </section>
 
 <footer class="w3l-footer">
@@ -228,10 +147,7 @@
             <div class="container py-lg-4">
                 <div class="text-txt">
                     <div class="right-side">
-
                         <div class="row footer-links">
-
-
                             <div class="col-md-3 col-sm-6 sub-two-right mt-5">
                                 <h6>Мобильное приложение</h6>
                                 <ul>
@@ -268,7 +184,8 @@
                                     <input type="email" name="email" placeholder="Ваш Email" required="">
                                     <button><span class="fa fa-envelope-o"></span></button>
                                 </form>
-                                <p>Введите свой адрес электронной почты и получайте от нас последние новости, обновления
+                                <p>Введите свой адрес электронной почты и получайте от нас последние новости,
+                                    обновления
                                     и специальные предложения.
                                 </p>
                             </div>

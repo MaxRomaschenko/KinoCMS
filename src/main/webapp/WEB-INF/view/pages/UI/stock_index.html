@@ -9,14 +9,15 @@
 
 </head>
 
-<body th:style="'background: url(../../images/' + ${bannerBackground.photo} + ') '">
+<body style="background-image: url(https://img2.fonwall.ru/o/ly/avengers-endgame-avengers-2019-movies-movies.jpeg); background-repeat: no-repeat; background-position: top center">
 <img style="width: 100%" src="https://te.esport.in.ua/images/banners/favbet_new.png?v=2" href="#">
 <header id="site-header" class="w3l-header">
     <!-- <header id="site-header" class="w3l-header fixed-top"> -->
     <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
         <div class="container">
-            <h1><a class="navbar-brand" href="/kino"><span class="fa fa-play icon-log" aria-hidden="true"></span>
+            <h1><a class="navbar-brand" href="index.html"><span class="fa fa-play icon-log" aria-hidden="true"></span>
                 MAX KINO </a></h1>
+            <!-- <a class="navbar-brand" href="index.html"> <img src="#" alt="Твое лого" title="Твое лого" style="height:35px;" /></a> -->
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -29,31 +30,30 @@
 
                 <ul class="navbar-nav ml-auto topmenu">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/kino">Главная</a>
+                        <a class="nav-link" href="index.html">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/afisha">Афиша</a>
+                        <a class="nav-link" href="">Афиша</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Расписание</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/soon">Скоро</a>
+                        <a class="nav-link" href="">Скоро</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/cinemas">Кинотеатры</a>
+                        <a class="nav-link" href="">Кинотеатры</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/stock">Акции</a>
+                        <a class="nav-link" href="">Акции</a>
                     </li>
-
                     <li class="nav-item"><a class="nav-link submenu-link" href="">О кинотеатре</a>
                         <ul class="submenu nav-item">
-                            <li class="nav-item"><a href="/news" class="nav-link">Новости</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Реклама</a></li>
-                            <li class="nav-item"><a href="/cafe" class="nav-link">Кафе</a></li>
-                            <li class="nav-item"><a href="/mobile" class="nav-link">Мобильное приложение</a></li>
-                            <li class="nav-item"><a href="/konacti" class="nav-link">Контакты</a></li>
+                            <li class="nav-item"><a href="./index.html" class="nav-link">Новости</a></li>
+                            <li class="nav-item"><a href="./index.html" class="nav-link">Реклама</a></li>
+                            <li class="nav-item"><a href="./index.html" class="nav-link">Кафе</a></li>
+                            <li class="nav-item"><a href="./index.html" class="nav-link">Мобильное приложение</a></li>
+                            <li class="nav-item"><a href="./index.html" class="nav-link">Контакты</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -87,141 +87,49 @@
 
 
             </div>
-
         </div>
     </nav>
 
 </header>
-<!-- slider -->
 
 <section class="w3l-main-slider position-relative" id="home">
     <div class="companies20-content">
         <div class="owl-one owl-carousel owl-theme">
-            <div class="item" th:each="bannerOwl : ${bannerMainOwl}">
+            <div class="item" th:each="bannerOwl : ${bannerNews}">
                 <li>
                     <div class="slider-info banner-view bg bg2"
                          th:style="'background: url(../../images/' + ${bannerOwl.photo} + ')' + '; background-size: cover  '">
-                        <div class="banner-info">
-                            <h3>Последние Онлайн Фильмы</h3>
-                            <p th:text="${bannerOwl.textMessage}" class="over-para"></p>
-                            <a href="#small-dialog1" class="popup-with-zoom-anim play-view1">
-									<span class="video-play-icon">
-										<span class="fa fa-play"></span>
-									</span>
-                                <h6>Смотреть трейлер</h6>
-                            </a>
-                        </div>
                     </div>
                 </li>
             </div>
         </div>
     </div>
 </section>
-<!-- slider -->
-<section class="w3l-grids">
-    <div class="grids-main py-5">
-        <div class="container py-lg-3">
-            <div class="headerhny-title">
-                <div class="w3l-title-grids">
-                    <div class="headerhny-left">
-                        <h3 class="hny-title">Смотрите сегодня</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="w3l-populohny-grids">
-                <div class="item vhny-grid" th:each="film: ${filmsActual}">
-                    <div class="box16">
-                        <a th:href="@{/films/{id}(id = ${film.getId()})}">
-                            <figure>
-                                <img class="img-fluid" th:src="@{'../../images/' + ${film.getMainPicture()}}" alt="">
-                            </figure>
-                            <div class="box-content">
-                                <h3 class="title" th:text="${film.name}"></h3>
-                            </div>
-                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="w3l-grids">
     <div class="grids-main py-5">
         <div class="container py-lg-3">
-            <div class="headerhny-title">
-                <div class="w3l-title-grids">
-                    <div class="headerhny-left">
-                        <h3 class="hny-title">Смотрите скоро</h3>
-                    </div>
+            <div class="allblog">
+                <div class="centerblock">
+                    <h1 th:text="${stock.title}"></h1>
+                    <br>
+                    <img th:src="@{'../../images/' + ${stock.main_picture}}" style="margin:10px auto; width: 42%; height:300px ;margin-right: 30px; margin-top: -10px;" align="left">
+                    <p style=" margin-left: 10px ; color:black; word-wrap: break-word;"
+                       th:text="${stock.description}"></p>
                 </div>
-            </div>
-            <div class="owl-three owl-carousel owl-theme">
-                <div class="item vhny-grid" th:each="film : ${filmSoon}">
-                    <div class="box16 mb-0">
-                        <a th:href="@{/films/{id}(id = ${film.getId()})}">
-                            <figure>
-                                <img class="img-fluid" th:src="@{'../../images/' + ${film.getMainPicture()}}" alt="">
-                            </figure>
-                            <div class="box-content">
-                            </div>
-                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                    <h3><a class="title-gd" th:href="@{/film/{id}(id = ${film.getId()})}" th:text="${film.name}"></a></h3>
-<!--                    <p th:text="${film.description}"></p>-->
-                    <div class="button-center text-center mt-4">
-                        <a href="#" class="btn watch-button">Watch now</a>
-                    </div>
+                <div class="rightblock">
+                    <img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
+                         style="width:100%; height:350px;"><br><br>
+                    <img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
+                         style="width:100%; height:180px;"><br><br>
+                    <img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
+                         style="width:100%; height:180px;">
+
                 </div>
             </div>
         </div>
-
     </div>
 </section>
-
-<section class="w3l-albums py-5" id="projects">
-    <div class="container py-lg-4">
-        <div class="headerhny-title">
-            <div class="w3l-title-grids">
-                <div class="headerhny-left">
-                    <h3 class="hny-title">Новости и Акции</h3>
-                </div>
-            </div>
-        </div>
-        <center>
-            <section class="w3l-main-slider position-relative" id="home1">
-                <div class="companies20-content">
-                    <div class="owl-one owl-carousel owl-theme">
-                        <div class="item" th:each="banner : ${bannerNews}">
-                            <li>
-                                <div class="slider-info banner-view bg bg2"
-                                     th:style="'background: url(../../images/' + ${banner.photo} + ')' + '; background-size: cover  '">
-                                    <div class="banner-info">
-                                        <a href="#small-dialog1" class="popup-with-zoom-anim play-view1">
-									<span class="video-play-icon">
-										<span class="fa fa-play"></span>
-									</span>
-                                            <h6>Подробнее..</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <br><br>
-            <img style="width: 900px; height: 130px" src="../../img/context_reclama.jpg" href="">
-            <br><br>
-            <div style="width: 900px; height: 90px; ">
-                <p style="font-size: 19px" th:text="${SeoText.description}">
-            </div>
-        </center>
-    </div>
-</section>
-
 <footer class="w3l-footer">
     <section class="footer-inner-main">
         <div class="footer-hny-grids py-5">
@@ -281,6 +189,10 @@
         <div class="below-section">
             <div class="container">
                 <div class="copyright-footer">
+                    <div class="columns text-lg-left">
+                        <p>&copy; 2021. All rights reserved | Designed by <a
+                                href="https://vk.com/shama278">shama278</a></p>
+                    </div>
 
                     <ul class="social text-lg-right">
                         <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
@@ -326,15 +238,16 @@
 
 </html>
 
-<script src="../../js/jquery-1.9.1.min.js"></script>
-<script src="../../js/easyResponsiveTabs.js"></script>
-<script src="../../js/owl.carousel.js"></script>
-<script src="../../js/jquery.magnific-popup.min.js"></script>
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script src="/js/easyResponsiveTabs.js"></script>
+<script src="/js/owl.carousel.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+
 
 <script>
     $(document).ready(function () {
         $('.owl-one').owlCarousel({
-            stagePadding: 280,
+            stagePadding: 0,
             loop: true,
             margin: 20,
             nav: true,

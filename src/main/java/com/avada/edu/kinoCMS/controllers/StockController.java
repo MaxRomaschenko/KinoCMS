@@ -1,8 +1,10 @@
 package com.avada.edu.kinoCMS.controllers;
 
 
+import com.avada.edu.kinoCMS.model.Banner;
 import com.avada.edu.kinoCMS.model.PictureGallery;
 import com.avada.edu.kinoCMS.model.Stock;
+import com.avada.edu.kinoCMS.servicies.BannerService;
 import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
 import com.avada.edu.kinoCMS.servicies.SeoService;
 import com.avada.edu.kinoCMS.servicies.StockService;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -29,13 +32,15 @@ public class StockController {
     private final SeoService seoService;
     private final StockService stockService;
     private final PictureGalleryService pictureGalleryService;
+    private final BannerService bannerService;
 
     public StockController(SeoService seoService,
                            StockService stockService,
-                           PictureGalleryService pictureGalleryService) {
+                           PictureGalleryService pictureGalleryService, BannerService bannerService) {
         this.seoService = seoService;
         this.stockService = stockService;
         this.pictureGalleryService = pictureGalleryService;
+        this.bannerService = bannerService;
     }
 
     private String file(MultipartFile multipartFile) throws IOException {
@@ -130,10 +135,43 @@ public class StockController {
         return "redirect:/stock/admin";
     }
 
+    @GetMapping("")
+    public String stockMain( Model model) {
+        model.addAttribute("stocks", stockService.findAll());
+
+        Banner banner7 = bannerService.findById(7L);
+        Banner banner8 = bannerService.findById(8L);
+        Banner banner9 = bannerService.findById(9L);
+        Banner banner10 = bannerService.findById(10L);
+        Banner banner11 = bannerService.findById(11L);
+        List<Banner> bannerNews = new ArrayList<>();
+        bannerNews.add(banner7);
+        bannerNews.add(banner8);
+        bannerNews.add(banner9);
+        bannerNews.add(banner10);
+        bannerNews.add(banner11);
+        model.addAttribute("bannerNews", bannerNews);
+
+        return "UI/stock_main";
+    }
+
     @GetMapping("/{id}")
-    public String index(@PathVariable("id") Long id, Model model) {
+    public String index(@PathVariable("id") Long id
+            ,Model model){
         model.addAttribute("stock", stockService.findById(id));
-        return "UI/stock_index";
+        Banner banner7 = bannerService.findById(7L);
+        Banner banner8 = bannerService.findById(8L);
+        Banner banner9 = bannerService.findById(9L);
+        Banner banner10 = bannerService.findById(10L);
+        Banner banner11 = bannerService.findById(11L);
+        List<Banner> bannerNews = new ArrayList<>();
+        bannerNews.add(banner7);
+        bannerNews.add(banner8);
+        bannerNews.add(banner9);
+        bannerNews.add(banner10);
+        bannerNews.add(banner11);
+        model.addAttribute("bannerNews", bannerNews);
+       return "UI/stock_index";
     }
 
     @PostMapping("/delete/{id}/admin")
