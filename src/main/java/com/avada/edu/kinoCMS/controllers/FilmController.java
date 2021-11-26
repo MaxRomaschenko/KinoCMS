@@ -97,6 +97,7 @@ public class FilmController {
         List<FilmType> filmTypeArrayList =  filmTypeService.findAll();
         model.addAttribute("filmTypeList1",filmTypeArrayList);
         model.addAttribute("film",filmService.findById(id));
+        model.addAttribute("gallery",pictureGalleryService.findAllByFilmId(id));
         return "UI/film_edit";
     }
 
@@ -125,11 +126,15 @@ public class FilmController {
 
         Film film2 = filmRepo.save(film);
 
+        int i = 0;
         for(MultipartFile file: pictureGalleries){
-            PictureGallery pictureGallery = new PictureGallery();
-            pictureGallery.setPicture(file(file));
-            pictureGallery.setFilm(film2);
-            pictureGalleryService.save(pictureGallery);
+            if(!file.isEmpty()) {
+                List<PictureGallery> pictureGallery1 = pictureGalleryService.findAllByFilmId(id);
+                pictureGallery1.get(i).setPicture(file(file));
+                pictureGallery1.get(i).setFilm(film2);
+                pictureGalleryService.save(pictureGallery1.get(i));
+            }
+            i++;
         }
         return "redirect:/films/admin";
     }

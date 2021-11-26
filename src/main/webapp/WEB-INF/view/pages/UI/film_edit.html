@@ -160,7 +160,7 @@
                                                 <div class="custom-file">
                                                     <input type="file" id="imgInp" name="file"/>
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
-                                                         id="blah" src="/img/defaultImage.png"/>
+                                                         id="blah" th:src="@{'/images/' + ${film.getMainPicture()}}"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,7 +171,7 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah10" src="../../img/defaultImage.png"/>
+                                                         id="blah10" th:src="@{'/images/' + ${gallery.get(0).getPicture()}}" />
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp10" name="gallery"/>
@@ -179,7 +179,7 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah11" src="../../img/defaultImage.png"/>
+                                                         id="blah11"  th:src="@{'/images/' + ${gallery.get(1).getPicture()}}"/>
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp11" name="gallery"/>
@@ -187,7 +187,7 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah12" src="../../img/defaultImage.png"/>
+                                                         id="blah12" th:src="@{'/images/' + ${gallery.get(2).getPicture()}}"/>
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp12" name="gallery"/>
@@ -195,7 +195,7 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah13" src="../../img/defaultImage.png"/>
+                                                         id="blah13" th:src="@{'/images/' + ${gallery.get(3).getPicture()}}"/>
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp13" name="gallery"/>
@@ -203,7 +203,7 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah14" src="../../img/defaultImage.png"/>
+                                                         id="blah14" th:src="@{'/images/' + ${gallery.get(4).getPicture()}}"/>
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp14" name="gallery"/>

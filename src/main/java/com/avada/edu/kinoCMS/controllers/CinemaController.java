@@ -112,6 +112,7 @@ public class CinemaController {
         List<Hall> halls = hallService.findAllByCinemaId(id);
         model.addAttribute("halls",halls);
         model.addAttribute("cinema",cinemaService.findById(id));
+        model.addAttribute("gallery",pictureGalleryService.findAllByCinemaId(id));
         return "UI/cinema_edit";
     }
 
@@ -146,11 +147,15 @@ public class CinemaController {
 
         Cinema cinema2 = cinemaService.save(cinema);
 
-        for(MultipartFile multipartFile: pictureGalleries){
-            PictureGallery pictureGallery = new PictureGallery();
-            pictureGallery.setPicture(file(multipartFile));
-            pictureGallery.setCinema(cinema2);
-            pictureGalleryService.save(pictureGallery);
+        int i = 0;
+        for(MultipartFile file: pictureGalleries){
+            if(!file.isEmpty()) {
+                List<PictureGallery> pictureGallery1 = pictureGalleryService.findAllByFilmId(id);
+                pictureGallery1.get(i).setPicture(file(file));
+                pictureGallery1.get(i).setCinema(cinema2);
+                pictureGalleryService.save(pictureGallery1.get(i));
+            }
+            i++;
         }
 
         return "redirect:/cinemas/admin";
