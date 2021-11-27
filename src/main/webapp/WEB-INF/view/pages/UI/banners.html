@@ -103,7 +103,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../examples/project-detail.html" class="nav-link">
+                        <a href="/users/admin" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Пользователи</p>
                         </a>
@@ -162,63 +162,68 @@
                                     <div style="padding: 3px;display: flex;position: relative;">
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah" src="../../img/defaultImage.png"/>
+                                                 id="blah" th:src="@{'/images/' + ${banners.get(0).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp" name="file1"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                    name="banner">
+                                                    name="banner" th:value="${bannerMainOwl1.url}">
                                             <label>Текст</label>
                                             <input type="text" class="form-control" placeholder="текст"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerMainOwl1.textMessage}">
 
                                         </div>
 
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah2" src="../../img/defaultImage.png"/>
+                                                 id="blah2" th:src="@{'/images/' + ${banners.get(1).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp2" name="file2"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerMainOwl2.textMessage}" >
                                             <label>Текст</label>
                                             <input type="text" class="form-control" placeholder="текст"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerMainOwl2.textMessage}">
                                         </div>
 
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah3" src="../../img/defaultImage.png"/>
+                                                 id="blah3" th:src="@{'/images/' + ${banners.get(2).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp3" name="file3"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerMainOwl3.textMessage}" >
                                             <label>Текст</label>
                                             <input type="text" class="form-control" placeholder="текст"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerMainOwl3.textMessage}">
                                         </div>
 
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah4" src="../../img/defaultImage.png"/>
+                                                 id="blah4" th:src="@{'/images/' + ${banners.get(3).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp4" name="file4"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerMainOwl4.textMessage}" >
                                             <label>Текст</label>
                                             <input type="text" class="form-control" placeholder="текст"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerMainOwl4.textMessage}">
                                         </div>
 
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah5" src="../../img/defaultImage.png"/>
+                                                 id="blah5" th:src="@{'/images/' + ${banners.get(4).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp5" name="file5"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerMainOwl5.textMessage}" >
                                             <label>Текст</label>
                                             <input type="text" class="form-control" placeholder="текст"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerMainOwl5.textMessage}">
                                         </div>
                                     </div>
                                     <!-- /.card-body -->
@@ -254,7 +259,8 @@
                                             <br/>
                                             <input type="radio" th:field="*{bannerBackground.trueFalse}" value="1" />
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah6" src="../../img/defaultImage.png"/>
+                                                 id="blah6" th:src="@{'/images/' + ${banners.get(5).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp6" name="background"/>
                                             <BR>
                                             <input type="radio" th:field="*{bannerBackground.trueFalse}" value="0" /> Просто фон<Br>
@@ -290,48 +296,53 @@
                                     <div style="padding: 3px;display: flex;position: relative;">
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah7" src="../../img/defaultImage.png"/>
+                                                 id="blah7" th:src="@{'/images/' + ${banners.get(6).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp7" name="file1"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerNews1.url}">
 
                                         </div>
 
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah8" src="../../img/defaultImage.png"/>
+                                                 id="blah8" th:src="@{'/images/' + ${banners.get(7).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp8" name="file2"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerNews2.url}">
                                         </div>
 
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah9" src="../../img/defaultImage.png"/>
+                                                 id="blah9" th:src="@{'/images/' + ${banners.get(8).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp9" name="file3"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerNews3.url}">
                                         </div>
 
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah10" src="../../img/defaultImage.png"/>
+                                                 id="blah10" th:src="@{'/images/' + ${banners.get(9).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp10" name="file4"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerNews4.url}">
                                         </div>
 
                                         <div class="form-group" style="padding: 15px;">
                                             <img style=" max-width: 170px; max-height: 205px; max-width:100%; border: 2px solid black; padding: 1px"
-                                                 id="blah11" src="../../img/defaultImage.png"/>
+                                                 id="blah11" th:src="@{'/images/' + ${banners.get(10).photo}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                             <input type="file" id="imgInp11" name="file5"/>
                                             <label>URL</label>
                                             <input type="text" class="form-control" placeholder="URL"
-                                                   name="banner">
+                                                   name="banner" th:value="${bannerNews5.url}">
                                         </div>
                                     </div>
                                     <!-- /.card-body -->

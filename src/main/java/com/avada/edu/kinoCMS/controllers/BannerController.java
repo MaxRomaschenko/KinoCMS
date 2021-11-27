@@ -43,18 +43,19 @@ public class BannerController {
 
     @GetMapping
     public String getBanner(
-            @ModelAttribute("bannerMainOwl1") Banner bannerMainOwl1,
-            @ModelAttribute("bannerMainOwl2") Banner bannerMainOwl2,
-            @ModelAttribute("bannerMainOwl3") Banner bannerMainOwl3,
-            @ModelAttribute("bannerMainOwl4") Banner bannerMainOwl4,
-            @ModelAttribute("bannerMainOwl5") Banner bannerMainOwl5,
-            @ModelAttribute("bannerNews1") Banner bannerNews1,
-            @ModelAttribute("bannerNews2") Banner bannerNews2,
-            @ModelAttribute("bannerNews3") Banner bannerNews3,
-            @ModelAttribute("bannerNews4") Banner bannerNews4,
-            @ModelAttribute("bannerNews5") Banner bannerNews5,
-            @ModelAttribute("bannerBackground") Banner bannerBackground,
             Model model) {
+        model.addAttribute("bannerMainOwl1", bannerService.findById(1L));
+        model.addAttribute("bannerMainOwl2", bannerService.findById(2L));
+        model.addAttribute("bannerMainOwl3", bannerService.findById(3L));
+        model.addAttribute("bannerMainOwl4", bannerService.findById(4L));
+        model.addAttribute("bannerMainOwl5", bannerService.findById(5L));
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
+        model.addAttribute("bannerNews1", bannerService.findById(7L));
+        model.addAttribute("bannerNews2", bannerService.findById(8L));
+        model.addAttribute("bannerNews3", bannerService.findById(9L));
+        model.addAttribute("bannerNews4", bannerService.findById(10L));
+        model.addAttribute("bannerNews5", bannerService.findById(11L));
+        model.addAttribute("banners", bannerService.findAll());
         return "UI/banners";
     }
 
@@ -72,48 +73,65 @@ public class BannerController {
                                    @RequestParam("file5") MultipartFile file5
 
     ) throws IOException { //TODO: переделать говнокод
+        if (!file1.isEmpty()) {
+            bannerMainOwl1.setPhoto(file(file1));
+        } else {
+            bannerMainOwl1.setPhoto(bannerService.findById(1L).getPhoto());
+        }
         bannerMainOwl1.setId(1L);
-        bannerMainOwl1.setPhoto(file(file1));
         bannerMainOwl1.setUrl(banners[0]);
         bannerMainOwl1.setTextMessage(banners[1]);
-
-        bannerMainOwl2.setId(2L);
-        bannerMainOwl2.setPhoto(file(file2));
-        bannerMainOwl2.setUrl(banners[2]);
-        bannerMainOwl2.setTextMessage(banners[3]);
-
-
-        bannerMainOwl3.setId(3L);
-        bannerMainOwl3.setPhoto(file(file3));
-        bannerMainOwl3.setUrl(banners[4]);
-        bannerMainOwl3.setTextMessage(banners[5]);
-
-        bannerMainOwl4.setId(4L);
-        bannerMainOwl4.setPhoto(file(file4));
-        bannerMainOwl4.setUrl(banners[6]);
-        bannerMainOwl4.setTextMessage(banners[7]);
-
-        bannerMainOwl5.setId(5L);
-        bannerMainOwl5.setPhoto(file(file5));
-        bannerMainOwl5.setUrl(banners[8]);
-        bannerMainOwl5.setTextMessage(banners[9]);
-
-        if (bannerMainOwl1.getTextMessage() != null) {
+        if (!bannerMainOwl1.getTextMessage().isEmpty()) {
             bannerService.saveBanner(bannerMainOwl1);
         }
-        if (bannerMainOwl2.getTextMessage() != null) {
+
+        if (!file2.isEmpty()) {
+            bannerMainOwl2.setPhoto(file(file2));
+        } else {
+            bannerMainOwl2.setPhoto(bannerService.findById(2L).getPhoto());
+        }
+        bannerMainOwl2.setId(2L);
+        bannerMainOwl2.setUrl(banners[2]);
+        bannerMainOwl2.setTextMessage(banners[3]);
+        if (!bannerMainOwl2.getTextMessage().isEmpty()) {
             bannerService.saveBanner(bannerMainOwl2);
         }
-        if (bannerMainOwl3.getTextMessage() != null) {
+
+        if (!file3.isEmpty()) {
+            bannerMainOwl3.setPhoto(file(file3));
+        }else {
+            bannerMainOwl3.setPhoto(bannerService.findById(3L).getPhoto());
+        }
+        bannerMainOwl3.setId(3L);
+        bannerMainOwl3.setUrl(banners[4]);
+        bannerMainOwl3.setTextMessage(banners[5]);
+        if (!bannerMainOwl3.getTextMessage().isEmpty()) {
             bannerService.saveBanner(bannerMainOwl3);
         }
-        if (bannerMainOwl4.getTextMessage() != null) {
-            bannerService.saveBanner(bannerMainOwl4);
-        }
-        if (bannerMainOwl5.getTextMessage() != null) {
-            bannerService.saveBanner(bannerMainOwl5);
-        }
 
+        if (!file4.isEmpty()) {
+            bannerMainOwl4.setPhoto(file(file4));
+        }else {
+            bannerMainOwl4.setPhoto(bannerService.findById(4L).getPhoto());
+        }
+            bannerMainOwl4.setId(4L);
+            bannerMainOwl4.setUrl(banners[6]);
+            bannerMainOwl4.setTextMessage(banners[7]);
+            if (!bannerMainOwl4.getTextMessage().isEmpty()) {
+                bannerService.saveBanner(bannerMainOwl4);
+            }
+
+        if (!file5.isEmpty()) {
+            bannerMainOwl5.setPhoto(file(file5));
+        }else {
+            bannerMainOwl5.setPhoto(bannerService.findById(5L).getPhoto());
+        }
+            bannerMainOwl5.setId(5L);
+            bannerMainOwl5.setUrl(banners[8]);
+            bannerMainOwl5.setTextMessage(banners[9]);
+            if (!bannerMainOwl5.getTextMessage().isEmpty()) {
+                bannerService.saveBanner(bannerMainOwl5);
+            }
 
         return "redirect:/banners";
     }
@@ -123,14 +141,17 @@ public class BannerController {
             @ModelAttribute("bannerBackground") Banner bannerBackground,
             @RequestParam("background") MultipartFile background
     ) throws IOException {
+
         bannerBackground.setId(6L);
+
         if (!bannerBackground.getTrueFalse()) {
             bannerBackground.setPhoto(null);
-        } else if (bannerBackground == null) { //TODO: юзлес, не забыть добавить проверку пришёл ли файл
+        } else if (!background.isEmpty()) {
             bannerBackground.setPhoto(file(background));
         } else {
-            bannerBackground.setPhoto(file(background));
+            bannerBackground.setPhoto(bannerService.findById(6L).getPhoto());
         }
+
         bannerService.saveBanner(bannerBackground);
 
         return "redirect:/banners";
@@ -150,45 +171,67 @@ public class BannerController {
                                 @RequestParam("file5") MultipartFile file5
 
     ) throws IOException {
-        bannerNews1.setId(7L);
-        bannerNews1.setPhoto(file(file1));
-        bannerNews1.setUrl(banners[0]);
 
-        bannerNews2.setId(8L);
-        bannerNews2.setPhoto(file(file2));
-        bannerNews2.setUrl(banners[1]);
-
-
-        bannerNews3.setId(9L);
-        bannerNews3.setPhoto(file(file3));
-        bannerNews3.setUrl(banners[2]);
-
-
-        bannerNews4.setId(10L);
-        bannerNews4.setPhoto(file(file4));
-        bannerNews4.setUrl(banners[3]);
-
-
-        bannerNews5.setId(11L);
-        bannerNews5.setPhoto(file(file5));
-        bannerNews5.setUrl(banners[4]);
-
-        if (bannerNews1.getUrl() != null) {
-            bannerService.saveBanner(bannerNews1);
+        if (!file1.isEmpty()) {
+            bannerNews1.setPhoto(file(file1));
+        }else {
+            bannerNews1.setPhoto(bannerService.findById(7L).getPhoto());
         }
-        if (bannerNews2.getUrl() != null) {
-            bannerService.saveBanner(bannerNews2);
+            bannerNews1.setId(7L);
+            bannerNews1.setUrl(banners[0]);
+            if (!bannerNews1.getUrl().isEmpty()) {
+                bannerService.saveBanner(bannerNews1);
+            }
+
+        if (!file2.isEmpty()) {
+            bannerNews2.setPhoto(file(file2));
+        }else {
+            bannerNews2.setPhoto(bannerService.findById(8L).getPhoto());
         }
-        if (bannerNews3.getUrl() != null) {
-            bannerService.saveBanner(bannerNews3);
+            bannerNews2.setId(8L);
+            bannerNews2.setUrl(banners[1]);
+            if (!bannerNews2.getUrl().isEmpty()) {
+                bannerService.saveBanner(bannerNews2);
+            }
+
+        if (!file3.isEmpty()) {
+            bannerNews3.setPhoto(file(file3));
+        }else {
+            bannerNews3.setPhoto(bannerService.findById(9L).getPhoto());
         }
-        if (bannerNews4.getUrl() != null) {
-            bannerService.saveBanner(bannerNews4);
+            bannerNews3.setId(9L);
+            bannerNews3.setUrl(banners[2]);
+            if (!bannerNews3.getUrl().isEmpty()) {
+                bannerService.saveBanner(bannerNews3);
+            }
+
+        if (!file4.isEmpty()) {
+            bannerNews4.setPhoto(file(file4));
+        }else {
+            bannerNews4.setPhoto(bannerService.findById(10L).getPhoto());
         }
-        if (bannerNews5.getUrl() != null) {
-            bannerService.saveBanner(bannerNews5);
+            bannerNews4.setId(10L);
+            bannerNews4.setUrl(banners[3]);
+            if (!bannerNews4.getUrl().isEmpty()) {
+                bannerService.saveBanner(bannerNews4);
+            }
+
+        if (!file5.isEmpty()) {
+            bannerNews5.setPhoto(file(file5));
+        }else {
+            bannerNews5.setPhoto(bannerService.findById(11L).getPhoto());
         }
+            bannerNews5.setId(11L);
+            bannerNews5.setUrl(banners[4]);
+            if (!bannerNews5.getUrl().isEmpty()) {
+                bannerService.saveBanner(bannerNews5);
+            }
 
         return "redirect:/banners";
+    }
+
+    @GetMapping("/her")
+    public String help(){
+        return "UI/ressilka";
     }
 }

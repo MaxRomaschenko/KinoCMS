@@ -69,6 +69,7 @@ public class NewsController {
         news.setIs_active(true);
         Date date = new Date();
         news.setCreated_at(new Timestamp(date.getTime()));
+
         if(news.getSeo() != null){
             seoRepo.save(news.getSeo());
         }
@@ -88,6 +89,7 @@ public class NewsController {
     @GetMapping("/{id}/edit/admin")
     public String edit(Model model, @PathVariable("id") Long id){
         model.addAttribute("news",newsService.findById(id));
+        model.addAttribute("gallery",pictureGalleryService.findAllByNewsId(id));
         return "UI/news_edit";
     }
 
@@ -119,11 +121,15 @@ public class NewsController {
 
         News news2 = newsService.save(news);
 
+        int i = 0;
         for(MultipartFile file: pictureGalleries){
-            PictureGallery pictureGallery = new PictureGallery();
-            pictureGallery.setPicture(file(file));
-            pictureGallery.setNews(news2);
-            pictureGalleryService.save(pictureGallery);
+            if(!file.isEmpty()) {
+                List<PictureGallery> pictureGallery1 = pictureGalleryService.findAllByNewsId(id);
+                pictureGallery1.get(i).setPicture(file(file));
+                pictureGallery1.get(i).setNews(news2);
+                pictureGalleryService.save(pictureGallery1.get(i));
+            }
+            i++;
         }
 
         return "redirect:/news/admin";

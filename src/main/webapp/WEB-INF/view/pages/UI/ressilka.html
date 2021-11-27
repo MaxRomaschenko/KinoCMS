@@ -107,9 +107,6 @@
     <!-- /.sidebar -->
 
 
-    <!-- /.navbar -->
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -118,8 +115,14 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            Главная страница
+                            Рассылка
                         </h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Рассылка</li>
+                        </ol>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -131,86 +134,106 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
-                            <div class="card-body">
-                                <form th:method="post" th:action="@{/page/{id}/mainPage/edit/admin(id=${page.getId()})}"
-                                      enctype="multipart/form-data">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            Выключено
-                                            <input type="range" min="0" max="1" th:field="*{page.is_active}">
-                                            Включено
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Телефон</label>
-                                            <input type="text" class="form-control" placeholder="777 85 98"
-                                                   th:field="*{page.telephone_first}" id="name">
-                                            <input type="text" class="form-control" placeholder="777 85 98"
-                                                   th:field="*{page.telephone_second}" id="name2">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>SEO текст</label>
-                                            <textarea class="form-control" rows="3" placeholder="текст"
-                                                      th:field="*{page.description}" id="description"></textarea>
-                                        </div>
-                                        <center><h3>SEO блок</h3></center>
-                                        <div class="form-group">
-                                            <label>URL</label>
-                                            <input type="text" class="form-control" th:field="*{page.seo.url}"
-                                                   placeholder="URL">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Title</label>
-                                            <input type="text" class="form-control" th:field="*{page.seo.title}"
-                                                   placeholder="Title">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Keywords</label>
-                                            <input type="text" class="form-control" th:field="*{page.seo.keywords}"
-                                                   placeholder="Keywords">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Discription</label>
-                                            <textarea class="form-control" rows="3" placeholder="Discription"
-                                                      th:field="*{page.seo.description}"></textarea>
-                                        </div>
-                                    </div>
-                                    <!-- /.card-body -->
-
-                                    <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть
-                                        </button>
-                                        <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить
-                                        </button>
-                                    </div>
-                                </form>
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    SMS
+                                </h3>
                             </div>
-
-
-                            <!-- /.card -->
+                            <div class="card-body">
+                            <div class="topboxsms">
+                                <a style="margin-right: 15px;">Выбирете пользователей для рассылки</a>
+                                <input type="checkbox"  name=""> <label style="margin-right: 15px;">Все
+                                пользователи</label>
+                                <input type="checkbox"  name=""> <label
+                                    style="margin-right: 15px;">Выбранные</label>
+                                <a href="#">
+                                    <button type="button" class="btn btn-default">Выбрать пользователей</button>
+                                </a>
+                            </div>
+                            <div class="divboxleft">
+                                <a>Текст СМС</a> <a style="float: right;">Символов: <span
+                                    class="current">0</span></a><br>
+                                <textarea name="comment" cols="103" rows="7"></textarea>
+                            </div>
+                            <div class="divboxright">
+                                <br><br>
+                                <a>Колличество SMS: <span style="color: blue;">137 353</span><a>
+                                    <br>
+                                    <a>Рассылок выполнено на: <span style="color: blue;">45%</span> <span
+                                            style="margin-left: 70px; color: blue;">61 808 шт.</span><a>
+                            </div>
+                            <br><br><br><br>
+                            <center><a href="">
+                                <button type="button" class="btn btn-default">Выполнить рассылку</button>
+                            </a></center>
                         </div>
+                        <!-- /.card -->
                     </div>
-                    <!-- /.col -->
+
                 </div>
-                <!-- ./row -->
-            </div><!-- /.container-fluid -->
+                <!-- /.col -->
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    E-MAIL
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                            <div class="topboxsms">
+                                <a style="margin-right: 15px;">Выбирете пользователей для рассылки</a>
+                                <input type="checkbox"  name=""> <label style="margin-right: 15px;">Все
+                                пользователи</label>
+                                <input type="checkbox"  name=""> <label
+                                    style="margin-right: 15px;">Выбранные</label>
+                                <a href="#">
+                                    <button type="button" class="btn btn-default">Выбрать пользователей</button>
+                                </a>
+                            </div>
+                            <div class="divboxleft">
+                                <a>Загрузить HTML письмо</a>
+                                <input type="file" style="margin-left: 30px;"><br>
+                            </div>
+                            <div class="divboxright">
+                                <div class="spisokhtmlrass">
+                                    <a>Список последних загруженных шаблонов</a><br>
+                                    <input type="checkbox" id="" name=""> <label name="" id=""
+                                                                                 style="margin-right: 15px;">tess</label><br>
+                                </div>
+                            </div>
+                            <br><br><br><br>
+                            <center><a href="">
+                                <button type="button" class="btn btn-default">Выполнить рассылку</button>
+                            </a></center>
+                        </div>
+                        <!-- /.card -->
+                    </div>
 
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- ./row -->
+    </div><!-- /.container-fluid -->
+    </section>
 
-        </section>
-        <!-- /.content -->
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+        <b>Version</b> 3.1.0
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.1.0
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+</footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -262,5 +285,18 @@
 <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script>
+    const textarea = document.querySelector('textarea');
+    const counter = document.querySelector('.current');
+    const maxlength = 360;
+
+    textarea.addEventListener('input', onInput)
+
+    function onInput(event) {
+        event.target.value = event.target.value.substr(0, maxlength);
+        const length = event.target.value.length;
+        counter.textContent = length;
+    }
+</script>
 </body>
 </html>

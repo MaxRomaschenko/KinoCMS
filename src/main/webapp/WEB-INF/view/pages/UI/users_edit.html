@@ -23,7 +23,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/index3.html" class="brand-link">
+        <a href="../../index3.html" class="brand-link">
             <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -31,6 +31,9 @@
         <!-- /.navbar -->
         <!-- Sidebar -->
         <div class="sidebar">
+            <!-- Sidebar user (optional) -->
+
+
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -83,7 +86,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/users/admin"  class="nav-link">
+                        <a href="/users/admin" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Пользователи</p>
                         </a>
@@ -106,158 +109,130 @@
     </aside>
     <!-- /.sidebar -->
 
-
-    <!-- /.navbar -->
-
-
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 th:text="${page.title}">
+                        <h1>
+                            Пользователи
                         </h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
 
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-body">
-                                <form th:method="post" th:action="@{/page/{id}/edit/admin(id=${page.getId()})}"
+                                <form th:method="post" th:action="@{/users/{id}/edit/admin(id=${user.id})}"
                                       enctype="multipart/form-data">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            Выключено
-                                            <input type="range" min="0" max="1" th:field="*{page.is_active}">
-                                            Включено
+                                            <label>Имя </label>
+                                            <input type="text" class="form-control" placeholder="Имя"
+                                                   th:field="*{user.name}" id="name">
                                         </div>
-                                        <div class="form-group">
-                                            <label>Название новости</label>
-                                            <input type="text" class="form-control" placeholder="Название новости"
-                                                   th:field="*{page.title}" id="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Описание</label>
-                                            <textarea class="form-control" rows="3" placeholder="Описание"
-                                                      th:field="*{page.description}" id="description"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Главная картинка</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" id="imgInp" name="logo"/>
-                                                    <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
-                                                         id="blah" th:src="@{'/images/' + ${page.banner_url}}"
-                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br><br>
-                                        <label>Галерея Картинок</label>
-                                        <br><br>
-                                        <div style="padding: 3px;display: flex;position: relative;">
-                                            <div class="input-group" style="width: 15%;">
-                                                <div class="custom-file">
-                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah10" th:src="@{'/images/' + ${gallery.get(0).getPicture()}}"
-                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
-                                                </div>
-                                                <br><br><br>
-                                                <input type="file" id="imgInp10" name="gallery"/>
-                                            </div>
-                                            <div class="input-group" style="width: 15%;">
-                                                <div class="custom-file">
-                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah11" th:src="@{'/images/' + ${gallery.get(1).getPicture()}}"
-                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
-                                                </div>
-                                                <br><br><br>
-                                                <input type="file" id="imgInp11" name="gallery"/>
-                                            </div>
-                                            <div class="input-group" style="width: 15%;">
-                                                <div class="custom-file">
-                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah12" th:src="@{'/images/' + ${gallery.get(2).getPicture()}}"
-                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
-                                                </div>
-                                                <br><br><br>
-                                                <input type="file" id="imgInp12" name="gallery"/>
-                                            </div>
-                                            <div class="input-group" style="width: 15%;">
-                                                <div class="custom-file">
-                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah13" th:src="@{'/images/' + ${gallery.get(3).getPicture()}}"
-                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
-                                                </div>
-                                                <br><br><br>
-                                                <input type="file" id="imgInp13" name="gallery"/>
-                                            </div>
-                                            <div class="input-group" style="width: 15%;">
-                                                <div class="custom-file">
-                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah14" th:src="@{'/images/' + ${gallery.get(4).getPicture()}}"
-                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
-                                                </div>
-                                                <br><br><br>
-                                                <input type="file" id="imgInp14" name="gallery"/>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <center><h3>SEO блок</h3></center>
-                                        <div class="form-group">
-                                            <label>URL</label>
-                                            <input type="text" class="form-control" th:field="*{page.seo.url}"
-                                                   placeholder="URL">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Title</label>
-                                            <input type="text" class="form-control" th:field="*{page.seo.title}"
-                                                   placeholder="Title">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Keywords</label>
-                                            <input type="text" class="form-control" th:field="*{page.seo.keywords}"
-                                                   placeholder="Keywords">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Discription</label>
-                                            <textarea class="form-control" rows="3" placeholder="Discription"
-                                                      th:field="*{page.seo.description}"></textarea>
-                                        </div>
-                                    </div>
-                                    <!-- /.card-body -->
 
-                                    <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть
-                                        </button>
-                                        <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить
-                                        </button>
+                                        <div class="form-group">
+                                            <label>Фамилия </label>
+                                            <input type="text" class="form-control" placeholder="Фамилия"
+                                                   th:field="*{user.secondName}" id="description">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Псевдоним </label>
+                                            <input type="text" class="form-control" placeholder="Псевдоним"
+                                                   th:field="*{user.nickname}" id="nickname">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>E-mail </label>
+                                            <input type="text" class="form-control" placeholder="E-mail"
+                                                   th:field="*{user.email}" id="E-mail">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Адресс </label>
+                                            <input type="text" class="form-control" placeholder="Адресс"
+                                                   th:field="*{user.address}" id="address">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Пароль </label>
+                                            <input type="text" class="form-control" placeholder="Пароль"
+                                                   th:field="*{user.password}" id="password">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Повторите пароль </label>
+                                            <input type="text" class="form-control" placeholder="Повторите пароль "
+                                                   th:field="*{user.test_password}" id="test_password">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Номер карты </label>
+                                            <input type="text" class="form-control" placeholder="Номер карты"
+                                                   th:field="*{user.cardNumber}" id="cardNumber">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Язык</label>
+                                            <select>
+                                                <option type="radio" th:field="*{user.language}" value="1"/>
+                                                Русский<Br>
+                                                <option type="radio" th:field="*{user.language}" value="0"/>
+                                                Украинский<Br>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Пол</label>
+                                            <select>
+                                                <option type="radio" th:field="*{user.gender}" value="1"/>
+                                                Мужской<Br>
+                                                <option type="radio" th:field="*{user.gender}" value="0"/>
+                                                Женский<Br>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Телефон </label>
+                                            <input type="text" class="form-control" placeholder="Телефон "
+                                                   th:field="*{user.telephone}" id="telephone">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> День рождения </label>
+                                            <input type="date" class="form-control" placeholder="День рождения "
+                                                   th:value="${date}" id="date" name="date">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Город </label>
+                                            <input type="text" class="form-control" placeholder="Город "
+                                                   th:field="*{user.town}" id="town">
+                                        </div>
+
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть
+                                            </button>
+                                            <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
-
-
-                            <!-- /.card -->
                         </div>
                     </div>
-                    <!-- /.col -->
                 </div>
-                <!-- ./row -->
             </div><!-- /.container-fluid -->
-
-
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.1.0

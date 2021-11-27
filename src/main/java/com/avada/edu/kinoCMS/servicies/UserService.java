@@ -1,6 +1,5 @@
 package com.avada.edu.kinoCMS.servicies;
 
-import com.avada.edu.kinoCMS.model.Banner;
 import com.avada.edu.kinoCMS.model.User;
 import com.avada.edu.kinoCMS.repo.UserRepo;
 import org.springframework.stereotype.Service;

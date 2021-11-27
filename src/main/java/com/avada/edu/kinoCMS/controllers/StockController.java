@@ -95,6 +95,7 @@ public class StockController {
     @GetMapping("/{id}/edit/admin")
     public String edit(Model model, @PathVariable("id") Long id){
         model.addAttribute("stock", stockService.findById(id));
+        model.addAttribute("gallery",pictureGalleryService.findAllByStockId(id));
         return "UI/stock_edit";
     }
 
@@ -125,11 +126,15 @@ public class StockController {
 
         Stock stock_from_db = stockService.save(stock);
 
+        int i = 0;
         for(MultipartFile file: pictureGalleries){
-            PictureGallery pictureGallery = new PictureGallery();
-            pictureGallery.setPicture(file(file));
-            pictureGallery.setStock(stock_from_db);
-            pictureGalleryService.save(pictureGallery);
+            if(!file.isEmpty()) {
+                List<PictureGallery> pictureGallery1 = pictureGalleryService.findAllByStockId(id);
+                pictureGallery1.get(i).setPicture(file(file));
+                pictureGallery1.get(i).setStock(stock_from_db);
+                pictureGalleryService.save(pictureGallery1.get(i));
+            }
+            i++;
         }
 
         return "redirect:/stock/admin";

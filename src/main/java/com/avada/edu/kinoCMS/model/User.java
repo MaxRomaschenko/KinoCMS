@@ -20,7 +20,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "reg_date")
-    private Timestamp reg_date;
+    private LocalDate reg_date;
     @Column(name = "name")
     private String name;
     @Column(name = "secondname")

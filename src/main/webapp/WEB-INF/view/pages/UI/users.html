@@ -171,7 +171,7 @@
                                     <td><span th:text="${userL.birthdayDate}"> </span></td>
                                     <td><span th:text="${userL.email}"> </span></td>
                                     <td><span th:text="${userL.telephone}"> </span></td>
-                                    <td><span th:text="${userL.secondName} + ${userL.name}"> </span></td>
+                                    <td><span th:text="${userL.secondName} + ' '+ ${userL.name}"> </span></td>
                                     <td><span th:text="${userL.nickname}"> </span></td>
                                     <td><span th:text="${userL.town}"> </span></td>
                                     <td>
@@ -278,11 +278,12 @@
                                     <input type="text" class="form-control"  placeholder="Телефон "
                                            th:field="*{user.telephone}" id="telephone">
                                 </div>
-<!--                                <div class="form-group">-->
-<!--                                    <label > День рождения </label>-->
-<!--                                    <input type="date" class="form-control"  placeholder="День рождения "-->
-<!--                                           th:field="${}" id="birthdayDate">-->
-<!--                                </div>-->
+
+                                <div class="form-group">
+                                    <label > День рождения </label>
+                                    <input type="date" class="form-control"  placeholder="День рождения "
+                                            id="date" name="date">
+                                </div>
 
                                 <div class="form-group">
                                     <label>Город </label>

@@ -31,32 +31,12 @@
         <!-- /.navbar -->
         <!-- Sidebar -->
         <div class="sidebar">
-            <!-- Sidebar user (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
-                </div>
-            </div>
-
-
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-
-                    <li class="nav-item">
-                        <a href="../AdminLTE-3.1.0/pages/gallery.html" class="nav-link">
-                            <i class="nav-icon far fa-image"></i>
-                            <p>
-                                Gallery
-                            </p>
-                        </a>
-                    </li>
 
                     <li class="nav-item">
 
@@ -103,7 +83,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../examples/project-detail.html" class="nav-link">
+                        <a href="/users/admin"  class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Пользователи</p>
                         </a>
@@ -171,7 +151,8 @@
                                                 <div class="custom-file">
                                                     <input type="file" id="imgInp" name="logo"/>
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
-                                                         id="blah" src="../../img/defaultImage.png"/>
+                                                         id="blah" th:src="@{'/images/' + ${news.main_picture}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,7 +163,8 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah10" src="../../img/defaultImage.png"/>
+                                                         id="blah10" th:src="@{'/images/' + ${gallery.get(0).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp10" name="gallery"/>
@@ -190,7 +172,8 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah11" src="../../img/defaultImage.png"/>
+                                                         id="blah11" th:src="@{'/images/' + ${gallery.get(1).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp11" name="gallery"/>
@@ -198,7 +181,8 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah12" src="../../img/defaultImage.png"/>
+                                                         id="blah12" th:src="@{'/images/' + ${gallery.get(2).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp12" name="gallery"/>
@@ -206,7 +190,8 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah13" src="../../img/defaultImage.png"/>
+                                                         id="blah13" th:src="@{'/images/' + ${gallery.get(3).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp13" name="gallery"/>
@@ -214,7 +199,8 @@
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                         id="blah14" src="../../img/defaultImage.png"/>
+                                                         id="blah14" th:src="@{'/images/' + ${gallery.get(4).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
                                                 <input type="file" id="imgInp14" name="gallery"/>
