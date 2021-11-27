@@ -92,97 +92,85 @@
     </nav>
 </header>
 
-<div style="width: 50%; height: 5px; display:inline-block;margin-left: 35%; margin-top: 15px">
-    <ul class="navbar-nav topmenu" style="float: left;">
-        <li class="nav-item"><a class="nav-link submenu-link" href="" style="color: black">Кинотеатр</a>
-            <ul class="submenu nav-item">
-                <li class="nav-item" th:each="cinema : ${cinemas}">
-                    <a style="color: black" th:text="${cinema.cinema_name}"></a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <ul class="navbar-nav topmenu" style="float: left;margin-left: 40px">
-        <li class="nav-item"><a class="nav-link submenu-link" href="" style="color: black">Дата</a>
-            <ul class="submenu nav-item">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black">22.11.2021</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black">23.11.2021</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black">24.11.2021</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <ul class="navbar-nav topmenu" style="float: left;margin-left: 40px">
-        <li class="nav-item"><a class="nav-link submenu-link" href="" style="color: black">Фильм:все</a>
-            <ul class="submenu nav-item">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black">все</a>
-                </li>
-            </ul>
-            <ul class="submenu nav-item">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black">не все</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <ul class="navbar-nav topmenu" style="float: left;margin-left: 40px">
-        <li class="nav-item"><a class="nav-link submenu-link" href="" style="color: black">Зал:все</a>
-            <ul class="submenu nav-item">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black">все</a>
-                </li>
-            </ul>
-            <ul class="submenu nav-item">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black">не все</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
-
+<img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
+     style="margin:10px auto; width: 100%; height:500px;">
+<br>
+<h2 style="color:black; text-align:center;">TEXT</h2>
 <section class="w3l-grids">
     <div class="grids-main py-5">
         <div class="container py-lg-3">
             <div class="allblog">
                 <div class="centerblock">
-                    <table id="example2" class="table table-bordered3 border-warning"
-                           style=" border: 0px ; width: 800px; text-align: center">
+                    <p style="color:black; word-wrap: break-word;">
+                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttex
+                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+                        </p>
+                </div>
+                <div class="rightblock">
+                    <img src="../../img/contex-reclama-verical.jpg"
+                         style="width:100%; height:350px;"><br><br>
+                    <img src="../../img/contex-reclama-verical.jpg"
+                         style="width:100%; height:180px;"><br><br>
+                    <img src="../../img/contex-reclama-verical.jpg"
+                         style="width:100%; height:180px;">
+
+                </div>
+                <div class="left-div2">
+                    <a href="#"><img src="../../img/defaultImage.png"
+                                     style="width: 100%;"></a><br><br>
+                </div>
+                <div class="left-div2">
+                    <a href="#"><img src="../../img/defaultImage.png"
+                                     style="width: 100%;"></a><br><br>
+                </div>
+                <div class="left-div2">
+                    <a href="#"><img src="../../img/defaultImage.png"
+                                     style="width: 100%;"></a><br><br>
+                </div>
+                <div class="centerblock">
+                    <h2 style="color:black; text-align:center;">Меню</h2><br>
+                    <table id="example2" class="table table-bordered2 border-warning"
+                           style=" border: 0px ; width: 800px; text-align: center; color: black; border-color: black">
                         <thead>
                         <tr>
-                            <th><h4>Время</h4></th>
-                            <th><h4>Фильм</h4></th>
-                            <th><h4>Зал</h4></th>
-                            <th><h4>Цена в грн.</h4></th>
-                            <th><h4>Бронировать</h4></th>
+                            <th><h4>Head 1</h4></th>
+                            <th><h4>Head 2</h4></th>
+                            <th colspan="2"><h4>Head 3</h4></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="film : ${films}">
-                            <td><h5>10:00 </h5></td>
-                            <td><h5><a style="color: black" th:href="@{/films/{id}(id = ${film.getId()})}"><span
-                                    th:text="${film.name}"> </span></a></h5></td>
-                            <td><h5>6</h5></td>
-                            <td><h5>75</h5></td>
-                            <td></td>
+                        <tr>
+                            <td><h5>Cell 1 </h5></td>
+                            <td><h5>Cell 2</h5></td>
+                            <td><h5>Cell 3</h5></td>
+                            <td><input type="checkbox" name="a" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Cell 4 </h5></td>
+                            <td><h5>Cell 5</h5></td>
+                            <td><h5>Cell 6</h5></td>
+                            <td><input type="checkbox" name="a" value="2" ></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Cell 7 </h5></td>
+                            <td><h5>Cell 8</h5></td>
+                            <td><h5>Cell 9</h5></td>
+                            <td><input type="radio" name="drink" value="rad1"></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Cell 10 </h5></td>
+                            <td><h5>Cell 11</h5></td>
+                            <td><h5>Cell 12</h5></td>
+                            <td><input type="radio" name="drink" value="rad2"></td>
                         </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="rightblock">
-                    <img src="../../img/contex-reclama-verical.jpg" style="width:100%; height:350px;"><br><br>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
 <footer class="w3l-footer">
     <section class="footer-inner-main">

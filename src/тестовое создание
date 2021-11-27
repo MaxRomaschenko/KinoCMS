@@ -1,4 +1,9 @@
+DROP TABLE IF EXISTS mailing;
 
+CREATE TABLE IF NOT EXISTS mailing(
+    id int auto_increment primary key ,
+    file_name varchar(100) null
+);
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Banner`

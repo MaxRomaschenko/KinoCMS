@@ -1995,6 +1995,18 @@ pre code {
   padding: 0.3rem;
 }
 
+.table-bordered3 {
+  border: 1px solid black;
+}
+
+.table-bordered2 {
+  border: 1px solid black;
+}
+.table-bordered2 th,
+.table-bordered2 td {
+  border: 1px solid black;
+}
+
 .table-bordered {
   border: 1px solid #dee2e6;
 }
@@ -14154,7 +14166,7 @@ html {
 button,
 input,
 select {
-  -webkit-appearance: none;
+  -webkit-appearance: auto;
   outline: none;
   font-family: 'Open Sans', sans-serif;
 }

@@ -114,5 +114,14 @@ public class MainController {
         return "UI/timetable";
     }
 
+    @GetMapping("cafe")
+    private String getCafe(Model model){
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        model.addAttribute("pag",pageService.findById(2L));
+        return "UI/cafe";
+    }
+
 
 }

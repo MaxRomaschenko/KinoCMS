@@ -55,7 +55,8 @@ public class PageController {
     public String getPages(@ModelAttribute("page") Page page, Model model) {
         List<Page> pagesList = pageService.findAllByIs_redacted(true);
         model.addAttribute("pages", pagesList);
-        model.addAttribute("mainPage", pageService.findById(1L));//TODO::переделать
+        model.addAttribute("mainPage", pageService.findById(1L));
+        model.addAttribute("vip", pageService.findById(2L));
         return "UI/page";
     }
 
@@ -140,6 +141,13 @@ public class PageController {
         return "UI/mainPage_edit";
     }
 
+//    @GetMapping("/{id}/Vip/edit/admin")
+//    public String editVip(Model model, @PathVariable("id") Long id) {
+//        model.addAttribute("page", pageService.findById(id));
+//        model.addAttribute("gallery",pictureGalleryService.findAllByPageId(id));
+//        return "UI/page_edit";
+//    }
+
     @PostMapping("/{id}/mainPage/edit/admin")
     public String updateMainPage(@PathVariable("id") Long id,
                                  @ModelAttribute("page") Page page
@@ -157,7 +165,6 @@ public class PageController {
         if (page.getSeo() != null) {
             seoRepo.save(page.getSeo());
         }
-
 
         Page page2 = pageService.save(page);
 
