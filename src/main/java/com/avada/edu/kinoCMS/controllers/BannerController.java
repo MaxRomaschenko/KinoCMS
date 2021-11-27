@@ -72,7 +72,7 @@ public class BannerController {
                                    @RequestParam("file4") MultipartFile file4,
                                    @RequestParam("file5") MultipartFile file5
 
-    ) throws IOException { //TODO: переделать говнокод
+    ) throws IOException {
         if (!file1.isEmpty()) {
             bannerMainOwl1.setPhoto(file(file1));
         } else {

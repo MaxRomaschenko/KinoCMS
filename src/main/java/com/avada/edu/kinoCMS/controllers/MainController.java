@@ -86,7 +86,7 @@ public class MainController {
 
         List<Film> filmList = filmService.findAllByActual(false);
         model.addAttribute("films", filmList);
-        List<Page> pages = pageService.findAllByIs_active(true);//TODO: важно
+        List<Page> pages = pageService.findAllByIs_active(true);
         model.addAttribute("pages",pages);
         return "UI/afisha";
     }
@@ -99,7 +99,7 @@ public class MainController {
 
         List<Film> filmList = filmService.findAllByActual(true);
         model.addAttribute("films", filmList);
-        List<Page> pages = pageService.findAllByIs_active(true);//TODO: важно
+        List<Page> pages = pageService.findAllByIs_active(true);
         model.addAttribute("pages",pages);
         return "UI/skoro";
     }
@@ -109,7 +109,7 @@ public class MainController {
         model.addAttribute("bannerBackground", bannerService.findById(6L));
         model.addAttribute("cinemas",cinemaService.findAll());
         model.addAttribute("films",filmService.findAll());
-        List<Page> pages = pageService.findAllByIs_active(true);//TODO: важно
+        List<Page> pages = pageService.findAllByIs_active(true);
         model.addAttribute("pages",pages);
         return "UI/timetable";
     }
