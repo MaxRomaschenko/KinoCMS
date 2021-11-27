@@ -1,11 +1,10 @@
 package com.avada.edu.kinoCMS.controllers;
 
 import com.avada.edu.kinoCMS.model.Hall;
+import com.avada.edu.kinoCMS.model.Page;
 import com.avada.edu.kinoCMS.model.PictureGallery;
 import com.avada.edu.kinoCMS.repo.SeoRepo;
-import com.avada.edu.kinoCMS.servicies.CinemaService;
-import com.avada.edu.kinoCMS.servicies.HallService;
-import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
+import com.avada.edu.kinoCMS.servicies.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,15 +28,19 @@ public class HallController {
     private final HallService hallService;
     private final CinemaService cinemaService;
     private final PictureGalleryService pictureGalleryService;
+    private final PageService pageService;
+    private final BannerService bannerService;
 
     public HallController(SeoRepo seoRepo,
                           HallService hallService,
                           CinemaService cinemaService,
-                          PictureGalleryService pictureGalleryService) {
+                          PictureGalleryService pictureGalleryService, PageService pageService, BannerService bannerService) {
         this.seoRepo = seoRepo;
         this.hallService = hallService;
         this.cinemaService = cinemaService;
         this.pictureGalleryService = pictureGalleryService;
+        this.pageService = pageService;
+        this.bannerService = bannerService;
     }
 
     private String file(MultipartFile multipartFile) throws IOException {
@@ -90,6 +93,9 @@ public class HallController {
                               Model model) {
         model.addAttribute("hall", hallService.findById(id));
         model.addAttribute("gallery",pictureGalleryService.findAllByHallId(id));
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
         return "UI/hall_card";
     }
 

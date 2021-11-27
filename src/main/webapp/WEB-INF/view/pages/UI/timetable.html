@@ -9,7 +9,7 @@
 
 </head>
 
-<body th:style="'background: url(../../images/' + ${bannerBackground.photo} + ') ; background-repeat: no-repeat; background-position: top center'" >
+<body th:style="'background: url(../../images/' + ${bannerBackground.photo} + ') ; background-repeat: no-repeat; background-position: top center'">
 <img style="width: 100%" src="https://te.esport.in.ua/images/banners/favbet_new.png?v=2" href="#">
 <header id="site-header" class="w3l-header">
     <!-- <header id="site-header" class="w3l-header fixed-top"> -->
@@ -37,8 +37,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/timetable">Расписание</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link " href="/soon">Скоро</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/soon">Скоро</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/cinemas">Кинотеатры</a>
@@ -49,13 +49,14 @@
 
                     <li class="nav-item"><a class="nav-link submenu-link" href="">О кинотеатре</a>
                         <ul class="submenu nav-item">
-                            <li class="nav-item" ><a href="/news" class="nav-link">Новости</a></li>
+                            <li class="nav-item"><a href="/news" class="nav-link">Новости</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Реклама</a></li>
                             <li class="nav-item"><a href="/cafe" class="nav-link">Кафе</a></li>
                             <li class="nav-item"><a href="/mobile" class="nav-link">Мобильное приложение</a></li>
                             <li class="nav-item"><a href="/konacti" class="nav-link">Контакты</a></li>
                             <li class="nav-item" th:each="page : ${pages}">
-                                <a th:href="@{/page/{id}(id = ${page.id})}" class="nav-link " th:text="${page.title}"></a>
+                                <a th:href="@{/page/{id}(id = ${page.id})}" class="nav-link "
+                                   th:text="${page.title}"></a>
                             </li>
                         </ul>
                     </li>
@@ -80,58 +81,102 @@
                                     <li><a href="#">Комедия</a></li>
                                     <li><a href="#">Фантастика</a></li>
                                     <li><a href="#">Драмма</a></li>
-
                                 </ul>
                             </div>
                         </div>
                         <a class="close" href="#close">×</a>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     </nav>
-
 </header>
+
+<div style="width: 50%; height: 5px; display:inline-block;margin-left: 35%; margin-top: 15px">
+    <ul class="navbar-nav topmenu" style="float: left;">
+        <li class="nav-item"><a class="nav-link submenu-link" href="" style="color: black">Кинотеатр</a>
+            <ul class="submenu nav-item">
+                <li class="nav-item" th:each="cinema : ${cinemas}">
+                    <a style="color: black" th:text="${cinema.cinema_name}"></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="navbar-nav topmenu" style="float: left;margin-left: 40px">
+        <li class="nav-item"><a class="nav-link submenu-link" href="" style="color: black">Дата</a>
+            <ul class="submenu nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black">22.11.2021</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black">23.11.2021</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black">24.11.2021</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="navbar-nav topmenu" style="float: left;margin-left: 40px">
+        <li class="nav-item"><a class="nav-link submenu-link" href="" style="color: black">Фильм:все</a>
+            <ul class="submenu nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black">все</a>
+                </li>
+            </ul>
+            <ul class="submenu nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black">не все</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="navbar-nav topmenu" style="float: left;margin-left: 40px">
+        <li class="nav-item"><a class="nav-link submenu-link" href="" style="color: black">Зал:все</a>
+            <ul class="submenu nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black">все</a>
+                </li>
+            </ul>
+            <ul class="submenu nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black">не все</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
 <section class="w3l-grids">
     <div class="grids-main py-5">
         <div class="container py-lg-3">
             <div class="allblog">
-                <div class="centerblock2">
-                    <div class="w3l-populohny-grids">
-                        <div class="item vhny-grid" th:each="film: ${films}">
-                            <div class="box16">
-                                <a th:href="@{/films/{id}(id = ${film.getId()})}">
-                                    <figure>
-                                        <img class="img-fluid" th:src="@{'../../images/' + ${film.getMainPicture()}}"
-                                             alt="">
-                                    </figure>
-                                    <div class="box-content">
-                                        <h3 class="title" th:text="${film.name}"></h3>
-                                    </div>
-                                    <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="centerblock">
+                    <table id="example2" class="table table-bordered border-warning"
+                           style=" border: 0px ; width: 800px; text-align: center">
+                        <thead>
+                        <tr>
+                            <th><h4>Время</h4></th>
+                            <th><h4>Фильм</h4></th>
+                            <th><h4>Зал</h4></th>
+                            <th><h4>Цена в грн.</h4></th>
+                            <th><h4>Бронировать</h4></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="film : ${films}">
+                            <td><h5>10:00 </h5></td>
+                            <td><h5><a style="color: black" th:href="@{/films/{id}(id = ${film.getId()})}"><span
+                                    th:text="${film.name}"> </span></a></h5></td>
+                            <td><h5>6</h5></td>
+                            <td><h5>75</h5></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="leftblock">
-
-                    <a href="/afisha"  style="width: 200px " >
-                        <button class="textno " style="width: 200px ">
-                            Афиша
-                        </button>
-                    </a>
-
-                    <a href="/soon"  style="width: 200px ">
-                        <button class="textno active" style="width: 200px ">
-                            Скоро
-                        </button>
-                    </a>
-                    <br><br>
-                    <img src="/img/contex-reclama-verical.jpg" style="width: 100%;">
+                <div class="rightblock">
+                    <img src="../../img/contex-reclama-verical.jpg" style="width:100%; height:350px;"><br><br>
                 </div>
             </div>
         </div>
@@ -198,6 +243,10 @@
         <div class="below-section">
             <div class="container">
                 <div class="copyright-footer">
+                    <div class="columns text-lg-left">
+                        <p>&copy; 2021. All rights reserved | Designed by <a
+                                href="https://vk.com/shama278">shama278</a></p>
+                    </div>
 
                     <ul class="social text-lg-right">
                         <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
@@ -243,15 +292,16 @@
 
 </html>
 
-<script src="../../js/jquery-1.9.1.min.js"></script>
-<script src="../../js/easyResponsiveTabs.js"></script>
-<script src="../../js/owl.carousel.js"></script>
-<script src="../../js/jquery.magnific-popup.min.js"></script>
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script src="/js/easyResponsiveTabs.js"></script>
+<script src="/js/owl.carousel.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+
 
 <script>
     $(document).ready(function () {
         $('.owl-one').owlCarousel({
-            stagePadding: 280,
+            stagePadding: 0,
             loop: true,
             margin: 20,
             nav: true,

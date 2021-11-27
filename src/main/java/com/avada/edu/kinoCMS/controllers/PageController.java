@@ -3,6 +3,7 @@ package com.avada.edu.kinoCMS.controllers;
 import com.avada.edu.kinoCMS.model.Page;
 import com.avada.edu.kinoCMS.model.PictureGallery;
 import com.avada.edu.kinoCMS.repo.SeoRepo;
+import com.avada.edu.kinoCMS.servicies.BannerService;
 import com.avada.edu.kinoCMS.servicies.PageService;
 import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,11 +27,13 @@ public class PageController {
     private final SeoRepo seoRepo;
     private final PageService pageService;
     private final PictureGalleryService pictureGalleryService;
+    private final BannerService bannerService;
 
-    public PageController(SeoRepo seoRepo, PageService pageService, PictureGalleryService pictureGalleryService) {
+    public PageController(SeoRepo seoRepo, PageService pageService, PictureGalleryService pictureGalleryService, BannerService bannerService) {
         this.seoRepo = seoRepo;
         this.pageService = pageService;
         this.pictureGalleryService = pictureGalleryService;
+        this.bannerService = bannerService;
     }
 
     private String file(MultipartFile multipartFile) throws IOException {
@@ -165,6 +168,9 @@ public class PageController {
     public String index(@PathVariable("id") Long id, Model model) {
         model.addAttribute("page", pageService.findById(id));
         model.addAttribute("gallery", pictureGalleryService.findAllByPageId(id));
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        model.addAttribute("bannerBackground",bannerService.findById(6L));
         return "UI/page_index";
     }
 

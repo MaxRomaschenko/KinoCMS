@@ -11,4 +11,5 @@ public interface PageRepo extends JpaRepository<Page,Long> {
     List<Page> findAll();
     List<Page> findAllByRedacted(Boolean b);
     void deleteById(Long id);
+    List<Page> findAllByActive(Boolean b);
 }

@@ -33,4 +33,7 @@ public class PageService {
     public void deleteById(Long id){
         pageRepo.deleteById(id);
     }
+    public List<Page> findAllByIs_active(Boolean b){
+        return pageRepo.findAllByActive(b);
+    };
 }

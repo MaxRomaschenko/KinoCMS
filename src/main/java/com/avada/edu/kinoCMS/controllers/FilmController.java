@@ -2,7 +2,6 @@ package com.avada.edu.kinoCMS.controllers;
 
 import com.avada.edu.kinoCMS.model.*;
 import com.avada.edu.kinoCMS.repo.FilmRepo;
-import com.avada.edu.kinoCMS.repo.FilmTypeRepo;
 import com.avada.edu.kinoCMS.repo.SeoRepo;
 import com.avada.edu.kinoCMS.servicies.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,8 +28,9 @@ public class FilmController {
     private final PictureGalleryService pictureGalleryService;
     private final BannerService bannerService;
     private final CinemaService cinemaService;
+    private final PageService pageService;
 
-    public FilmController(SeoRepo seoRepo, FilmRepo filmRepo, FilmTypeService filmTypeService, FilmService filmService, PictureGalleryService pictureGalleryService, BannerService bannerService, CinemaService cinemaService) {
+    public FilmController(SeoRepo seoRepo, FilmRepo filmRepo, FilmTypeService filmTypeService, FilmService filmService, PictureGalleryService pictureGalleryService, BannerService bannerService, CinemaService cinemaService, PageService pageService) {
         this.seoRepo = seoRepo;
         this.filmRepo = filmRepo;
         this.filmTypeService = filmTypeService;
@@ -38,6 +38,7 @@ public class FilmController {
         this.pictureGalleryService = pictureGalleryService;
         this.bannerService = bannerService;
         this.cinemaService = cinemaService;
+        this.pageService = pageService;
     }
 
     private String file(MultipartFile multipartFile) throws IOException {
@@ -153,9 +154,6 @@ public class FilmController {
     public String getFilmIndexPage(@ModelAttribute("film") Film film,
                                    @PathVariable("id") Long id,
                                    Model model) {
-        Banner background = bannerService.findById(6L);
-        model.addAttribute("bannerBackground", background);
-
         model.addAttribute("cinemas",cinemaService.findAll());
 
         Film film1 = filmService.findById(id);
@@ -166,6 +164,9 @@ public class FilmController {
 
         List<Film> filmList = filmService.findAll();
         model.addAttribute("films", filmList);
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
         return "UI/film_index";
     }
 

@@ -37,8 +37,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/timetable">Расписание</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link " href="/soon">Скоро</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/soon">Скоро</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/cinemas">Кинотеатры</a>
@@ -49,13 +49,13 @@
 
                     <li class="nav-item"><a class="nav-link submenu-link" href="">О кинотеатре</a>
                         <ul class="submenu nav-item">
-                            <li class="nav-item" ><a href="/news" class="nav-link">Новости</a></li>
+                            <li class="nav-item active" ><a href="/news" class="nav-link">Новости</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Реклама</a></li>
                             <li class="nav-item"><a href="/cafe" class="nav-link">Кафе</a></li>
                             <li class="nav-item"><a href="/mobile" class="nav-link">Мобильное приложение</a></li>
                             <li class="nav-item"><a href="/konacti" class="nav-link">Контакты</a></li>
                             <li class="nav-item" th:each="page : ${pages}">
-                                <a th:href="@{/page/{id}(id = ${page.id})}" class="nav-link " th:text="${page.title}"></a>
+                                <a th:href="@{/page/{id}(id = ${page.id})}" class="nav-link" th:text="${page.title}"></a>
                             </li>
                         </ul>
                     </li>
@@ -95,43 +95,42 @@
     </nav>
 
 </header>
+<section class="w3l-main-slider position-relative" id="home">
+    <div class="companies20-content">
+        <div class="owl-one owl-carousel owl-theme">
+            <div class="item" th:each="bannerOwl : ${bannerNews}">
+                <li>
+                    <div class="slider-info banner-view bg bg2"
+                         th:style="'background: url(../../images/' + ${bannerOwl.photo} + ')' + '; background-size: cover  '">
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <section class="w3l-grids">
     <div class="grids-main py-5">
         <div class="container py-lg-3">
             <div class="allblog">
-                <div class="centerblock2">
-                    <div class="w3l-populohny-grids">
-                        <div class="item vhny-grid" th:each="film: ${films}">
-                            <div class="box16">
-                                <a th:href="@{/films/{id}(id = ${film.getId()})}">
-                                    <figure>
-                                        <img class="img-fluid" th:src="@{'../../images/' + ${film.getMainPicture()}}"
-                                             alt="">
-                                    </figure>
-                                    <div class="box-content">
-                                        <h3 class="title" th:text="${film.name}"></h3>
-                                    </div>
-                                    <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="centerblock">
+                    <h1 th:text="${news.title}"></h1>
+                    <br>
+                    <img th:src="@{'../../images/' + ${news.main_picture}}"
+                         style="margin:10px auto; width: 42%; height:300px ;margin-right: 30px; margin-top: -10px;"
+                         align="left">
+                    <p style=" margin-left: 10px ; color:black; word-wrap: break-word;"
+                       th:text="${news.description}"></p>
                 </div>
-                <div class="leftblock">
+                <div class="rightblock">
+                    <img src="../img/contex-reclama-verical.jpg"
+                         style="width:100%; height:350px;"><br><br>
+                    <img src="../img/contex-reclama-verical.jpg"
+                         style="width:100%; height:180px;"><br><br>
+                    <img src="../img/contex-reclama-verical.jpg"
+                         style="width:100%; height:180px;">
 
-                    <a href="/afisha"  style="width: 200px " >
-                        <button class="textno " style="width: 200px ">
-                            Афиша
-                        </button>
-                    </a>
-
-                    <a href="/soon"  style="width: 200px ">
-                        <button class="textno active" style="width: 200px ">
-                            Скоро
-                        </button>
-                    </a>
-                    <br><br>
-                    <img src="/img/contex-reclama-verical.jpg" style="width: 100%;">
                 </div>
             </div>
         </div>
@@ -198,6 +197,10 @@
         <div class="below-section">
             <div class="container">
                 <div class="copyright-footer">
+                    <div class="columns text-lg-left">
+                        <p>&copy; 2021. All rights reserved | Designed by <a
+                                href="https://vk.com/shama278">shama278</a></p>
+                    </div>
 
                     <ul class="social text-lg-right">
                         <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
@@ -243,15 +246,16 @@
 
 </html>
 
-<script src="../../js/jquery-1.9.1.min.js"></script>
-<script src="../../js/easyResponsiveTabs.js"></script>
-<script src="../../js/owl.carousel.js"></script>
-<script src="../../js/jquery.magnific-popup.min.js"></script>
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script src="/js/easyResponsiveTabs.js"></script>
+<script src="/js/owl.carousel.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+
 
 <script>
     $(document).ready(function () {
         $('.owl-one').owlCarousel({
-            stagePadding: 280,
+            stagePadding: 0,
             loop: true,
             margin: 20,
             nav: true,

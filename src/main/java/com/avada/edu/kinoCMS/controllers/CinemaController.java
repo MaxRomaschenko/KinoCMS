@@ -3,10 +3,7 @@ package com.avada.edu.kinoCMS.controllers;
 import com.avada.edu.kinoCMS.model.*;
 import com.avada.edu.kinoCMS.repo.CinemaRepo;
 import com.avada.edu.kinoCMS.repo.SeoRepo;
-import com.avada.edu.kinoCMS.servicies.BannerService;
-import com.avada.edu.kinoCMS.servicies.CinemaService;
-import com.avada.edu.kinoCMS.servicies.HallService;
-import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
+import com.avada.edu.kinoCMS.servicies.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,19 +31,21 @@ public class CinemaController {
     private final CinemaRepo cinemaRepo;
     private final PictureGalleryService pictureGalleryService;
     private final BannerService bannerService;
+    private final PageService pageService;
 
     public CinemaController(CinemaService cinemaService,
                             HallService hallService,
                             SeoRepo seoRepo,
                             CinemaRepo cinemaRepo,
                             PictureGalleryService pictureGalleryService,
-                            BannerService bannerService) {
+                            BannerService bannerService, PageService pageService) {
         this.cinemaService = cinemaService;
         this.hallService = hallService;
         this.seoRepo = seoRepo;
         this.cinemaRepo = cinemaRepo;
         this.pictureGalleryService = pictureGalleryService;
         this.bannerService = bannerService;
+        this.pageService = pageService;
     }
 
     private String file(MultipartFile multipartFile) throws IOException {
@@ -167,7 +166,7 @@ public class CinemaController {
         seoRepo.deleteById(cinema.getSeo().getId());
         List<PictureGallery> pictureGalleries = pictureGalleryService.findAllByCinemaId(id);
         pictureGalleryService.deleteAll(pictureGalleries);
-        cinemaRepo.deleteById(id);//todo: доделать удаление залов
+        cinemaRepo.deleteById(id);
         return "redirect:/cinemas/admin";
     }
 
@@ -188,6 +187,9 @@ public class CinemaController {
         bannerMainOwl.add(banner4);
         bannerMainOwl.add(banner5);
         model.addAttribute("bannerMainOwl", bannerMainOwl);
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
         return "UI/cinemas_main";
     }
 
@@ -195,6 +197,9 @@ public class CinemaController {
     public String cinemaCard(@PathVariable("id") Long id, Model model) {
         model.addAttribute("cinema", cinemaService.findById(id));
         model.addAttribute("gallery",pictureGalleryService.findAllByCinemaId(id));
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
         return "UI/cinema_card";
     }
 

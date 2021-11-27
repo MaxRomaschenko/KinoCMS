@@ -2,17 +2,12 @@ package com.avada.edu.kinoCMS.controllers;
 
 import com.avada.edu.kinoCMS.model.Banner;
 import com.avada.edu.kinoCMS.model.Film;
-import com.avada.edu.kinoCMS.model.PictureGallery;
-import com.avada.edu.kinoCMS.servicies.BannerService;
-import com.avada.edu.kinoCMS.servicies.FilmService;
-import com.avada.edu.kinoCMS.servicies.PageService;
-import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
-import org.springframework.beans.factory.annotation.Value;
+import com.avada.edu.kinoCMS.model.Page;
+import com.avada.edu.kinoCMS.servicies.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -26,12 +21,14 @@ public class MainController {
     private final FilmService filmService;
     private final BannerService bannerService;
     private final PageService pageService;
+    private final CinemaService cinemaService;
     private final PictureGalleryService pictureGalleryService;
 
-    public MainController(FilmService filmService, BannerService bannerService, PageService pageService, PictureGalleryService pictureGalleryService) {
+    public MainController(FilmService filmService, BannerService bannerService, PageService pageService, CinemaService cinemaService, PictureGalleryService pictureGalleryService) {
         this.filmService = filmService;
         this.bannerService = bannerService;
         this.pageService = pageService;
+        this.cinemaService = cinemaService;
         this.pictureGalleryService = pictureGalleryService;
     }
 
@@ -75,6 +72,9 @@ public class MainController {
         model.addAttribute("filmsActual", filmList);
         List<Film> filmSoon = filmService.findAllByActual(true);
         model.addAttribute("filmSoon", filmSoon);
+
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
         return "UI/main";
     }
 
@@ -86,6 +86,8 @@ public class MainController {
 
         List<Film> filmList = filmService.findAllByActual(false);
         model.addAttribute("films", filmList);
+        List<Page> pages = pageService.findAllByIs_active(true);//TODO: важно
+        model.addAttribute("pages",pages);
         return "UI/afisha";
     }
 
@@ -97,9 +99,20 @@ public class MainController {
 
         List<Film> filmList = filmService.findAllByActual(true);
         model.addAttribute("films", filmList);
+        List<Page> pages = pageService.findAllByIs_active(true);//TODO: важно
+        model.addAttribute("pages",pages);
         return "UI/skoro";
     }
 
+    @GetMapping("/timetable")
+    private String getTimetable(Model model){
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
+        model.addAttribute("cinemas",cinemaService.findAll());
+        model.addAttribute("films",filmService.findAll());
+        List<Page> pages = pageService.findAllByIs_active(true);//TODO: важно
+        model.addAttribute("pages",pages);
+        return "UI/timetable";
+    }
 
 
 }

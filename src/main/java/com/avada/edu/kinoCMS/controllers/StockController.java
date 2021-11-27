@@ -2,12 +2,10 @@ package com.avada.edu.kinoCMS.controllers;
 
 
 import com.avada.edu.kinoCMS.model.Banner;
+import com.avada.edu.kinoCMS.model.Page;
 import com.avada.edu.kinoCMS.model.PictureGallery;
 import com.avada.edu.kinoCMS.model.Stock;
-import com.avada.edu.kinoCMS.servicies.BannerService;
-import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
-import com.avada.edu.kinoCMS.servicies.SeoService;
-import com.avada.edu.kinoCMS.servicies.StockService;
+import com.avada.edu.kinoCMS.servicies.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,14 +31,16 @@ public class StockController {
     private final StockService stockService;
     private final PictureGalleryService pictureGalleryService;
     private final BannerService bannerService;
+    private final PageService pageService;
 
     public StockController(SeoService seoService,
                            StockService stockService,
-                           PictureGalleryService pictureGalleryService, BannerService bannerService) {
+                           PictureGalleryService pictureGalleryService, BannerService bannerService, PageService pageService) {
         this.seoService = seoService;
         this.stockService = stockService;
         this.pictureGalleryService = pictureGalleryService;
         this.bannerService = bannerService;
+        this.pageService = pageService;
     }
 
     private String file(MultipartFile multipartFile) throws IOException {
@@ -156,6 +156,9 @@ public class StockController {
         bannerNews.add(banner10);
         bannerNews.add(banner11);
         model.addAttribute("bannerNews", bannerNews);
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
 
         return "UI/stock_main";
     }
@@ -176,6 +179,9 @@ public class StockController {
         bannerNews.add(banner10);
         bannerNews.add(banner11);
         model.addAttribute("bannerNews", bannerNews);
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
        return "UI/stock_index";
     }
 

@@ -9,14 +9,14 @@
 
 </head>
 
+<body th:style="'background: url(../../images/' + ${bannerBackground.photo} + ') ; background-repeat: no-repeat; background-position: top center'" >
 <img style="width: 100%" src="https://te.esport.in.ua/images/banners/favbet_new.png?v=2" href="#">
 <header id="site-header" class="w3l-header">
     <!-- <header id="site-header" class="w3l-header fixed-top"> -->
     <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
         <div class="container">
-            <h1><a class="navbar-brand" href="index.html"><span class="fa fa-play icon-log" aria-hidden="true"></span>
+            <h1><a class="navbar-brand" href="/kino"><span class="fa fa-play icon-log" aria-hidden="true"></span>
                 MAX KINO </a></h1>
-            <!-- <a class="navbar-brand" href="index.html"> <img src="#" alt="Твое лого" title="Твое лого" style="height:35px;" /></a> -->
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -28,31 +28,35 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav ml-auto topmenu">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Главная</a>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/kino">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Афиша</a>
+                        <a class="nav-link" href="/afisha">Афиша</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Расписание</a>
+                        <a class="nav-link" href="/timetable">Расписание</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Скоро</a>
+                        <a class="nav-link" href="/soon">Скоро</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Кинотеатры</a>
+                        <a class="nav-link" href="/cinemas">Кинотеатры</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Акции</a>
+                        <a class="nav-link" href="/stock">Акции</a>
                     </li>
+
                     <li class="nav-item"><a class="nav-link submenu-link" href="">О кинотеатре</a>
                         <ul class="submenu nav-item">
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Новости</a></li>
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Реклама</a></li>
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Кафе</a></li>
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Мобильное приложение</a></li>
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Контакты</a></li>
+                            <li class="nav-item active" ><a href="/news" class="nav-link">Новости</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Реклама</a></li>
+                            <li class="nav-item"><a href="/cafe" class="nav-link">Кафе</a></li>
+                            <li class="nav-item"><a href="/mobile" class="nav-link">Мобильное приложение</a></li>
+                            <li class="nav-item"><a href="/konacti" class="nav-link">Контакты</a></li>
+                            <li class="nav-item" th:each="page : ${pages}">
+                                <a th:href="@{/page/{id}(id = ${page.id})}" class="nav-link" th:text="${page.title}"></a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -86,6 +90,7 @@
 
 
             </div>
+
         </div>
     </nav>
 
@@ -99,18 +104,20 @@
             <div class="allblog">
                 <div class="centerblock">
                     <div class="left-div3" th:each="new0 : ${news}" style="height: 600px">
-                        <img th:src="@{'../../images/' + ${new0.main_picture}}"
-                             style="margin:10px auto; width: 100%; height:300px; "><br>
-                        <a href="" th:text="${new0.title}"></a>
-                        <p th:text="${new0.publication_date}"></p>
-                        <p th:text="${new0.description}"></p>
+                        <a th:href="@{/news/{id}(id = ${new0.getId()})}">
+                            <img th:src="@{'../../images/' + ${new0.main_picture}}"
+                                 style="margin:10px auto; width: 100%; height:300px; "><br></a>
+                            <a th:href="@{/news/{id}(id = ${new0.getId()})}" th:text="${new0.title}"></a>
+                            <p th:text="${new0.publication_date}"></p>
+                            <p th:text="${new0.description}"></p>
+
                     </div>
                 </div>
                 <div class="rightblock">
                     <img src="../../img/contex-reclama-verical.jpg" style="width:100%; height:350px;"><br><br>
-                    <img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
+                    <img src="../../img/contex-reclama-verical.jpg"
                          style="width:100%; height:180px;"><br><br>
-                    <img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
+                    <img src="../../img/contex-reclama-verical.jpg"
                          style="width:100%; height:180px;">
 
                 </div>

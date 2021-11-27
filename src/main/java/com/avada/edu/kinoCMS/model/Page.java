@@ -27,7 +27,7 @@ public class Page {
     private String banner_url;
 
     @Column(name = "is_active")
-    private Boolean is_active;
+    private Boolean active;
 
     @Column(name = "redacted")
     private Boolean redacted;

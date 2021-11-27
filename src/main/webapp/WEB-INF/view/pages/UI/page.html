@@ -158,7 +158,7 @@
                                 <tr>
                                     <td><span th:text="${mainPage.title}"> </span></td>
                                     <td><span th:text="${mainPage.created_at}"> </span></td>
-                                    <td><span th:text="${mainPage.is_active}"> </span></td>
+                                    <td><span th:text="${mainPage.active}"> </span></td>
                                     <td>
                                         <a th:href="@{/page/{id}/mainPage/edit/admin(id=${mainPage.id})}"><i class="fas fa-edit"></i></a>
                                     </td>
@@ -166,7 +166,7 @@
                                 <tr th:each="p : ${pages}">
                                     <td><span th:text="${p.title}"> </span></td>
                                     <td><span th:text="${p.created_at}"> </span></td>
-                                    <td><span th:text="${p.is_active}"> </span></td>
+                                    <td><span th:text="${p.active}"> </span></td>
                                     <td>
                                         <a th:href="@{/page/{id}/edit/admin(id=${p.id})}"><i class="fas fa-edit"></i></a>
                                         <form method="post" th:action="@{/page/delete/{id}/admin(id=${p.id})}" id="formId" enctype="multipart/form-data"></form>
@@ -199,7 +199,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     Выключено
-                                    <input type="range" min="0" max="1" th:field="*{page.is_active}">
+                                    <input type="range" min="0" max="1" th:field="*{page.active}">
                                     Включено
                                 </div>
                                 <div class="form-group">

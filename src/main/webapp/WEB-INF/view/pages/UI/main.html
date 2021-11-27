@@ -35,7 +35,7 @@
                         <a class="nav-link" href="/afisha">Афиша</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Расписание</a>
+                        <a class="nav-link" href="/timetable">Расписание</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/soon">Скоро</a>
@@ -54,6 +54,9 @@
                             <li class="nav-item"><a href="/cafe" class="nav-link">Кафе</a></li>
                             <li class="nav-item"><a href="/mobile" class="nav-link">Мобильное приложение</a></li>
                             <li class="nav-item"><a href="/konacti" class="nav-link">Контакты</a></li>
+                            <li class="nav-item" th:each="page : ${pages}">
+                                <a th:href="@{/page/{id}(id = ${page.id})}" class="nav-link" th:text="${page.title}"></a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
