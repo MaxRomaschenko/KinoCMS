@@ -19,6 +19,14 @@ public class MailingService {
         return mailingRepo.findAll();
     }
 
+    public Mailing findById(Long id){
+        return mailingRepo.getOne(id);
+    }
+
+    public List<Mailing> findTop5OrderById(){
+        return mailingRepo.findFirst5ByOrderByIdDesc();
+    }
+
     public Mailing save(Mailing mailing){
         return mailingRepo.save(mailing);
     }

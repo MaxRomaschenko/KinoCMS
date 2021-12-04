@@ -197,43 +197,63 @@
                                     </h3>
                                 </div>
                                 <div class="card-body">
-                                    <form method="post" th:action="@{/mailing/email}" enctype="multipart/form-data">
-                                    <div class="topboxsms">
-                                        <a style="margin-right: 15px;">Выбирете пользователей для рассылки</a>
+                                    <form method="post" th:action="@{/mailing/email}" id="form"
+                                          enctype="multipart/form-data">
+                                        <div class="topboxsms">
+                                            <a style="margin-right: 15px;">Выбирете пользователей для рассылки</a>
 
-                                        <label style="margin-right: 15px;">
-                                            <input type="radio" name="radio" value="1"/>
-                                            Все
-                                            пользователи
-                                        </label>
+                                            <label style="margin-right: 15px;">
+                                                <input type="radio" name="radio" value="1"/>
+                                                Все
+                                                пользователи
+                                            </label>
 
-                                        <label style="margin-right: 15px;">
-                                            <input type="radio" name="radio" value="0">
-                                            Выбранные
-                                        </label>
+                                            <label style="margin-right: 15px;">
+                                                <input type="radio" name="radio" value="0">
+                                                Выбранные
+                                            </label>
 
-                                        <a href="/mailing/choose_user/admin">
-                                            <button type="button" class="btn btn-default">Выбрать пользователей</button>
-                                        </a>
-                                    </div>
-
-                                    <div class="divboxleft">
-                                        <a>Загрузить HTML письмо</a>
-                                        <input type="file" name="file" style="margin-left: 30px;"><br>
-                                    </div>
-                                    <div class="divboxright">
-                                        <div class="spisokhtmlrass">
-                                            <a>Список последних загруженных шаблонов</a><br>
-                                            <input type="checkbox" id="" name=""> <label name="" id=""
-                                                                                         style="margin-right: 15px;">tess</label><br>
+                                            <a href="/mailing/choose_user/admin">
+                                                <button type="button" class="btn btn-default">Выбрать пользователей
+                                                </button>
+                                            </a>
                                         </div>
-                                    </div>
-                                    <br><br><br><br>
                                         <span th:each="user: ${users}">
                                     <input type="hidden" name="users" th:value="${user}">
                                     </span>
-                                    <center>
-                                        <button type="submit" class="btn btn-default">Выполнить рассылку</button></center>
+
+                                        <div class="divboxleft">
+                                            <a>Загрузить HTML письмо</a>
+                                            <input type="file" name="file" style="margin-left: 30px;"><br>
+                                        </div>
+
+                                        <div class="divboxright">
+                                            <div class="spisokhtmlrass">
+                                                <a>Список последних загруженных шаблонов</a><br>
+                                                <div th:each="file : ${html_files}">
+                                                    <label style="margin-right: 15px;" >
+                                                        <input type="radio" name="htmlF" th:value="${file.id}"
+                                                               th:text="${file.html_file}">
+                                                        <a href="#"
+                                                           onclick="document.getElementById('formId').submit();">
+                                                            Удалить
+                                                        </a>
+                                                        <form method="post"
+                                                              th:action="@{/mailing/email/delete/{id}(id=${file.id})}"
+                                                              id="formId" enctype="multipart/form-data"></form>
+                                                    </label>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <br><br><br><br>
+                                            <center>
+                                                <!--                                            <button type="submit" id="form" class="btn btn-default">Выполнить рассылку</button>-->
+                                                <button type="submit" class="btn btn-default"
+                                                        onclick="document.getElementById('form').submit();">
+                                                    Выполнить рассылку
+                                                </button>
+                                            </center>
                                     </form>
                                 </div>
                                 <!-- /.card -->

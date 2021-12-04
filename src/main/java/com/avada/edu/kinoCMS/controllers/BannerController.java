@@ -68,9 +68,8 @@ public class BannerController {
                                    @RequestParam("file2") MultipartFile file2,
                                    @RequestParam("file3") MultipartFile file3,
                                    @RequestParam("file4") MultipartFile file4,
-                                   @RequestParam("file5") MultipartFile file5
+                                   @RequestParam("file5") MultipartFile file5) throws IOException {
 
-    ) throws IOException {
         if (!file1.isEmpty()) {
             bannerMainOwl1.setPhoto(file(file1));
         } else {

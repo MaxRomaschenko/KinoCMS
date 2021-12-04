@@ -41,6 +41,18 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+input[type=radio] {
+    padding: 0.5em;
+    -webkit-appearance: none;
+    outline: 0.1em solid black;
+    outline-offset: 0.1em;
+}
+
+input[type=radio]:checked {
+    display: inline-block;
+    background-color: #000;
+}
+
 kino-left{
   width: 10%;
   position: relative;

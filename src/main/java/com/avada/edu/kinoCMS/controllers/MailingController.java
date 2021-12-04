@@ -1,6 +1,8 @@
 package com.avada.edu.kinoCMS.controllers;
 
+import com.avada.edu.kinoCMS.model.Film;
 import com.avada.edu.kinoCMS.model.Mailing;
+import com.avada.edu.kinoCMS.model.PictureGallery;
 import com.avada.edu.kinoCMS.model.User;
 import com.avada.edu.kinoCMS.servicies.MailingService;
 import com.avada.edu.kinoCMS.servicies.UserService;
@@ -40,8 +42,8 @@ public class MailingController {
             uploadDir.mkdir();
         }
 
-        String uuidFile = UUID.randomUUID().toString();
-        String resultFileName = uuidFile + "." + multipartFile.getOriginalFilename();
+//        String uuidFile = UUID.randomUUID().toString();
+        String resultFileName = multipartFile.getOriginalFilename();
         multipartFile.transferTo(new File(uploadPath + "/" + resultFileName));
 
         return resultFileName;
@@ -51,6 +53,7 @@ public class MailingController {
     public String getMailing(@RequestParam(name = "users", defaultValue = "0") List<Long> users,
 //                             @RequestParam(name = "radio",defaultValue = "null") Boolean radio,
                              @ModelAttribute(name = "sms") String sms_message,
+                             @ModelAttribute("mailing") Mailing mailing,
                              Model model) {
         if (!users.isEmpty()) {
             model.addAttribute("users", users);
@@ -59,6 +62,7 @@ public class MailingController {
 //            model.addAttribute("radio",radio);
 //        }
 
+        model.addAttribute("html_files", mailingService.findTop5OrderById());
         return "UI/mailing";
     }
 
@@ -110,12 +114,12 @@ public class MailingController {
         } else if (!radio) {
             if (!users_id.isEmpty()) {
                 for (Long user : users_id) {
-                    User user_from_db = userService.findById(user);
-                    System.out.println("Пользователь " + user_from_db.getName() + " Получил смс: " + sms_message);
+                    if (user != 0) {
+                        User user_from_db = userService.findById(user);
+                        System.out.println("Пользователь " + user_from_db.getName() + " Получил смс: " + sms_message);
+                    }
                 }
             }
-        } else {
-            return "redirect:/mailing/admin";
         }
 
         return "redirect:/mailing/admin";
@@ -124,19 +128,55 @@ public class MailingController {
     @PostMapping("/email")
     private String makeEmailMailing(@RequestParam("file") MultipartFile multipartFile,
                                     @ModelAttribute("mailing") Mailing mailing,
-                                    @RequestParam("users") List<Long> users_id,
-                                    @ModelAttribute(name = "radio") Boolean radio) throws IOException {
+                                    @RequestParam(name = "users") List<Long> users_id,
+                                    @ModelAttribute(name = "radio") Boolean radio,
+                                    @RequestParam(name = "htmlF", defaultValue = "0") Long id) throws IOException {
         if (!multipartFile.isEmpty()) {
-
             mailing.setHtml_file(file(multipartFile));
-            mailingService.save(mailing);
+            Mailing mailing_from_db = mailingService.save(mailing);
             if (radio) {
                 List<User> userList_from_db = userService.findAll();
                 for (User user : userList_from_db) {
-                    System.out.println("Пользователь " + user.getName() + " Получил email: ");
+                    System.out.println("Пользователь " + user.getName() + " Получил email: " + mailing_from_db.getHtml_file());
+                }
+            } else if (!radio) {
+                if (!users_id.isEmpty()) {
+                    for (Long user : users_id) {
+                        if (user != 0) {
+                            User user_from_db = userService.findById(user);
+                            System.out.println("Пользователь " + user_from_db.getName() + " Получил email: " + mailing_from_db.getHtml_file());
+                        }
+                    }
                 }
             }
+        } else if (id != 0) {
+            Mailing mailing_from_db = mailingService.findById(id);
+            if (radio) {
+                List<User> userList_from_db = userService.findAll();
+                for (User user : userList_from_db) {
+                    System.out.println("Пользователь " + user.getName() + " Получил email: " + mailing_from_db.getHtml_file());
+                }
+            } else if (!radio) {
+                if (!users_id.isEmpty()) {
+                    for (Long user : users_id) {
+                        if (user != 0) {
+                            User user_from_db = userService.findById(user);
+                            System.out.println("Пользователь " + user_from_db.getName() + " Получил email: " + mailing_from_db.getHtml_file());
+                        }
+                    }
+                }
+            }
+
         }
+
         return "redirect:/mailing/admin";
     }
+
+    @PostMapping("/email/delete/{id}")
+    public String deleteMailing(@PathVariable("id") Long id) {
+        mailingService.deleteById(id);
+        return "redirect:/mailing/admin";
+    }
+
+
 }
