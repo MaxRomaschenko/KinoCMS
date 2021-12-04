@@ -47,7 +47,8 @@ public class UserController {
 
     @PostMapping("/add/admin")
     public String add(@ModelAttribute("user") User user,
-                      @ModelAttribute("date") String date) {
+                      @ModelAttribute("date") String date
+                      ) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         user.setBirthdayDate(LocalDate.parse(date,dateTimeFormatter));
         user.setReg_date(LocalDate.now());

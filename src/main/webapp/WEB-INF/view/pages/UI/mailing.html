@@ -83,7 +83,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/users/admin"  class="nav-link">
+                        <a href="/users/admin" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Пользователи</p>
                         </a>
@@ -140,100 +140,128 @@
                                 </h3>
                             </div>
                             <div class="card-body">
-                            <div class="topboxsms">
-                                <a style="margin-right: 15px;">Выбирете пользователей для рассылки</a>
-                                <input type="checkbox"  name=""> <label style="margin-right: 15px;">Все
-                                пользователи</label>
-                                <input type="checkbox"  name=""> <label
-                                    style="margin-right: 15px;">Выбранные</label>
-                                <a href="#">
-                                    <button type="button" class="btn btn-default">Выбрать пользователей</button>
-                                </a>
-                            </div>
-                            <div class="divboxleft">
-                                <a>Текст СМС</a> <a style="float: right;">Символов: <span
-                                    class="current">0</span></a><br>
-                                <textarea name="comment" cols="103" rows="7"></textarea>
-                            </div>
-                            <div class="divboxright">
-                                <br><br>
-                                <a>Колличество SMS: <span style="color: blue;">137 353</span><a>
-                                    <br>
-                                    <a>Рассылок выполнено на: <span style="color: blue;">45%</span> <span
-                                            style="margin-left: 70px; color: blue;">61 808 шт.</span><a>
-                            </div>
-                            <br><br><br><br>
-                            <center><a href="">
-                                <button type="button" class="btn btn-default">Выполнить рассылку</button>
-                            </a></center>
-                        </div>
-                        <!-- /.card -->
-                    </div>
+                                <form method="post" th:action="@{/mailing/sms}">
+                                    <div class="topboxsms">
+                                        <a style="margin-right: 15px;">Выбирете пользователей для рассылки</a>
 
+                                        <label style="margin-right: 15px;">
+                                            <input type="radio" name="radio" value="1"/>
+                                            Все
+                                            пользователи
+                                        </label>
+
+                                        <label style="margin-right: 15px;">
+                                            <input type="radio" name="radio" value="0">
+                                            Выбранные
+                                        </label>
+
+                                        <a href="/mailing/choose_user/admin">
+                                            <button type="button" class="btn btn-default">Выбрать пользователей</button>
+                                        </a>
+                                    </div>
+                                    <div class="divboxleft">
+                                        <a>Текст СМС</a> <a style="float: right;">Символов: <span
+                                            class="current">0</span></a><br>
+                                        <textarea name="sms" th:value="${sms}" cols="103" rows="7"></textarea>
+                                    </div>
+                                    <div class="divboxright">
+                                        <br><br>
+                                        <a>Колличество SMS: <span style="color: blue;">137 353</span></a>
+                                        <br>
+                                        <a>Рассылок выполнено на: <span style="color: blue;">45%</span> <span
+                                                style="margin-left: 70px; color: blue;">61 808 шт.</span></a>
+                                    </div>
+                                    <br><br><br><br>
+                                    <span th:each="user: ${users}">
+                                    <input type="hidden" name="users" th:value="${user}">
+                                    </span>
+                                    <center>
+                                        <button type="submit" class="btn btn-default">Выполнить рассылку</button>
+                                    </center>
+                                </form>
+                            </div>
+
+                            <!-- /.card -->
+                        </div>
+
+                    </div>
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <h3 class="card-title">
-                                    E-MAIL
-                                </h3>
-                            </div>
-                            <div class="card-body">
-                            <div class="topboxsms">
-                                <a style="margin-right: 15px;">Выбирете пользователей для рассылки</a>
-                                <input type="checkbox"  name=""> <label style="margin-right: 15px;">Все
-                                пользователи</label>
-                                <input type="checkbox"  name=""> <label
-                                    style="margin-right: 15px;">Выбранные</label>
-                                <a href="#">
-                                    <button type="button" class="btn btn-default">Выбрать пользователей</button>
-                                </a>
-                            </div>
-                            <div class="divboxleft">
-                                <a>Загрузить HTML письмо</a>
-                                <input type="file" style="margin-left: 30px;"><br>
-                            </div>
-                            <div class="divboxright">
-                                <div class="spisokhtmlrass">
-                                    <a>Список последних загруженных шаблонов</a><br>
-                                    <input type="checkbox" id="" name=""> <label name="" id=""
-                                                                                 style="margin-right: 15px;">tess</label><br>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        E-MAIL
+                                    </h3>
                                 </div>
+                                <div class="card-body">
+                                    <form method="post" th:action="@{/mailing/email}" enctype="multipart/form-data">
+                                    <div class="topboxsms">
+                                        <a style="margin-right: 15px;">Выбирете пользователей для рассылки</a>
+
+                                        <label style="margin-right: 15px;">
+                                            <input type="radio" name="radio" value="1"/>
+                                            Все
+                                            пользователи
+                                        </label>
+
+                                        <label style="margin-right: 15px;">
+                                            <input type="radio" name="radio" value="0">
+                                            Выбранные
+                                        </label>
+
+                                        <a href="/mailing/choose_user/admin">
+                                            <button type="button" class="btn btn-default">Выбрать пользователей</button>
+                                        </a>
+                                    </div>
+
+                                    <div class="divboxleft">
+                                        <a>Загрузить HTML письмо</a>
+                                        <input type="file" name="file" style="margin-left: 30px;"><br>
+                                    </div>
+                                    <div class="divboxright">
+                                        <div class="spisokhtmlrass">
+                                            <a>Список последних загруженных шаблонов</a><br>
+                                            <input type="checkbox" id="" name=""> <label name="" id=""
+                                                                                         style="margin-right: 15px;">tess</label><br>
+                                        </div>
+                                    </div>
+                                    <br><br><br><br>
+                                        <span th:each="user: ${users}">
+                                    <input type="hidden" name="users" th:value="${user}">
+                                    </span>
+                                    <center>
+                                        <button type="submit" class="btn btn-default">Выполнить рассылку</button></center>
+                                    </form>
+                                </div>
+                                <!-- /.card -->
                             </div>
-                            <br><br><br><br>
-                            <center><a href="">
-                                <button type="button" class="btn btn-default">Выполнить рассылку</button>
-                            </a></center>
+
                         </div>
-                        <!-- /.card -->
+                        <!-- /.col -->
                     </div>
-
-                </div>
-                <!-- /.col -->
+                    <!-- ./row -->
+                </div><!-- /.container-fluid -->
             </div>
-            <!-- ./row -->
-    </div><!-- /.container-fluid -->
-    </section>
+        </section>
 
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-<footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.1.0
+        <!-- /.content -->
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-</footer>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 3.1.0
+        </div>
+        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    </footer>
 
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
