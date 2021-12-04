@@ -17,6 +17,6 @@ public class Mailing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="file_name")
-    private String file_name;
+    @Column(name="html_file")
+    private String html_file;
 }

@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface MailingRepo extends JpaRepository<Mailing,Long> {
     List<Mailing> findAll();
+    void deleteById(Long id);
 }

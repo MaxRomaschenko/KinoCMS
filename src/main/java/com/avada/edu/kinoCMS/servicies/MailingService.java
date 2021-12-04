@@ -1,7 +1,6 @@
 package com.avada.edu.kinoCMS.servicies;
 
 import com.avada.edu.kinoCMS.model.Mailing;
-import com.avada.edu.kinoCMS.model.News;
 import com.avada.edu.kinoCMS.repo.MailingRepo;
 import org.springframework.stereotype.Service;
 
@@ -24,4 +23,7 @@ public class MailingService {
         return mailingRepo.save(mailing);
     }
 
+    public void deleteById(Long id){
+        mailingRepo.deleteById(id);
+    }
 }

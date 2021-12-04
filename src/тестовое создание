@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS mailing;
 
 CREATE TABLE IF NOT EXISTS mailing(
     id int auto_increment primary key ,
-    file_name varchar(100) null
+    html_file varchar(10000) null
 );
 
 -- -----------------------------------------------------
@@ -165,7 +165,8 @@ CREATE TABLE IF NOT EXISTS users (
                                               test_password VARCHAR(45) NULL,
                                               `card_number` VARCHAR(12) NULL,
                                               `language` BOOLEAN NULL,
-                                              `gender` BOOLEAN NULL NULL
+                                              `gender` BOOLEAN NULL NULL,
+                                              mailing_id int references mailing(id) on delete cascade
                                               );
 
 
@@ -188,12 +189,12 @@ DROP TABLE IF EXISTS picture_gallery ;
 CREATE TABLE IF NOT EXISTS picture_gallery (
                                                       `id` INT NOT NULL AUTO_INCREMENT primary key ,
                                                       `picture` varchar(10000) NULL,
-                                                      `Cinema_id` INT  references Cinema(id) on delete cascade ,
-                                                      `Film_id` INT references Film(id) on delete cascade,
-                                                      `hall_id` INT references Hall(id) on delete cascade,
-                                                      `News_id` INT references News(id) on delete cascade,
+                                                      `cinema_id` INT  references cinema(id) on delete cascade ,
+                                                      `film_id` INT references film(id) on delete cascade,
+                                                      `hall_id` INT references hall(id) on delete cascade,
+                                                      `news_id` INT references news(id) on delete cascade,
                                                       `stock_id` INT references stock(id) on delete cascade,
-                                                      `Page_id` INT references Page(id) on delete cascade
+                                                      `page_id` INT references page(id) on delete cascade
                                                       );
 
 

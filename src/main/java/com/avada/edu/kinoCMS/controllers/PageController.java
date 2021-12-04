@@ -6,6 +6,7 @@ import com.avada.edu.kinoCMS.repo.SeoRepo;
 import com.avada.edu.kinoCMS.servicies.BannerService;
 import com.avada.edu.kinoCMS.servicies.PageService;
 import com.avada.edu.kinoCMS.servicies.PictureGalleryService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -124,7 +125,7 @@ public class PageController {
         int i = 0;
         for (MultipartFile file : pictureGalleries) {
             if (!file.isEmpty()) {
-                List<PictureGallery> pictureGallery1 = pictureGalleryService.findAllByFilmId(id);
+                List<PictureGallery> pictureGallery1 = pictureGalleryService.findAllByPageId(id);
                 pictureGallery1.get(i).setPicture(file(file));
                 pictureGallery1.get(i).setPage(page2);
                 pictureGalleryService.save(pictureGallery1.get(i));
@@ -140,13 +141,6 @@ public class PageController {
         model.addAttribute("page", pageService.findById(id));
         return "UI/mainPage_edit";
     }
-
-//    @GetMapping("/{id}/Vip/edit/admin")
-//    public String editVip(Model model, @PathVariable("id") Long id) {
-//        model.addAttribute("page", pageService.findById(id));
-//        model.addAttribute("gallery",pictureGalleryService.findAllByPageId(id));
-//        return "UI/page_edit";
-//    }
 
     @PostMapping("/{id}/mainPage/edit/admin")
     public String updateMainPage(@PathVariable("id") Long id,
@@ -170,6 +164,55 @@ public class PageController {
 
         return "redirect:/page/admin";
     }
+
+    @GetMapping("/{id}/Vip/edit/admin")
+    public String editVip(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("page", pageService.findById(id));
+        model.addAttribute("gallery",pictureGalleryService.findAllByPageId(id));
+        return "UI/vip_edit";
+    }
+
+    @PostMapping("/{id}/Vip/edit/admin")
+    public String updateVip(@ModelAttribute("page") Page page,
+                            @PathVariable("id") Long id,
+                            @RequestParam("gallery") List<MultipartFile> pictureGalleries,
+                            @RequestParam("logo") MultipartFile mainPicture) throws IOException{
+        Page page1 = pageService.findById(id);
+        page.setId(id);
+        page.getSeo().setId(page1.getSeo().getId());
+        page.setTitle(page1.getTitle());
+        page.setRedacted(false);
+
+
+        Date date = new Date();
+        page.setCreated_at(new Timestamp(date.getTime()));
+
+        if (!mainPicture.isEmpty()) {
+            page.setBanner_url(file(mainPicture));
+        } else {
+            page.setBanner_url(page1.getBanner_url());
+        }
+
+        if (page.getSeo() != null) {
+            seoRepo.save(page.getSeo());
+        }
+
+        Page page2 = pageService.save(page);
+
+        int i = 0;
+        for (MultipartFile file : pictureGalleries) {
+            if (!file.isEmpty()) {
+                List<PictureGallery> pictureGallery1 = pictureGalleryService.findAllByPageId(id);
+                pictureGallery1.get(i).setPicture(file(file));
+                pictureGallery1.get(i).setPage(page2);
+                pictureGalleryService.save(pictureGallery1.get(i));
+            }
+            i++;
+        }
+
+        return "redirect:/page/admin";
+    }
+
 
     @GetMapping("/{id}")
     public String index(@PathVariable("id") Long id, Model model) {

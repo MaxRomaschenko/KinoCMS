@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Кинотеатры</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="/index3.html" class="brand-link">
+            <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">AdminLTE 3</span>
+        </a>
+        <!-- /.navbar -->
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+
+                    <li class="nav-item">
+
+                    <li class="nav-item">
+                        <a href="/statistics/admin" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Статистика</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/banners" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Баннеры/Слайдеры</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/films/admin" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Фильмы</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/cinemas/admin" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Кинотеатры</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/news/admin" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Новости</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/stock/admin" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Акции</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/page/admin" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Страницы</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/admin"  class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Пользователи</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/mailing/admin" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Рассылка</p>
+                        </a>
+                    </li>
+
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+
+    </aside>
+    <!-- /.sidebar -->
+
+
+    <!-- /.navbar -->
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 th:text="${page.title}">
+                        </h1>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-primary card-outline">
+                            <div class="card-body">
+                                <form th:method="post" th:action="@{/page/{id}/Vip/edit/admin(id=${page.getId()})}"
+                                      enctype="multipart/form-data">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            Выключено
+                                            <input type="range" min="0" max="1" th:field="*{page.active}">
+                                            Включено
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Название новости</label>
+                                            <input type="text" class="form-control" placeholder="Название новости"
+                                                   th:field="*{page.title}" id="name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Описание</label>
+                                            <textarea class="form-control" rows="3" placeholder="Описание"
+                                                      th:field="*{page.description}" id="description"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Главная картинка</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" id="imgInp" name="logo"/>
+                                                    <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
+                                                         id="blah" th:src="@{'/images/' + ${page.banner_url}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br><br>
+                                        <label>Галерея Картинок</label>
+                                        <br><br>
+                                        <div style="padding: 3px;display: flex;position: relative;">
+                                            <div class="input-group" style="width: 15%;">
+                                                <div class="custom-file">
+                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
+                                                         id="blah10" th:src="@{'/images/' + ${gallery.get(0).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
+                                                </div>
+                                                <br><br><br>
+                                                <input type="file" id="imgInp10" name="gallery"/>
+                                            </div>
+                                            <div class="input-group" style="width: 15%;">
+                                                <div class="custom-file">
+                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
+                                                         id="blah11" th:src="@{'/images/' + ${gallery.get(1).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
+                                                </div>
+                                                <br><br><br>
+                                                <input type="file" id="imgInp11" name="gallery"/>
+                                            </div>
+                                            <div class="input-group" style="width: 15%;">
+                                                <div class="custom-file">
+                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
+                                                         id="blah12" th:src="@{'/images/' + ${gallery.get(2).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
+                                                </div>
+                                                <br><br><br>
+                                                <input type="file" id="imgInp12" name="gallery"/>
+                                            </div>
+                                            <div class="input-group" style="width: 15%;">
+                                                <div class="custom-file">
+                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
+                                                         id="blah13" th:src="@{'/images/' + ${gallery.get(3).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
+                                                </div>
+                                                <br><br><br>
+                                                <input type="file" id="imgInp13" name="gallery"/>
+                                            </div>
+                                            <div class="input-group" style="width: 15%;">
+                                                <div class="custom-file">
+                                                    <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
+                                                         id="blah14" th:src="@{'/images/' + ${gallery.get(4).getPicture()}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
+                                                </div>
+                                                <br><br><br>
+                                                <input type="file" id="imgInp14" name="gallery"/>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <center><h3>SEO блок</h3></center>
+                                        <div class="form-group">
+                                            <label>URL</label>
+                                            <input type="text" class="form-control" th:field="*{page.seo.url}"
+                                                   placeholder="URL">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Title</label>
+                                            <input type="text" class="form-control" th:field="*{page.seo.title}"
+                                                   placeholder="Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Keywords</label>
+                                            <input type="text" class="form-control" th:field="*{page.seo.keywords}"
+                                                   placeholder="Keywords">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Discription</label>
+                                            <textarea class="form-control" rows="3" placeholder="Discription"
+                                                      th:field="*{page.seo.description}"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- ./row -->
+            </div><!-- /.container-fluid -->
+
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 3.1.0
+        </div>
+        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="/plugins/toastr/toastr.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/js/demo.js"></script>
+<!-- Page specific script -->
+<script src="/js/w3-include-HTML.js"></script>
+<script src="/js/foto.js"></script>
+<script src="/plugins/dropzone/min/dropzone.min.js"></script>
+<!-- Select2 -->
+<script src="/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="/plugins/moment/moment.min.js"></script>
+<script src="/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- date-range-picker -->
+<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- BS-Stepper -->
+<script src="/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+<!-- dropzonejs -->
+<script src="/plugins/dropzone/min/dropzone.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/plugins/jszip/jszip.min.js"></script>
+<script src="/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+</body>
+</html>

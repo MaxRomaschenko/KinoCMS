@@ -163,14 +163,14 @@
                                         <a th:href="@{/page/{id}/mainPage/edit/admin(id=${mainPage.id})}"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
-<!--                                <tr>-->
-<!--                                    <td><span th:text="${vip.title}"> </span></td>-->
-<!--                                    <td><span th:text="${vip.created_at}"> </span></td>-->
-<!--                                    <td><span th:text="${vip.active}"> </span></td>-->
-<!--                                    <td>-->
-<!--                                        <a th:href="@{/page/{id}/Vip/edit/admin(id=${vip.id})}"><i class="fas fa-edit"></i></a>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
+                                <tr>
+                                    <td><span th:text="${vip.title}"> </span></td>
+                                    <td><span th:text="${vip.created_at}"> </span></td>
+                                    <td><span th:text="${vip.active}"> </span></td>
+                                    <td>
+                                        <a th:href="@{/page/{id}/Vip/edit/admin(id=${vip.id})}"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
                                 <tr th:each="p : ${pages}">
                                     <td><span th:text="${p.title}"> </span></td>
                                     <td><span th:text="${p.created_at}"> </span></td>

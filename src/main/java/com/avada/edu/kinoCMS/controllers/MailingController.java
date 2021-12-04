@@ -54,7 +54,7 @@ public class MailingController {
     ) throws IOException {
 
         if (!file_name.isEmpty()){
-            mailing.setFile_name(file(file_name));
+            mailing.setHtml_file(file(file_name));
         }
 
         mailingService.save(mailing);
