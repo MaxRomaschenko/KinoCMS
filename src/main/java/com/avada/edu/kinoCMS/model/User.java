@@ -1,12 +1,14 @@
 package com.avada.edu.kinoCMS.model;
 
-import lombok.Data;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+
 import java.time.LocalDate;
 
 
@@ -19,16 +21,22 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "reg_date")
     private LocalDate reg_date;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "secondname")
     private String secondName;
+
     @Column(name = "nickname")
     private String nickname;
+
     @Column(name = "birthday_date")
     private LocalDate birthdayDate;
+
     @Column(name = "email")
     private String email;
     @Column(name = "telephone")

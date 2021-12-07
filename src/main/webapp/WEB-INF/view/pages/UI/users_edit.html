@@ -23,7 +23,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="../../index3.html" class="brand-link">
+        <a href="#" class="brand-link">
             <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -130,99 +130,131 @@
                         <div class="card card-primary card-outline">
                             <div class="card-body">
                                 <form th:method="post" th:action="@{/users/{id}/edit/admin(id=${user.id})}"
-                                      enctype="multipart/form-data">
+                                      enctype="multipart/form-data" class=" needs-validation">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Имя </label>
-                                            <input type="text" class="form-control" placeholder="Имя"
-                                                   th:field="*{user.name}" id="name">
+                                            <label for="validationCustom01" class="form-label">Имя</label>
+                                            <input type="text" class="form-control" id="validationCustom01" placeholder="Имя"
+                                                   th:field="*{user.name}" required>
+                                            <div class="valid-feedback">
+                                                Все хорошо!
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Фамилия </label>
+                                            <label for="validationCustom02" class="form-label">Фамилия</label>
                                             <input type="text" class="form-control" placeholder="Фамилия"
-                                                   th:field="*{user.secondName}" id="description">
+                                                   th:field="*{user.secondName}" id="validationCustom02" required>
+                                            <div class="valid-feedback">
+                                                Все хорошо!
+                                            </div>
+
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Псевдоним </label>
+                                            <label for="validationCustom03" class="form-label">Псевдоним</label>
                                             <input type="text" class="form-control" placeholder="Псевдоним"
-                                                   th:field="*{user.nickname}" id="nickname">
+                                                   th:field="*{user.nickname}" id="validationCustom03" required>
+                                            <div class="valid-feedback">
+                                                Все хорошо!
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>E-mail </label>
-                                            <input type="text" class="form-control" placeholder="E-mail"
-                                                   th:field="*{user.email}" id="E-mail">
+                                            <label for="validationCustom04" class="form-label">E-mail</label>
+                                            <input type="email" class="form-control" placeholder="E-mail"
+                                                   th:field="*{user.email}" id="validationCustom04" required>
+                                            <div class="valid-feedback">
+                                                Все хорошо!
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Адресс </label>
-                                            <input type="text" class="form-control" placeholder="Адресс"
-                                                   th:field="*{user.address}" id="address">
+                                            <label for="validationCustom05" class="form-label">Адрес</label>
+                                            <input type="text" class="form-control" placeholder="Адрес"
+                                                   th:field="*{user.address}" id="validationCustom05" required>
+                                            <div class="valid-feedback">
+                                                Все хорошо!
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Пароль </label>
-                                            <input type="text" class="form-control" placeholder="Пароль"
-                                                   th:field="*{user.password}" id="password">
+                                            <label for="validation2" class="form-label">Пароль</label>
+                                            <input type="password" class="form-control" placeholder="Пароль"
+                                                   th:field="*{user.password}" id="validation2" required
+                                                   pattern="^[_a-zA-Z0-9\-]{5,15}$">
+                                            <div class="invalid-feedback">
+                                                Должен быть буквенно-цифровым, тире или подчеркиванием, от 5 до 15 символов.
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Повторите пароль </label>
-                                            <input type="text" class="form-control" placeholder="Повторите пароль "
-                                                   th:field="*{user.test_password}" id="test_password">
+                                            <label for="validation3" class="form-label">Повторите пароль</label>
+                                            <input type="password" class="form-control" placeholder="Повторите пароль "
+                                                   th:field="*{user.test_password}" id="validation3" required
+                                                   pattern="^[_a-zA-Z0-9\-]{5,15}$">
+                                            <div class="invalid-feedback">
+                                                Должен быть буквенно-цифровым, тире или подчеркиванием, от 5 до 15 символов.
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Номер карты </label>
+                                            <label for="validationCustom06" class="form-label">Номер карты</label>
                                             <input type="text" class="form-control" placeholder="Номер карты"
-                                                   th:field="*{user.cardNumber}" id="cardNumber">
+                                                   th:field="*{user.cardNumber}" id="validationCustom06" required
+                                                   pattern="(?<!\d)\d{16}(?!\d)|(?<!\d[ _-])(?<!\d)\d{4}(?:[_ -]\d{4}){3}(?![_ -]?\d)">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Язык</label>
-                                            <select th:field="*{user.language}">
-                                                <option type="radio"  value="1"/>
-                                                Русский<Br>
-                                                <option type="radio"  value="0"/>
-                                                Украинский<Br>
+                                            <select th:field="*{user.language}" required>
+                                                <option type="radio" class="form-check-input" value="1">
+                                                    Русский<Br>
+                                                </option>
+                                                <option type="radio" class="form-check-input" value="0">
+                                                    Украинский<Br>
+                                                </option>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Пол</label>
-                                            <select th:field="*{user.gender}">
-                                                <option type="radio" value="1"/>
-                                                Мужской<Br>
-                                                <option type="radio"  value="0"/>
-                                                Женский<Br>
+                                            <select th:field="*{user.gender}" required>
+                                                <option type="radio" value="1">
+                                                    Мужской<Br>
+                                                </option>
+                                                <option type="radio" value="0">
+                                                    Женский<Br>
+                                                </option>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Телефон </label>
                                             <input type="text" class="form-control" placeholder="Телефон "
-                                                   th:field="*{user.telephone}" id="telephone">
+                                                   th:field="*{user.telephone}" id="telephone" required
+                                                   pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$">
+
                                         </div>
 
                                         <div class="form-group">
                                             <label> День рождения </label>
                                             <input type="date" class="form-control" placeholder="День рождения "
-                                                   th:value="${date}" id="date" name="date">
+                                                   id="date" name="date" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Город </label>
+                                            <label for="validationCustom07" class="form-label">Город </label>
                                             <input type="text" class="form-control" placeholder="Город "
-                                                   th:field="*{user.town}" id="town">
+                                                   th:field="*{user.town}" id="validationCustom07" required>
+                                        </div>
+                                        <div class="valid-feedback">
+                                            Все хорошо!
                                         </div>
 
                                         <div class="modal-footer justify-content-between">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть
-                                            </button>
-                                            <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить
-                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                            <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить</button>
                                         </div>
                                     </div>
                                 </form>
@@ -296,5 +328,30 @@
 <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script>
+    (function () {
+        'use strict'
+
+        // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Зацикливайтесь на них и предотвращайте отправку
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (document.getElementById("validation2").value != document.getElementById("validation3").value) {
+                        alert("Пароль не совпадает");
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
 </body>
 </html>

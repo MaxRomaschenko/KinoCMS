@@ -23,7 +23,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
+        <a href="#" class="brand-link">
             <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -32,14 +32,6 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
-                </div>
-            </div>
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
@@ -48,14 +40,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
 
-                    <li class="nav-item">
-                        <a href="../AdminLTE-3.1.0/pages/gallery.html" class="nav-link">
-                            <i class="nav-icon far fa-image"></i>
-                            <p>
-                                Gallery
-                            </p>
-                        </a>
-                    </li>
+
 
                     <li class="nav-item">
 
@@ -150,28 +135,34 @@
 
                             <div class="card-body">
                                 <form th:method="post" th:action="@{/cinemas/{id}/edit/admin(id=${cinema.getId()})}"
-                                      enctype="multipart/form-data">
+                                      enctype="multipart/form-data" class=" needs-validation">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Название кинотеатра</label>
-                                            <input type="text" class="form-control" th:field="*{cinema.cinema_name}"
-                                                   placeholder="Название">
+                                            <label for="validationCustom01" class="form-label">Название кинотеатра</label>
+                                            <input type="text" class="form-control" id="validationCustom01" th:field="*{cinema.cinema_name}"
+                                                   placeholder="Название" required>
+                                            <div class="valid-feedback">
+                                                Все хорошо!
+                                            </div>
                                         </div>
+
                                         <div class="form-group">
-                                            <label>Описание</label>
-                                            <textarea class="form-control" rows="3" th:field="*{cinema.description}"
-                                                      placeholder="Описание"></textarea>
+                                            <label for="validationTextarea" class="form-label">Описание</label>
+                                            <textarea class="form-control " id="validationTextarea" rows="3" th:field="*{cinema.description}"
+                                                      placeholder="Описание" required></textarea>
                                         </div>
+
                                         <div class="form-group">
-                                            <label>Условие</label>
-                                            <textarea class="form-control" rows="3" th:field="*{cinema.conditions}"
-                                                      placeholder="Условие"></textarea>
+                                            <label for="validationCustom02" class="form-label">Условие</label>
+                                            <textarea class="form-control " id="validationCustom02" rows="3" th:field="*{cinema.conditions}"
+                                                      placeholder="Условие" required></textarea>
                                         </div>
+
                                         <div class="form-group">
-                                            <label>Логотип</label>
+                                            <label >Логотип</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <input type="file" id="imgInp" name="logo"/>
+                                                    <input type="file" id="imgInp" name="logo" >
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
                                                          id="blah" th:src="@{'/images/' + ${cinema.logo_picture}}"/>
                                                 </div>
@@ -182,7 +173,7 @@
                                             <label>Фото ферхнего банера</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <input type="file" id="imgInp2" name="banner"/>
+                                                    <input type="file" id="imgInp2" name="banner" >
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
                                                          id="blah2" th:src="@{'/images/' + ${cinema.banner_picture}}"/>
                                                 </div>
@@ -263,24 +254,24 @@
                                         <br><br>
                                         <center><h3>SEO блок</h3></center>
                                         <div class="form-group">
-                                            <label>URL</label>
+                                            <label for="validationCustom05" class="form-label">URL</label>
                                             <input type="text" class="form-control" th:field="*{cinema.seo.url}"
-                                                   placeholder="URL">
+                                                   placeholder="URL" id="validationCustom05" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Title</label>
+                                            <label for="validationCustom06" class="form-label">Title</label>
                                             <input type="text" class="form-control" th:field="*{cinema.seo.title}"
-                                                   placeholder="Title">
+                                                   placeholder="Title" id="validationCustom06" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Keywords</label>
+                                            <label for="validationCustom07" class="form-label">Keywords</label>
                                             <input type="text" class="form-control" th:field="*{cinema.seo.keywords}"
-                                                   placeholder="Keywords">
+                                                   placeholder="Keywords" id="validationCustom07" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Discription</label>
                                             <textarea class="form-control" rows="3" placeholder="Discription"
-                                                      th:field="*{cinema.seo.description}"></textarea>
+                                                      th:field="*{cinema.seo.description}" required></textarea>
                                         </div>
                                     </div>
                                     <!-- /.card-body -->
@@ -310,17 +301,17 @@
                             </button>
                         </div>
                         <form th:method="post" th:action="@{/{id}/hall/admin(id=${cinema.id})}"
-                              enctype="multipart/form-data">
+                              enctype="multipart/form-data" class="needs-validation">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Название зала</label>
                                     <input type="text" class="form-control" th:field="*{hall.hall_number}"
-                                           placeholder="Название">
+                                           placeholder="Название" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Описание зала</label>
                                     <textarea class="form-control" rows="3" th:field="*{hall.hall_description}"
-                                              placeholder="Описание"></textarea>
+                                              placeholder="Описание" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Схема зала</label>
@@ -350,7 +341,7 @@
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
                                             <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah10" src="/img/defaultImage.png"/>
+                                                 id="blah10" src="/img/defaultImage.png" onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                         </div>
                                         <br><br><br>
                                         <input type="file" id="imgInp10" name="gallery"/>
@@ -358,7 +349,7 @@
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
                                             <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah11" src="/img/defaultImage.png"/>
+                                                 id="blah11" src="/img/defaultImage.png" onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                         </div>
                                         <br><br><br>
                                         <input type="file" id="imgInp11" name="gallery"/>
@@ -366,7 +357,7 @@
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
                                             <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah12" src="/img/defaultImage.png"/>
+                                                 id="blah12" src="/img/defaultImage.png" onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                         </div>
                                         <br><br><br>
                                         <input type="file" id="imgInp12" name="gallery"/>
@@ -374,7 +365,7 @@
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
                                             <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah13" src="/img/defaultImage.png"/>
+                                                 id="blah13" src="/img/defaultImage.png" onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                         </div>
                                         <br><br><br>
                                         <input type="file" id="imgInp13" name="gallery"/>
@@ -382,7 +373,7 @@
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
                                             <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah14" src="/img/defaultImage.png"/>
+                                                 id="blah14" src="/img/defaultImage.png" onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
                                         </div>
                                         <br><br><br>
                                         <input type="file" id="imgInp14" name="gallery"/>
@@ -393,22 +384,22 @@
                                 <div class="form-group">
                                     <label>URL</label>
                                     <input type="text" class="form-control" th:field="*{hall.seo.url}"
-                                           placeholder="URL">
+                                           placeholder="URL" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Title</label>
                                     <input type="text" class="form-control" th:field="*{hall.seo.title}"
-                                           placeholder="Title">
+                                           placeholder="Title" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Keywords</label>
                                     <input type="text" class="form-control" th:field="*{hall.seo.keywords}"
-                                           placeholder="Keywords">
+                                           placeholder="Keywords" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Discription</label>
                                     <textarea class="form-control" rows="3" th:field="*{hall.seo.description}"
-                                              placeholder="Description"></textarea>
+                                              placeholder="Description" required></textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -492,6 +483,26 @@
 <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script>
+    (function () {
+        'use strict'
 
+        // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Зацикливайтесь на них и предотвращайте отправку
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                     if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
 </body>
 </html>

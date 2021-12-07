@@ -23,7 +23,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="../../index3.html" class="brand-link">
+        <a href="#" class="brand-link">
             <img src="../../img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -32,15 +32,6 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="../img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
-                </div>
-            </div>
-
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
@@ -49,14 +40,6 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
 
-                    <li class="nav-item">
-                        <a href="../AdminLTE-3.1.0/pages/gallery.html" class="nav-link">
-                            <i class="nav-icon far fa-image"></i>
-                            <p>
-                                Gallery
-                            </p>
-                        </a>
-                    </li>
 
                     <li class="nav-item">
 
@@ -206,23 +189,24 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form th:method="post" th:action="@{/news/add/admin}" enctype="multipart/form-data" >
+                        <form th:method="post" th:action="@{/news/add/admin}"
+                              enctype="multipart/form-data" class=" needs-validation">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Название новости</label>
                                     <input type="text" class="form-control" placeholder="Название новости"
-                                           th:field="*{newsO.title}" id="name">
+                                           th:field="*{newsO.title}" id="name" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Описание</label>
                                     <textarea class="form-control" rows="3" placeholder="Описание"
-                                              th:field="*{newsO.description}" id="description"></textarea>
+                                              th:field="*{newsO.description}" id="description" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Главная картинка</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="imgInp" name="logo"/>
+                                            <input type="file" id="imgInp" name="logo" required/>
                                             <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
                                                  id="blah" src="../../img/defaultImage.png"/>
                                         </div>
@@ -238,7 +222,7 @@
                                                  id="blah10" src="../../img/defaultImage.png"/>
                                         </div>
                                         <br><br><br>
-                                        <input type="file" id="imgInp10" name="gallery"/>
+                                        <input type="file" id="imgInp10" name="gallery" required/>
                                     </div>
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
@@ -246,7 +230,7 @@
                                                  id="blah11" src="../../img/defaultImage.png"/>
                                         </div>
                                         <br><br><br>
-                                        <input type="file" id="imgInp11" name="gallery"/>
+                                        <input type="file" id="imgInp11" name="gallery" required/>
                                     </div>
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
@@ -254,7 +238,7 @@
                                                  id="blah12" src="../../img/defaultImage.png"/>
                                         </div>
                                         <br><br><br>
-                                        <input type="file" id="imgInp12" name="gallery"/>
+                                        <input type="file" id="imgInp12" name="gallery" required/>
                                     </div>
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
@@ -262,7 +246,7 @@
                                                  id="blah13" src="../../img/defaultImage.png"/>
                                         </div>
                                         <br><br><br>
-                                        <input type="file" id="imgInp13" name="gallery"/>
+                                        <input type="file" id="imgInp13" name="gallery" required/>
                                     </div>
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
@@ -270,7 +254,7 @@
                                                  id="blah14" src="../../img/defaultImage.png"/>
                                         </div>
                                         <br><br><br>
-                                        <input type="file" id="imgInp14" name="gallery"/>
+                                        <input type="file" id="imgInp14" name="gallery" required/>
                                     </div>
                                 </div>
                                 <br><br>
@@ -284,22 +268,22 @@
                                 <div class="form-group">
                                     <label>URL</label>
                                     <input type="text" class="form-control" th:field="*{newsO.seo.url}"
-                                           placeholder="URL">
+                                           placeholder="URL" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Title</label>
                                     <input type="text" class="form-control" th:field="*{newsO.seo.title}"
-                                           placeholder="Title">
+                                           placeholder="Title" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Keywords</label>
                                     <input type="text" class="form-control" th:field="*{newsO.seo.keywords}"
-                                           placeholder="Keywords">
+                                           placeholder="Keywords" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Discription</label>
                                     <textarea class="form-control" rows="3" placeholder="Discription"
-                                              th:field="*{newsO.seo.description}"></textarea>
+                                              th:field="*{newsO.seo.description}" required></textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -380,6 +364,30 @@
 <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script>
+    (function () {
+        'use strict'
 
+        // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Зацикливайтесь на них и предотвращайте отправку
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (document.getElementById("validation2").value != document.getElementById("validation3").value) {
+                        alert("Пароль не совпадает");
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
 </body>
 </html>

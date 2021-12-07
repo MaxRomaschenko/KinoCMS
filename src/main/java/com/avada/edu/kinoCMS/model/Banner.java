@@ -22,14 +22,12 @@ public class Banner {
     @Column(name = "photo")
     private String photo;
 
-    @NotEmpty(message = "Текст")
     @Column(name = "url")
     private String url;
 
     @Column(name = "true_false")
     private Boolean trueFalse;
 
-    @NotEmpty(message = "Текст")
     @Column(name = "text_message")
     private String textMessage;
 

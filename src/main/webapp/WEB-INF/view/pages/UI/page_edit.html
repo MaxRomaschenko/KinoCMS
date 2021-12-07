@@ -23,7 +23,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/index3.html" class="brand-link">
+        <a href="#" class="brand-link">
             <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -132,7 +132,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-body">
                                 <form th:method="post" th:action="@{/page/{id}/edit/admin(id=${page.getId()})}"
-                                      enctype="multipart/form-data">
+                                      enctype="multipart/form-data" class="needs-validation">
                                     <div class="card-body">
                                         <div class="form-group">
                                             Выключено
@@ -142,18 +142,18 @@
                                         <div class="form-group">
                                             <label>Название новости</label>
                                             <input type="text" class="form-control" placeholder="Название новости"
-                                                   th:field="*{page.title}" id="name">
+                                                   th:field="*{page.title}" id="name" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Описание</label>
                                             <textarea class="form-control" rows="3" placeholder="Описание"
-                                                      th:field="*{page.description}" id="description"></textarea>
+                                                      th:field="*{page.description}" id="description" required></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Главная картинка</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <input type="file" id="imgInp" name="logo"/>
+                                                    <input type="file" id="imgInp" name="logo" required/>
                                                     <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
                                                          id="blah" th:src="@{'/images/' + ${page.banner_url}}"
                                                          onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
@@ -171,7 +171,7 @@
                                                          onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
-                                                <input type="file" id="imgInp10" name="gallery"/>
+                                                <input type="file" id="imgInp10" name="gallery" required/>
                                             </div>
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
@@ -180,7 +180,7 @@
                                                          onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
-                                                <input type="file" id="imgInp11" name="gallery"/>
+                                                <input type="file" id="imgInp11" name="gallery" required/>
                                             </div>
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
@@ -189,7 +189,7 @@
                                                          onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
-                                                <input type="file" id="imgInp12" name="gallery"/>
+                                                <input type="file" id="imgInp12" name="gallery" required/>
                                             </div>
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
@@ -198,7 +198,7 @@
                                                          onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
-                                                <input type="file" id="imgInp13" name="gallery"/>
+                                                <input type="file" id="imgInp13" name="gallery" required/>
                                             </div>
                                             <div class="input-group" style="width: 15%;">
                                                 <div class="custom-file">
@@ -207,7 +207,7 @@
                                                          onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                                 </div>
                                                 <br><br><br>
-                                                <input type="file" id="imgInp14" name="gallery"/>
+                                                <input type="file" id="imgInp14" name="gallery" required/>
                                             </div>
                                         </div>
                                         <br>
@@ -215,22 +215,22 @@
                                         <div class="form-group">
                                             <label>URL</label>
                                             <input type="text" class="form-control" th:field="*{page.seo.url}"
-                                                   placeholder="URL">
+                                                   placeholder="URL" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Title</label>
                                             <input type="text" class="form-control" th:field="*{page.seo.title}"
-                                                   placeholder="Title">
+                                                   placeholder="Title" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Keywords</label>
                                             <input type="text" class="form-control" th:field="*{page.seo.keywords}"
-                                                   placeholder="Keywords">
+                                                   placeholder="Keywords" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Discription</label>
                                             <textarea class="form-control" rows="3" placeholder="Discription"
-                                                      th:field="*{page.seo.description}"></textarea>
+                                                      th:field="*{page.seo.description}" required></textarea>
                                         </div>
                                     </div>
                                     <!-- /.card-body -->
@@ -318,6 +318,31 @@
 <script src="/plugins/jszip/jszip.min.js"></script>
 <script src="/plugins/pdfmake/pdfmake.min.js"></script>
 <script src="/plugins/pdfmake/vfs_fonts.js"></script>
+<script>
+    (function () {
+        'use strict'
+
+        // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Зацикливайтесь на них и предотвращайте отправку
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (document.getElementById("validation2").value != document.getElementById("validation3").value) {
+                        alert("Пароль не совпадает");
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
 <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>

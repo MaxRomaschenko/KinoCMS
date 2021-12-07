@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS users (
                                               town varchar(45) Null,
                                               `password` VARCHAR(45) NULL,
                                               test_password VARCHAR(45) NULL,
-                                              `card_number` VARCHAR(12) NULL,
+                                              `card_number` VARCHAR(25) NULL,
                                               `language` BOOLEAN NULL,
                                               `gender` BOOLEAN NULL NULL,
                                               mailing_id int references mailing(id) on delete cascade
