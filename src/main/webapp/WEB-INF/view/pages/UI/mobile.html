@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MAX KINO</title>
-    <link rel="stylesheet" href="css/style-starter.css">
+    <link rel="stylesheet" href="../../css/style-starter.css">
 
 </head>
 
@@ -38,12 +38,12 @@
                         <a class="nav-link" href="/timetable">Расписание</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/soon">Скоро</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/cinemas">Кинотеатры</a>
+                        <a class="nav-link " href="/soon">Скоро</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/cinemas">Кинотеатры</a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="/stock">Акции</a>
                     </li>
 
@@ -79,55 +79,41 @@
                                     <li><a href="#">Комедия</a></li>
                                     <li><a href="#">Фантастика</a></li>
                                     <li><a href="#">Драмма</a></li>
-
                                 </ul>
                             </div>
                         </div>
                         <a class="close" href="#close">×</a>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     </nav>
-
 </header>
 
-<section class="w3l-main-slider position-relative" id="home">
-    <div class="companies20-content">
-        <div class="owl-one owl-carousel owl-theme">
-            <div class="item" th:each="bannerOwl : ${bannerMainOwl}">
-                <li>
-                    <div class="slider-info banner-view bg bg2"
-                         th:style="'background: url(../../images/' + ${bannerOwl.photo} + ')' + '; background-size: cover  '">
-                    </div>
-                </li>
-            </div>
-        </div>
-    </div>
-</section>
+<img src="/img/defaultImage.png" style="margin:10px auto; width: 100%; height:500px;">
 
 <section class="w3l-grids">
     <div class="grids-main py-5">
         <div class="container py-lg-3">
-            <div class="headerhny-title">
-                    <div class="headerhny-left">
-                        <h3 class="hny-title">Наши кинотеатры</h3>
-                    </div>
-            </div>
             <div class="allblog">
                 <div class="centerblock">
-                    <div class="left-div" th:each="cinemaList : ${cinemas}">
-                        <a th:href="@{/cinemas/card/{id}(id = ${cinemaList.getId()})}">
-                            <img th:src="@{'../../images/' + ${cinemaList.logo_picture}}"
-                                 style="width: 100%; height: 260px;"><br><br>
-                            <p style="text-align: center; color: black; font-size: 30px;"
-                               th:text="${cinemaList.cinema_name}"></p>
-                        </a>
-                        <br><br>
+                    <h1 style="text-align: center; color: black">Мобильные приложения</h1>
+                    <div style="width: 100%">
+                    <p style="color: black; font-size: 20px">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
                     </div>
+                    <div class="left-div4"  style="height: 600px">
+                        <img src="../img/mobile.png" style="width: 250px;">
+                    </div>
+                    <div class="left-div4"  style="height: 600px">
+                        <img src="../img/mobile.png" style="width: 250px;">
+                    </div>
+                    <div class="left-div4"  style="height: 600px">
+                        <img src="../img/mobile.png" style="width: 250px;">
+                    </div>
+                    <div class="left-div4"  style="height: 600px">
+                        <img src="../img/mobile.png" style="width: 250px;">
+                    </div>
+
                 </div>
                 <div class="rightblock">
                     <img src="../img/contex-reclama-verical.jpg"
@@ -136,6 +122,7 @@
                          style="width:100%; height:180px;"><br><br>
                     <img src="../img/contex-reclama-verical.jpg"
                          style="width:100%; height:180px;">
+
                 </div>
             </div>
         </div>
@@ -148,7 +135,10 @@
             <div class="container py-lg-4">
                 <div class="text-txt">
                     <div class="right-side">
+
                         <div class="row footer-links">
+
+
                             <div class="col-md-3 col-sm-6 sub-two-right mt-5">
                                 <h6>Мобильное приложение</h6>
                                 <ul>
@@ -185,8 +175,7 @@
                                     <input type="email" name="email" placeholder="Ваш Email" required="">
                                     <button><span class="fa fa-envelope-o"></span></button>
                                 </form>
-                                <p>Введите свой адрес электронной почты и получайте от нас последние новости,
-                                    обновления
+                                <p>Введите свой адрес электронной почты и получайте от нас последние новости, обновления
                                     и специальные предложения.
                                 </p>
                             </div>
@@ -199,7 +188,6 @@
         <div class="below-section">
             <div class="container">
                 <div class="copyright-footer">
-
                     <ul class="social text-lg-right">
                         <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                         </li>
@@ -209,7 +197,6 @@
                         </li>
                         <li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -217,26 +204,6 @@
         <button onclick="topFunction()" id="movetop" title="Go to top">
             <span class="fa fa-arrow-up" aria-hidden="true"></span>
         </button>
-        <script>
-            // When the user scrolls down 20px from the top of the document, show the button
-            window.onscroll = function () {
-                scrollFunction()
-            };
-
-            function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    document.getElementById("movetop").style.display = "block";
-                } else {
-                    document.getElementById("movetop").style.display = "none";
-                }
-            }
-
-            // When the user clicks on the button, scroll to the top of the document
-            function topFunction() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            }
-        </script>
 
     </section>
 </footer>
@@ -244,15 +211,35 @@
 
 </html>
 
-<script src="../../js/jquery-1.9.1.min.js"></script>
-<script src="../../js/easyResponsiveTabs.js"></script>
-<script src="../../js/owl.carousel.js"></script>
-<script src="../../js/jquery.magnific-popup.min.js"></script>
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script src="/js/easyResponsiveTabs.js"></script>
+<script src="/js/owl.carousel.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
 
 <script>
     $(document).ready(function () {
         $('.owl-one').owlCarousel({
-            stagePadding: 280,
+            stagePadding: 0,
             loop: true,
             margin: 20,
             nav: true,

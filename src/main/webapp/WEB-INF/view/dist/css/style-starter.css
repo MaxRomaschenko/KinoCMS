@@ -115,6 +115,12 @@ owl-stage-outer'@charset "UTF-8";
   padding: 10px;
 }
 
+.left-div4 {
+  float:left;
+  width:24%;
+  padding: 10px;
+}
+
 .centerblock {
     width: 79%;
     float: left;
@@ -14264,7 +14270,7 @@ ul {
 
 @media (min-width: 1280px) {
   .container {
-    max-width: 1200px;
+    max-width: 1500px;
   }
 }
 

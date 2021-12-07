@@ -50,10 +50,9 @@
                     <li class="nav-item"><a class="nav-link submenu-link" href="">О кинотеатре</a>
                         <ul class="submenu nav-item">
                             <li class="nav-item"><a href="/news" class="nav-link">Новости</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Реклама</a></li>
                             <li class="nav-item"><a href="/cafe" class="nav-link">Кафе</a></li>
                             <li class="nav-item"><a href="/mobile" class="nav-link">Мобильное приложение</a></li>
-                            <li class="nav-item"><a href="/konacti" class="nav-link">Контакты</a></li>
+                            <li class="nav-item"><a href="/contacts" class="nav-link">Контакты</a></li>
                             <li class="nav-item" th:each="page : ${pages}">
                                 <a th:href="@{/page/{id}(id = ${page.id})}" class="nav-link" th:text="${page.title}"></a>
                             </li>
@@ -215,11 +214,6 @@
         <div class="below-section">
             <div class="container">
                 <div class="copyright-footer">
-                    <div class="columns text-lg-left">
-                        <p>&copy; 2021. All rights reserved | Designed by <a
-                                href="https://vk.com/shama278">shama278</a></p>
-                    </div>
-
                     <ul class="social text-lg-right">
                         <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                         </li>
@@ -229,7 +223,6 @@
                         </li>
                         <li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
                         </li>
-
                     </ul>
                 </div>
             </div>

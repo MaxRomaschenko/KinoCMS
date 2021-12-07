@@ -136,5 +136,12 @@ public class MainController {
         return "UI/contacts_index";
     }
 
+    @GetMapping("/mobile")
+    private String getMobile(Model model){
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        return "UI/mobile";
+    }
 
 }
