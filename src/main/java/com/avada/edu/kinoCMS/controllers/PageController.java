@@ -58,6 +58,7 @@ public class PageController {
         model.addAttribute("pages", pagesList);
         model.addAttribute("mainPage", pageService.findById(1L));
         model.addAttribute("vip", pageService.findById(2L));
+        model.addAttribute("contacts",pageService.findById(3L));
         return "UI/page";
     }
 
@@ -160,7 +161,7 @@ public class PageController {
             seoRepo.save(page.getSeo());
         }
 
-        Page page2 = pageService.save(page);
+        pageService.save(page);
 
         return "redirect:/page/admin";
     }
@@ -213,6 +214,41 @@ public class PageController {
         return "redirect:/page/admin";
     }
 
+    @GetMapping("/{id}/contacts/edit/admin")
+    public String editContactsPage(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("page", pageService.findById(id));
+        return "UI/contacts";
+    }
+
+    @PostMapping("/{id}/contacts/edit/admin")
+    public String updateContactsPage(@PathVariable("id") Long id,
+                                     @ModelAttribute("page") Page page,
+                                     @RequestParam("logo") MultipartFile mainPicture
+    ) throws IOException {
+        Page page1 = pageService.findById(id);
+        page.setId(page1.getId());
+        page.getSeo().setId(page1.getSeo().getId());
+        page.setTitle(page1.getTitle());
+        page.setRedacted(false);
+
+        if (!mainPicture.isEmpty()) {
+            page.setBanner_url(file(mainPicture));
+        } else {
+            page.setBanner_url(page1.getBanner_url());
+        }
+
+        Date date = new Date();
+        page.setCreated_at(new Timestamp(date.getTime()));
+
+        if (page.getSeo() != null) {
+            seoRepo.save(page.getSeo());
+        }
+
+        pageService.save(page);
+
+        return "redirect:/page/admin";
+    }
+
 
     @GetMapping("/{id}")
     public String index(@PathVariable("id") Long id, Model model) {
@@ -233,4 +269,5 @@ public class PageController {
         pageService.deleteById(id);
         return "redirect:/page/admin";
     }
+
 }

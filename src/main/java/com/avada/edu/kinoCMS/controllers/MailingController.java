@@ -42,7 +42,7 @@ public class MailingController {
             uploadDir.mkdir();
         }
 
-//        String uuidFile = UUID.randomUUID().toString();
+
         String resultFileName = multipartFile.getOriginalFilename();
         multipartFile.transferTo(new File(uploadPath + "/" + resultFileName));
 
@@ -51,17 +51,12 @@ public class MailingController {
 
     @GetMapping("/admin")
     public String getMailing(@RequestParam(name = "users", defaultValue = "0") List<Long> users,
-//                             @RequestParam(name = "radio",defaultValue = "null") Boolean radio,
                              @ModelAttribute(name = "sms") String sms_message,
                              @ModelAttribute("mailing") Mailing mailing,
                              Model model) {
         if (!users.isEmpty()) {
             model.addAttribute("users", users);
         }
-//        if(radio != null){
-//            model.addAttribute("radio",radio);
-//        }
-
         model.addAttribute("html_files", mailingService.findTop5OrderById());
         return "UI/mailing";
     }

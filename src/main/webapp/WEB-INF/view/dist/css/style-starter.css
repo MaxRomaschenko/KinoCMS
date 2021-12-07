@@ -43,6 +43,16 @@ owl-stage-outer'@charset "UTF-8";
   position: relative;
   font-family: 'Open Sans', sans-serif;
 }
+
+.text-truncat1{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 1.3em;
+  height: 3.9em;
+  color: black;
+}
 .topmenu > li > a {
   text-transform: uppercase;
   font-size: 14px;
@@ -14419,6 +14429,7 @@ body a {
 
 .headerhny-title {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 h3.hny-title,

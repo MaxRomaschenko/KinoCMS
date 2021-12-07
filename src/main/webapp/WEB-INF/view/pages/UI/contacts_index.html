@@ -1,22 +1,22 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MAX KINO</title>
-    <link rel="stylesheet" href="/css/style-starter.css">
+    <link rel="stylesheet" href="../../css/style-starter.css">
+
 </head>
 
-<body style="background-image: url(https://img2.fonwall.ru/o/ly/avengers-endgame-avengers-2019-movies-movies.jpeg); background-repeat: no-repeat; background-position: top center">
-<img style="width: 100%" src="https://te.esport.in.ua/images/banners/favbet_new.png?v=2" href="#"></img>
+<body th:style="'background: url(../../images/' + ${bannerBackground.photo} + ') ; background-repeat: no-repeat; background-position: top center'" >
+<img style="width: 100%" src="https://te.esport.in.ua/images/banners/favbet_new.png?v=2" href="#">
 <header id="site-header" class="w3l-header">
     <!-- <header id="site-header" class="w3l-header fixed-top"> -->
     <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
         <div class="container">
-            <h1><a class="navbar-brand" href="index.html"><span class="fa fa-play icon-log" aria-hidden="true"></span>
+            <h1><a class="navbar-brand" href="/kino"><span class="fa fa-play icon-log" aria-hidden="true"></span>
                 MAX KINO </a></h1>
-            <!-- <a class="navbar-brand" href="index.html"> <img src="#" alt="Твое лого" title="Твое лого" style="height:35px;" /></a> -->
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -28,31 +28,35 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav ml-auto topmenu">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/kino">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/afisha">Афиша</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/timetable">Расписание</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/soon">Скоро</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cinemas">Кинотеатры</a>
+                    </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Главная</a>
+                        <a class="nav-link" href="/stock">Акции</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Афиша</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Расписание</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Скоро</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Кинотеатры</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Акции</a>
-                    </li>
+
                     <li class="nav-item"><a class="nav-link submenu-link" href="">О кинотеатре</a>
                         <ul class="submenu nav-item">
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Новости</a></li>
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Реклама</a></li>
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Кафе</a></li>
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Мобильное приложение</a></li>
-                            <li class="nav-item"><a href="./index.html" class="nav-link">Контакты</a></li>
+                            <li class="nav-item" ><a href="/news" class="nav-link">Новости</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Реклама</a></li>
+                            <li class="nav-item"><a href="/cafe" class="nav-link">Кафе</a></li>
+                            <li class="nav-item"><a href="/mobile" class="nav-link">Мобильное приложение</a></li>
+                            <li class="nav-item"><a href="/konacti" class="nav-link">Контакты</a></li>
+                            <li class="nav-item" th:each="page : ${pages}">
+                                <a th:href="@{/page/{id}(id = ${page.id})}" class="nav-link " th:text="${page.title}"></a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -86,113 +90,38 @@
 
 
             </div>
+
         </div>
     </nav>
 
 </header>
 
-<img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
-     style="margin:10px auto; width: 100%; height:500px;">
-<br>
-<h2 style="color:black; text-align:center;">TEXT</h2>
 <section class="w3l-grids">
     <div class="grids-main py-5">
         <div class="container py-lg-3">
             <div class="allblog">
                 <div class="centerblock">
-                    <p style="color:black; word-wrap: break-word;">
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttex
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                    </p>
+                    <h1 style="color: black" th:text="${pag.title}"></h1>
+                    <br>
+                    <img th:src="@{'../../images/' + ${pag.banner_url}}" style="margin:10px auto; width: 42%; height:300px ;margin-right: 30px; margin-top: -10px;" align="left">
+                    <p style="font-size:25px ; margin-left: 10px ; color:black; word-wrap: break-word;"
+                       th:text="${pag.description}"></p>
+                    <iframe th:src="${googMaps}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 <div class="rightblock">
-                    <img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
+                    <img src="../img/contex-reclama-verical.jpg"
                          style="width:100%; height:350px;"><br><br>
-                    <img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
+                    <img src="../img/contex-reclama-verical.jpg"
                          style="width:100%; height:180px;"><br><br>
-                    <img src="https://lookw.ru/1/568/1402260723-oboi-1920h1080.-klevaya-pora-29.jpg"
+                    <img src="../img/contex-reclama-verical.jpg"
                          style="width:100%; height:180px;">
 
                 </div>
-                <div class="left-div2">
-                    <a href="#"><img src="https://cdn.fishki.net/upload/post/2020/03/07/3250319/t11.jpg"
-                                     style="width: 100%;"></img></a><br><br>
-                </div>
-                <div class="left-div2">
-                    <a href="#"><img src="https://cdn.fishki.net/upload/post/2020/03/07/3250319/t11.jpg"
-                                     style="width: 100%;"></img></a><br><br>
-                </div>
-                <div class="left-div2">
-                    <a href="#"><img src="https://cdn.fishki.net/upload/post/2020/03/07/3250319/t11.jpg"
-                                     style="width: 100%;"></img></a><br><br>
-                </div>
-                <div class="centerblock">
-                    <p style="color:black; word-wrap: break-word;">
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-                    </p>
-                </div>
             </div>
-            <h2 style="color:black; text-align:center;">TEXT</h2><br>
-            <!-- slider -->
-            <section class="w3l-main-slider position-relative" id="home">
-                <div class="companies20-content">
-                    <div class="owl-one owl-carousel owl-theme">
-                        <div class="item">
-                            <li>
-                                <div class="slider-info banner-view bg bg2">
-                                    <div class="banner-info">
-                                        <h3>Последние Онлайн Фильмы</h3>
-                                        <p>Наша команда - наши клиенты. <span class="over-para"> Следуйте за этой ненавистью, удовольствие неизбежно будет иметь последствия.</span>
-                                        </p>
-                                        <a href="#small-dialog1" class="popup-with-zoom-anim play-view1">
-									<span class="video-play-icon">
-										<span class="fa fa-play"></span>
-									</span>
-                                            <h6>Смотреть трейлер</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                        </div>
-                        <div class="item">
-                            <li>
-                                <div class="slider-info  banner-view banner-top1 bg bg2">
-                                    <div class="banner-info">
-                                        <h3>Последние Онлайн Фильмы</h3>
-                                        <p>Наша команда - наши клиенты. <span class="over-para"> Следуйте за этой ненавистью, удовольствие неизбежно будет иметь последствия.</span>
-                                        </p>
-                                        <a href="#small-dialog1" class="popup-with-zoom-anim play-view1">
-									<span class="video-play-icon">
-										<span class="fa fa-play"></span>
-									</span>
-                                            <h6>Смотреть трейлер</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- slider -->
         </div>
     </div>
 </section>
+
 
 <footer class="w3l-footer">
     <section class="footer-inner-main">
@@ -253,11 +182,6 @@
         <div class="below-section">
             <div class="container">
                 <div class="copyright-footer">
-                    <div class="columns text-lg-left">
-                        <p>&copy; 2021. All rights reserved | Designed by <a
-                                href="https://vk.com/shama278">shama278</a></p>
-                    </div>
-
                     <ul class="social text-lg-right">
                         <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                         </li>
@@ -267,7 +191,6 @@
                         </li>
                         <li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -275,26 +198,6 @@
         <button onclick="topFunction()" id="movetop" title="Go to top">
             <span class="fa fa-arrow-up" aria-hidden="true"></span>
         </button>
-        <script>
-            // When the user scrolls down 20px from the top of the document, show the button
-            window.onscroll = function () {
-                scrollFunction()
-            };
-
-            function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    document.getElementById("movetop").style.display = "block";
-                } else {
-                    document.getElementById("movetop").style.display = "none";
-                }
-            }
-
-            // When the user clicks on the button, scroll to the top of the document
-            function topFunction() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            }
-        </script>
 
     </section>
 </footer>
@@ -306,7 +209,26 @@
 <script src="/js/easyResponsiveTabs.js"></script>
 <script src="/js/owl.carousel.js"></script>
 <script src="/js/jquery.magnific-popup.min.js"></script>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
 
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
 
 <script>
     $(document).ready(function () {

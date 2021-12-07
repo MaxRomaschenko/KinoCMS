@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Новости</title>
+    <title>AdminLTE 3 | Страницы</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -169,6 +169,14 @@
                                     <td><span th:text="${vip.active}"> </span></td>
                                     <td>
                                         <a th:href="@{/page/{id}/Vip/edit/admin(id=${vip.id})}"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span th:text="${contacts.title}"> </span></td>
+                                    <td><span th:text="${contacts.created_at}"> </span></td>
+                                    <td><span th:text="${contacts.active}"> </span></td>
+                                    <td>
+                                        <a th:href="@{/page/{id}/contacts/edit/admin(id=${contacts.id})}"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 <tr th:each="p : ${pages}">

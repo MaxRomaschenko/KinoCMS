@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Пользователи</title>
+    <title>AdminLTE 3 | Кинотеатры</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -31,9 +31,6 @@
         <!-- /.navbar -->
         <!-- Sidebar -->
         <div class="sidebar">
-            <!-- Sidebar user (optional) -->
-
-
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -86,7 +83,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/users/admin" class="nav-link">
+                        <a href="/users/admin"  class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Пользователи</p>
                         </a>
@@ -109,6 +106,11 @@
     </aside>
     <!-- /.sidebar -->
 
+
+    <!-- /.navbar -->
+
+
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -116,155 +118,108 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>
-                            Пользователи
+                            Контакты
                         </h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
 
+        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-body">
-                                <form th:method="post" th:action="@{/users/{id}/edit/admin(id=${user.id})}"
-                                      enctype="multipart/form-data" class=" needs-validation">
+                                <form th:method="post" th:action="@{/page/{id}/contacts/edit/admin(id=${page.getId()})}"
+                                      enctype="multipart/form-data" class="needs-validation">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="validationCustom01" class="form-label">Имя</label>
-                                            <input type="text" class="form-control" id="validationCustom01" placeholder="Имя"
-                                                   th:field="*{user.name}" required>
-                                            <div class="valid-feedback">
-                                                Все хорошо!
+                                            Выключено
+                                            <input type="range" min="0" max="1" th:field="*{page.active}">
+                                            Включено
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Название кинотеатра</label>
+                                            <input type="text" class="form-control"
+                                                   th:field="*{page.cinema_name}" placeholder="Название кинотеатра" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Адрес</label>
+                                            <textarea  class="form-control" rows="3"
+                                                   th:field="*{page.description}" placeholder="Адрес" required>
+                                            </textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Координаты для карты</label>
+                                            <br><br>
+                                            <label>Широта</label>
+                                            <input type="text" th:field="*{page.telephone_first}"
+                                                   placeholder="38.123456" required>
+                                            <label>Долгота</label>
+                                            <input type="text" th:field="*{page.telephone_second}"
+                                                   placeholder="38.123456" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Лого</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" id="imgInp" name="logo" />
+                                                    <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
+                                                         id="blah" th:src="@{'/images/' + ${page.banner_url}}"
+                                                         onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
+                                                </div>
                                             </div>
                                         </div>
 
+                                        <center><h3>SEO блок</h3></center>
                                         <div class="form-group">
-                                            <label for="validationCustom02" class="form-label">Фамилия</label>
-                                            <input type="text" class="form-control" placeholder="Фамилия"
-                                                   th:field="*{user.secondName}" id="validationCustom02" required>
-                                            <div class="valid-feedback">
-                                                Все хорошо!
-                                            </div>
-
+                                            <label>URL</label>
+                                            <input type="text" class="form-control" th:field="*{page.seo.url}"
+                                                   placeholder="URL" required>
                                         </div>
-
                                         <div class="form-group">
-                                            <label for="validationCustom03" class="form-label">Псевдоним</label>
-                                            <input type="text" class="form-control" placeholder="Псевдоним"
-                                                   th:field="*{user.nickname}" id="validationCustom03" required>
-                                            <div class="valid-feedback">
-                                                Все хорошо!
-                                            </div>
+                                            <label>Title</label>
+                                            <input type="text" class="form-control" th:field="*{page.seo.title}"
+                                                   placeholder="Title" required>
                                         </div>
-
                                         <div class="form-group">
-                                            <label for="validationCustom04" class="form-label">E-mail</label>
-                                            <input type="email" class="form-control" placeholder="E-mail"
-                                                   th:field="*{user.email}" id="validationCustom04" required>
-                                            <div class="valid-feedback">
-                                                Все хорошо!
-                                            </div>
+                                            <label>Keywords</label>
+                                            <input type="text" class="form-control" th:field="*{page.seo.keywords}"
+                                                   placeholder="Keywords" required>
                                         </div>
-
                                         <div class="form-group">
-                                            <label for="validationCustom05" class="form-label">Адрес</label>
-                                            <input type="text" class="form-control" placeholder="Адрес"
-                                                   th:field="*{user.address}" id="validationCustom05" required>
-                                            <div class="valid-feedback">
-                                                Все хорошо!
-                                            </div>
+                                            <label>Discription</label>
+                                            <textarea class="form-control" rows="3" placeholder="Discription"
+                                                      th:field="*{page.seo.description}" required></textarea>
                                         </div>
+                                    </div>
+                                    <!-- /.card-body -->
 
-                                        <div class="form-group">
-                                            <label for="validation2" class="form-label">Пароль</label>
-                                            <input type="password" class="form-control" placeholder="Пароль"
-                                                   th:field="*{user.password}" id="validation2" required
-                                                   pattern="^[_a-zA-Z0-9\-]{5,15}$">
-                                            <div class="invalid-feedback">
-                                                Должен быть буквенно-цифровым, тире или подчеркиванием, от 5 до 15 символов.
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="validation3" class="form-label">Повторите пароль</label>
-                                            <input type="password" class="form-control" placeholder="Повторите пароль "
-                                                   th:field="*{user.test_password}" id="validation3" required
-                                                   pattern="^[_a-zA-Z0-9\-]{5,15}$">
-                                            <div class="invalid-feedback">
-                                                Должен быть буквенно-цифровым, тире или подчеркиванием, от 5 до 15 символов.
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="validationCustom06" class="form-label">Номер карты</label>
-                                            <input type="text" class="form-control" placeholder="Номер карты"
-                                                   th:field="*{user.cardNumber}" id="validationCustom06" required
-                                                   pattern="(?<!\d)\d{16}(?!\d)|(?<!\d[ _-])(?<!\d)\d{4}(?:[_ -]\d{4}){3}(?![_ -]?\d)">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Язык</label>
-                                            <select th:field="*{user.language}" required>
-                                                <option type="radio" class="form-check-input" value="1">
-                                                    Русский<Br>
-                                                </option>
-                                                <option type="radio" class="form-check-input" value="0">
-                                                    Украинский<Br>
-                                                </option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Пол</label>
-                                            <select th:field="*{user.gender}" required>
-                                                <option type="radio" value="1">
-                                                    Мужской<Br>
-                                                </option>
-                                                <option type="radio" value="0">
-                                                    Женский<Br>
-                                                </option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Телефон </label>
-                                            <input type="text" class="form-control" placeholder="Телефон "
-                                                   th:field="*{user.telephone}" id="telephone" required
-                                                   pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$">
-
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label> День рождения </label>
-                                            <input type="date" class="form-control" placeholder="День рождения "
-                                                   id="date" name="date" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="validationCustom07" class="form-label">Город </label>
-                                            <input type="text" class="form-control" placeholder="Город "
-                                                   th:field="*{user.town}" id="validationCustom07" required>
-                                        </div>
-                                        <div class="valid-feedback">
-                                            Все хорошо!
-                                        </div>
-
-                                        <div class="modal-footer justify-content-between">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                            <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить</button>
-                                        </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" value="Сохранить">Сохранить
+                                        </button>
                                     </div>
                                 </form>
                             </div>
+
+
+                            <!-- /.card -->
                         </div>
                     </div>
+                    <!-- /.col -->
                 </div>
+                <!-- ./row -->
             </div><!-- /.container-fluid -->
+
+
         </section>
+        <!-- /.content -->
     </div>
+    <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.1.0
@@ -339,11 +294,7 @@
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
-                    if (document.getElementById("validation2").value != document.getElementById("validation3").value) {
-                        alert("Пароль не совпадает");
-                        event.preventDefault();
-                        event.stopPropagation();
-                    } else if (!form.checkValidity()) {
+                     if (!form.checkValidity()) {
                         event.preventDefault()
                         event.stopPropagation()
                     }
@@ -352,6 +303,19 @@
                 }, false)
             })
     })()
+</script>
+<script>
+    const textarea = document.querySelector('textarea');
+    const counter = document.querySelector('.current');
+    const maxlength = 360;
+
+    textarea.addEventListener('input', onInput)
+
+    function onInput(event) {
+        event.target.value = event.target.value.substr(0, maxlength);
+        const length = event.target.value.length;
+        counter.textContent = length;
+    }
 </script>
 </body>
 </html>

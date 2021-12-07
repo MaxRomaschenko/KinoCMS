@@ -114,13 +114,26 @@ public class MainController {
         return "UI/timetable";
     }
 
-    @GetMapping("cafe")
+    @GetMapping("/cafe")
     private String getCafe(Model model){
         model.addAttribute("bannerBackground", bannerService.findById(6L));
         List<Page> pages = pageService.findAllByIs_active(true);
         model.addAttribute("pages",pages);
         model.addAttribute("pag",pageService.findById(2L));
         return "UI/cafe";
+    }
+
+    @GetMapping("/contacts")
+    private String getContacts(Model model){
+        model.addAttribute("bannerBackground", bannerService.findById(6L));
+        List<Page> pages = pageService.findAllByIs_active(true);
+        model.addAttribute("pages",pages);
+        Page page = pageService.findById(3L);
+        model.addAttribute("pag",page);
+
+        String googMaps = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2743.018773809206!2d"+ page.getTelephone_second() + "!3d" + page.getTelephone_first() + "!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c634a75a0d09e3%3A0xe4cb19d654428aad!2z0JfQvtC70L7RgtC-0Lkg0JTRjtC6!5e0!3m2!1sru!2sua!4v1638869877490!5m2!1sru!2sua";
+        model.addAttribute("googMaps",googMaps);
+        return "UI/contacts_index";
     }
 
 

@@ -142,17 +142,17 @@
 <div class="row footer-links">
     <div class="col-md-3 col-sm-6 sub-two-right mt-5" style="margin-left: 110px;margin-right: 110px">
         <figure>
-            <img style="width: 75%; height: 360px" class="img-fluid"
+            <img style="width: 350px; height: 450px" class="img-fluid"
                  th:src="@{'../../images/' + ${testFilm.getMainPicture()}}" alt="">
         </figure>
     </div>
     <div class="col-md-7 col-sm-6 sub-two-right mt-5">
         <center>
         <button style="background-color: greenyellow; border: black; width: 350px; height: 50px" >Купить билет</button><br><br>
-        <h2 th:text="${testFilm.name}"></h2>
+        <h2 style="color: black" th:text="${testFilm.name}"></h2>
         </center>
         <br><br>
-        <p th:text="${testFilm.description}"></p>
+        <p style="font-size: 25px; color: black" th:text="${testFilm.description}"></p>
     </div>
 </div>
 
@@ -165,7 +165,7 @@
 
     <section class="w3l-albums py-5" id="projects">
         <div class="container py-lg-4">
-            <h2>Кадры и постеры</h2>
+            <h2 style="color: black">Кадры и постеры</h2>
             <section class="w3l-main-slider position-relative" id="home1">
                 <div class="companies20-content">
                     <div class="owl-one owl-carousel owl-theme">

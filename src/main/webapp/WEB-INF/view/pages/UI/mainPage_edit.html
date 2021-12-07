@@ -277,11 +277,7 @@
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
-                    if (document.getElementById("validation2").value != document.getElementById("validation3").value) {
-                        alert("Пароль не совпадает");
-                        event.preventDefault();
-                        event.stopPropagation();
-                    } else if (!form.checkValidity()) {
+                    if (!form.checkValidity()) {
                         event.preventDefault()
                         event.stopPropagation()
                     }

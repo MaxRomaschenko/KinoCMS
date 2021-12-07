@@ -53,7 +53,7 @@
                             <li class="nav-item"><a href="#" class="nav-link">Реклама</a></li>
                             <li class="nav-item"><a href="/cafe" class="nav-link">Кафе</a></li>
                             <li class="nav-item"><a href="/mobile" class="nav-link">Мобильное приложение</a></li>
-                            <li class="nav-item"><a href="/konacti" class="nav-link">Контакты</a></li>
+                            <li class="nav-item"><a href="/contacts" class="nav-link">Контакты</a></li>
                             <li class="nav-item" th:each="page : ${pages}">
                                 <a th:href="@{/page/{id}(id = ${page.id})}" class="nav-link" th:text="${page.title}"></a>
                             </li>
@@ -173,7 +173,6 @@
                         </a>
                     </div>
                     <h3><a class="title-gd" th:href="@{/films/{id}(id = ${film.getId()})}" th:text="${film.name}"></a></h3>
-<!--                    <p th:text="${film.description}"></p>-->
                     <div class="button-center text-center mt-4">
                         <a href="#" class="btn watch-button">Watch now</a>
                     </div>
@@ -218,8 +217,8 @@
             <br><br>
             <img style="width: 900px; height: 130px" src="../../img/context_reclama.jpg" href="">
             <br><br>
-            <div style="width: 900px; height: 90px; ">
-                <p style="font-size: 19px" th:text="${SeoText.description}">
+            <div style="width: 900px; height: 100%; ">
+                <p style="font-size: 25px; color: black" th:text="${SeoText.description}"></p>
             </div>
         </center>
     </div>

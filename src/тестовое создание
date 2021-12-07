@@ -141,6 +141,7 @@ CREATE TABLE IF NOT EXISTS page (
                                               telephone_first varchar(45) null,
                                               telephone_second varchar(45) null,
                                              `created_at` TIMESTAMP NULL,
+                                             cinema_name varchar(60) null,
                                              `SEO_id` INT NOT NULL references SEO(id) on delete cascade
                                 );
 

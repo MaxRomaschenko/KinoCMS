@@ -317,9 +317,10 @@
                                     <label>Схема зала</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="imgInp8" name="logo"/>
+                                            <input type="file" id="imgInp8" name="logo" />
                                             <img style="width: auto; max-width: 170px; max-height: 80px; max-width:15%; border: 2px solid black; padding: 1px"
-                                                 id="blah8" th:src="@{'/images/' + ${hall.hall_layout_picture}}" />
+                                                 id="blah8" th:src="@{'/images/' + ${hall.hall_layout_picture}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                         </div>
                                     </div>
                                 </div>
@@ -328,9 +329,10 @@
                                     <label>Верхний банер</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="imgInp9" name="banner"/>
+                                            <input type="file" id="imgInp9" name="banner" />
                                             <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah9" th:src="@{'/images/' + ${hall.banner_picture}}"/>
+                                                 id="blah9" th:src="@{'/images/' + ${hall.banner_picture}}"
+                                                 onerror="if (this.src != 'error.jpg') this.src = '/img/defaultImage.png';"/>
                                         </div>
                                     </div>
                                 </div>
@@ -341,15 +343,15 @@
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
                                             <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah10" src="/img/defaultImage.png" onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
+                                                 id="blah10" src="/img/defaultImage.png" />
                                         </div>
                                         <br><br><br>
-                                        <input type="file" id="imgInp10" name="gallery"/>
+                                        <input type="file" id="imgInp10" name="gallery" />
                                     </div>
                                     <div class="input-group" style="width: 15%;">
                                         <div class="custom-file">
                                             <img style="width: auto; max-width: 170px; max-height: 80px; border: 2px solid black; padding: 1px"
-                                                 id="blah11" src="/img/defaultImage.png" onerror="if (this.src != 'error.jpg') this.src = '../../img/defaultImage.png';"/>
+                                                 id="blah11" src="/img/defaultImage.png" />
                                         </div>
                                         <br><br><br>
                                         <input type="file" id="imgInp11" name="gallery"/>

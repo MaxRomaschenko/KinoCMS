@@ -41,6 +41,9 @@ public class Page {
     @Column(name = "created_at")
     private Timestamp created_at;
 
+    @Column(name = "cinema_name")
+    private String cinema_name;
+
     @OneToOne
     @JoinColumn(name = "seo_id")
     private Seo seo;
