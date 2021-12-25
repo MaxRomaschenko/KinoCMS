@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT -jar KinoCMS.war
+web: java -Dserver.port=$PORT -jar target/KinoCMS-0.0.1.jar
