@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/films.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/afisha.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/cinema_edit.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/cinemas_main.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/film_edit.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/films.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/hall_card.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/kinozal.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/mailing.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/modals2.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/news_main.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/page.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/page_index.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/stock_index.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI/users.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/UI" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/old/film.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pages/old" />
+      </map>
+    </option>
+  </component>
+</project>
