@@ -1,1 +1,1 @@
-web: java -war target/KinoCMS-1.0.0.war
+web: java -jar target/KinoCMS-1.0.0.jar
