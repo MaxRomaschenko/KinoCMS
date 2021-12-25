@@ -140,7 +140,7 @@ public class FilmController {
         return "redirect:/films/admin";
     }
 
-    @PostMapping("/delete/{id}/admin")
+     @PostMapping("/delete/{id}/admin")
     public String delete(@PathVariable("id") Long id) {
         Film film =  filmService.findById(id);
         List<PictureGallery> pictureGalleries = pictureGalleryService.findAllByFilmId(id);

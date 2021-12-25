@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -23,14 +24,15 @@ import javax.sql.DataSource;
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
 
+    private final Environment env;
     private final ApplicationContext applicationContext;
 
     @Value("${upload.path}")
     private String uploadPath;
 
-
     @Autowired
-    public SpringConfig(ApplicationContext applicationContext) {
+    public SpringConfig(Environment env, ApplicationContext applicationContext) {
+        this.env = env;
         this.applicationContext = applicationContext;
     }
 
@@ -64,10 +66,10 @@ public class SpringConfig implements WebMvcConfigurer {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/kinocms");
-        dataSource.setUsername("root");
-        dataSource.setPassword("1234");
+        dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class"));
+        dataSource.setUrl(env.getProperty("spring.datasource.url"));
+        dataSource.setUsername(env.getProperty("spring.datasource.username"));
+        dataSource.setPassword(env.getProperty("spring.datasource.password"));
 
         return dataSource;
     }

@@ -1,0 +1,218 @@
+DROP TABLE IF EXISTS mailing;
+
+CREATE TABLE IF NOT EXISTS mailing(
+                                      id serial primary key ,
+                                      html_file varchar(10000) null
+);
+
+-- -----------------------------------------------------
+-- Table mydb.Banner
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS banner;
+
+CREATE TABLE IF NOT EXISTS banner (
+                                      id serial primary key ,
+                                      photo varchar(10000) NULL,
+                                      url VARCHAR(100) NULL,
+                                      true_false boolean NULL,
+                                      text_message text NULL);
+
+
+-- -----------------------------------------------------
+-- Table mydb.SEO
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS seo ;
+
+CREATE TABLE IF NOT EXISTS seo (
+                                   id serial PRIMARY KEY,
+                                   URL VARCHAR(100) NULL,
+                                   title VARCHAR(150) NULL,
+                                   keywords text NULL,
+                                   description text NULL
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.Film
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS film ;
+
+CREATE TABLE IF NOT EXISTS film (
+                                    id serial PRIMARY KEY,
+                                    name VARCHAR(150) NULL,
+                                    actual boolean null,
+                                    description text NULL,
+                                    main_picture varchar(10000) NULL,
+                                    trailer_url VARCHAR(100) NULL,
+                                    SEO_id INT  REFERENCES SEO(id) ON DELETE CASCADE
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.FilmType
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS filmtype ;
+
+CREATE TABLE IF NOT EXISTS filmtype (
+                                        id serial PRIMARY KEY,
+                                        name_type VARCHAR(10) NULL
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.Cinema
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS cinema ;
+
+CREATE TABLE IF NOT EXISTS cinema (
+                                      id serial PRIMARY KEY,
+                                      cinema_name VARCHAR(160) NULL,
+                                      description text NULL,
+                                      conditions text NULL,
+                                      logo_picture varchar(10000) NULL,
+                                      banner_picture varchar(10000) NULL,
+                                      SEO_id INT NOT NULL references SEO(id) on delete cascade
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.hall
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS hall ;
+
+CREATE TABLE IF NOT EXISTS hall (
+                                    id serial PRIMARY KEY,
+                                    hall_number INT NULL,
+                                    hall_description text NULL,
+                                    hall_layout_picture varchar(10000) NULL,
+                                    banner_picture varchar(10000) NULL,
+                                    created_at TIMESTAMP NULL,
+                                    cinema_id INT  references Cinema(id) on delete cascade ,
+                                    SEO_id INT NOT NULL references SEO(id) on delete cascade
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.News
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS news ;
+
+CREATE TABLE IF NOT EXISTS news (
+                                    id serial primary key ,
+                                    title TEXT NULL,
+                                    publication_date TIMESTAMP NULL,
+                                    description text NULL,
+                                    main_picture varchar(10000) NULL,
+                                    trailer_url VARCHAR(100) NULL,
+                                    isactive BOOLEAN NULL,
+                                    Created_at TIMESTAMP NULL,
+                                    SEO_id INT NOT NULL references SEO(id) on delete cascade );
+
+
+-- -----------------------------------------------------
+-- Table mydb.stock
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS stock ;
+
+CREATE TABLE IF NOT EXISTS stock (
+                                     id serial primary key ,
+                                     title TEXT NULL,
+                                     publication_date TIMESTAMP NULL,
+                                     description TEXT NULL,
+                                     main_picture varchar(10000) NULL,
+                                     trailer_url VARCHAR(100) NULL,
+                                     is_active BOOLEAN NULL,
+                                     SEO_id INT NOT NULL references SEO(id) on delete cascade
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.Page
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS page ;
+
+CREATE TABLE IF NOT EXISTS page (
+                                    id serial primary key ,
+                                    title VARCHAR(45) NULL,
+                                    description text NULL,
+                                    banner_url varchar(10000) NULL,
+                                    is_active boolean NULL,
+                                    redacted boolean null,
+                                    telephone_first varchar(45) null,
+                                    telephone_second varchar(45) null,
+                                    created_at TIMESTAMP NULL,
+                                    cinema_name varchar(60) null,
+                                    SEO_id INT NOT NULL references SEO(id) on delete cascade
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.users
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS users ;
+
+CREATE TABLE IF NOT EXISTS users (
+                                     id serial PRIMARY KEY,
+                                     reg_date TIMESTAMP NULL,
+                                     name VARCHAR(45) NULL,
+                                     secondname VARCHAR(45) NULL,
+                                     nickname VARCHAR(45) NULL,
+                                     birthday_date TIMESTAMP NULL,
+                                     email VARCHAR(45) NULL,
+                                     telephone VARCHAR(45) NULL,
+                                     address VARCHAR(150) NULL,
+                                     town varchar(45) Null,
+                                     password VARCHAR(45) NULL,
+                                     test_password VARCHAR(45) NULL,
+                                     card_number VARCHAR(25) NULL,
+                                     language BOOLEAN NULL,
+                                     gender BOOLEAN NULL NULL,
+                                     mailing_id int references mailing(id) on delete cascade
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.film_filmType
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS film_filmtype ;
+
+CREATE TABLE IF NOT EXISTS film_filmtype (
+                                             Film_id INT NOT NULL REFERENCES Film(id) on delete cascade ,
+                                             Filmtype_id INT NOT NULL references FilmType(id) on delete cascade
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.pictureGalary
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS picture_gallery ;
+
+CREATE TABLE IF NOT EXISTS picture_gallery (
+                                               id serial primary key ,
+                                               picture varchar(10000) NULL,
+                                               cinema_id INT  references cinema(id) on delete cascade ,
+                                               film_id INT references film(id) on delete cascade,
+                                               hall_id INT references hall(id) on delete cascade,
+                                               news_id INT references news(id) on delete cascade,
+                                               stock_id INT references stock(id) on delete cascade,
+                                               page_id INT references page(id) on delete cascade
+);
+
+
+-- -----------------------------------------------------
+-- Table mydb.timetable
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS timetable ;
+
+CREATE TABLE IF NOT EXISTS timetable (
+                                         id serial primary key ,
+                                         time_session TIME NULL,
+                                         price DECIMAL(3,2) NULL,
+                                         isbooked BOOLEAN NULL,
+                                         date_session DATE NULL,
+                                         film_name INT NOT NULL REFERENCES Film(id) on delete cascade ,
+                                         hall_name INT NOT NULL references Hall(id) on delete cascade
+);
+
+
+

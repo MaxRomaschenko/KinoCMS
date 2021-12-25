@@ -199,6 +199,7 @@ public class CinemaController {
         model.addAttribute("gallery",pictureGalleryService.findAllByCinemaId(id));
         List<Page> pages = pageService.findAllByIs_active(true);
         model.addAttribute("pages",pages);
+        model.addAttribute("halls",hallService.findAllByCinemaId(id));
         model.addAttribute("bannerBackground", bannerService.findById(6L));
         return "UI/cinema_card";
     }

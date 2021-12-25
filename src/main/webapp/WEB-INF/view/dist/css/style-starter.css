@@ -14270,6 +14270,12 @@ ul {
 
 @media (min-width: 1280px) {
   .container {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container66 {
     max-width: 1500px;
   }
 }

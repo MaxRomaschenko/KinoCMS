@@ -8,8 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "cinema")
 public class Cinema {
