@@ -13,3 +13,4 @@ CREATE TABLE IF NOT EXISTS `users` (
                                               `language` VARCHAR(45) ,
                                               `gender` VARCHAR(45) )
 
+
