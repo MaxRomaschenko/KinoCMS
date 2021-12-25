@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Security</title>
+</head>
+<body>
+<div th:if="${param.error}">
+    Invalid username and password
+</div>
+<div th:if="${param.logout}">
+    You have been logged out
+</div>
+<form th:action="@{/login}" th:method="POST">
+    <div>
+        <label>User name: <input type="text" name="username"/></label>
+    </div>
+    <div>
+        <label>Password: <input type="password" name="password"/></label>
+    </div>
+    <div>
+        <label><input type="submit" name="Sigh in"/></label>
+    </div>
+</form>
+
+<a href="/registration">add new user</a>
+
+
+</body>
+</html>
