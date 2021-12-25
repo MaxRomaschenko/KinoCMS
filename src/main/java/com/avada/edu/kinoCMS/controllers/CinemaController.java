@@ -71,6 +71,7 @@ public class CinemaController {
     ) throws IOException {
         if(cinema != null){ //TODO: ифы не работют создаётся пустой объект от ModelAttribute
 
+
             cinema.setLogo_picture(file(logo));
 
             cinema.setBanner_picture(file(banner));
