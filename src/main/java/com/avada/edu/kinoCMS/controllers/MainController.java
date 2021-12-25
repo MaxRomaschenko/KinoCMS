@@ -38,6 +38,7 @@ public class MainController {
 
         model.addAttribute("SeoText", pageService.findById(1L));
 
+
         Banner banner1 = bannerService.findById(1L);
         Banner banner2 = bannerService.findById(2L);
         Banner banner3 = bannerService.findById(3L);
