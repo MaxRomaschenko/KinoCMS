@@ -1,1 +1,1 @@
-web bundle exec bin/rails server -p $PORT -e $RAILS_ENV
+web: java $JAVA_OPTS -jar --port $PORT target/KinoCMS.war
