@@ -1,1 +1,1 @@
-web: java -jar target/KinoCMS-1.0.jar
+web:git checkout -b main bundle exec bin/rails server -p $PORT -e $RAILS_ENV
